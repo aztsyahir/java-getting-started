@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iRizq Kitchen</title>
+    
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="image/cake.png">
+
+    <!-- swiper link  -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+
+    <!-- cdn icon link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file  -->
+    <link rel="stylesheet" href="home.css">
+
+</head>
+
+<body>
+
+    <!-- header section start here  -->
+    <header class="header">
+        <div class="logoContent">
+            <a href="home.html" class="logo"><img src="image/cake.png" alt="cake icon"></a>
+            <h1 class="logoName">iRizq Kitchen</h1>
+        </div>
+
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="catalogue.html">Catalogue</a>
+            <a href="about.html">About</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+
+        <form class="formSearch" id="form" role="search">
+            <input type="search" id="query" name="Search" placeholder="Search..." aria-label="Search through site content">
+            <button>
+                <svg viewBox="0 0 1024 1024">
+                    <path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
+                    </path>
+                </svg>
+            </button>
+        </form>
+    </header>
+    <!-- header section end here  -->
+
+
+    <!-- main section start here-->
+    <main class="homepage-content">
+
+      <div class="hero-homepage">
+      </div>
+
+        <!-- bestsellers image gallery -->
+        <div id="bestsellers-item">
+
+          <div class="homepage-content-text">
+            <h2>Our Bestseller</h2>
+          </div>
+
+          <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="image/kek-pisang.jpg">
+                  <img src="image/kek-pisang.jpg" alt="Cinque Terre" width="600" height="400">
+                </a>
+                <div class="name">kek pisang</div>
+                <div class="desc">Moist and sweet cake made with banana slices. A real treat to be savored with a good cup of coffee or a cold glass of milk.</div>
+              </div>
+            </div>
+            
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="image/kek-batik.jpg">
+                  <img src="image/kek-batik.jpg" alt="Forest" width="600" height="400">
+                </a>
+                <div class="name">kek batik indulgence</div>
+                <div class="desc">An excellent combination rich in chocolate, biscuits, and cream cheese gives it a soft and creamy taste.</div>
+              </div>
+            </div>
+
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="image/kek-marble.jpg">
+                  <img src="image/kek-marble.jpg" alt="Forest" width="600" height="400">
+                </a>
+                <div class="name">kek marble</div>
+                <div class="desc">A cake with a streaked or mottled appearance (like marble) can captivate your attention.</div>
+              </div>
+            </div>
+
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="image/kek-brownies.jpg">
+                  <img src="image/kek-brownies.jpg" alt="Forest" width="600" height="400">
+                </a>
+                <div class="name">brownies</div>
+                <div class="desc">A square or rectangular chocolate-baked confection. Cakey on the outside and fudgy in the middle!</div>
+              </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <div style="padding:6px"></div>
+
+        </div>
+        <!-- end of bestsellers image gallery -->
+
+
+        <!-- audio -->
+        <div class="audioMusic">
+          <audio src="audio/bg-music.mp3" controls autoplay class="my-audio"></audio>
+        </div>
+
+
+        <!-- customer review -->
+        <div id="cust-review">
+
+          <div class="homepage-content-text">
+            <h2>What Our Customers Say</h2>
+          </div>
+
+          <div class="slideshow-container">
+
+            <div class="mySlides">
+              <q>It was the moistest cake I've ever eaten. The perfect cream cheese frosting, sweet and tangy, sinking into the top of the cake made its moistness. Sweet, but not overpowering. Mega banana flavor, certainly more banana flavor than any banana cake I've ever eaten. Very buttery and cakey from creaming the butter and sugars. Ridiculously rich, decadent.</q>
+              <p class="author">- Anis</p>
+            </div>
+            
+            <div class="mySlides">
+              <q>I just wanted to let you know how much my family enjoyed the cake you made. It was truly delicious! Thanks again. I now have a new favorite bakery!</q>
+              <p class="author">- Hana</p>
+            </div>
+            
+            <div class="mySlides">
+              <q>This cake is so perfect in every term. I have enjoyed every slice of this red velvet cake and that's why I love it.</q>
+              <p class="author">- Eric</p>
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+            
+          </div>
+            
+            <div class="dot-container">
+              <span class="dot" onclick="currentSlide(1)"></span> 
+              <span class="dot" onclick="currentSlide(2)"></span> 
+              <span class="dot" onclick="currentSlide(3)"></span> 
+            </div>
+
+        </div>
+
+      <!-- newsletter section start here  -->        
+      <div class="newsletter">
+        <form action="#" name="my-newsletter" onsubmit="return subscribe()" required>
+          <img src="image/newsletter.png" alt="newsletter" height="100" width="100">
+          <h2>Subscribe for Latest Update</h2>
+          <input type="email" name="email" id="email-box" placeholder="Email address"> 
+          <button type="submit" id="submit-btn">Subscribe</button>
+        </form>
+      </div>
+      <!-- newsletter section ends here  -->
+
+    </main>
+    <!--main section end here-->
+
+    <!-- footer section start here  -->
+    <footer class="footer" id="contact">
+      <div class="box-container">
+          
+          <div class="box">
+              <h3>Opening Hours</h3>
+              <p>Weekdays: 10:00AM - 5:00PM <br> Weekends: 10:00AM - 6:00PM</p>
+          </div>
+
+          <div class="box">
+              <h3>Contact Us</h3>
+              <p>iRizq Kitchen Sabak Bernam (HQ)</p>
+              <p>No.12 Jalan Dewan, Pekan Sabak Bernam, <br> 45200 Sabak Bernam, Selangor</p>
+              <a href="tel:+60 1123 4567" target="_blank"> <i class="fas fa-phone"></i>+60 1123 4567</a>
+              <a href="mailto: irizqkitchen@gmail.com" target="_blank"> <i class="fas fa-envelope"></i>irizqkitchen@gmail.com</a>
+          </div>
+
+          <div class="box">
+            <h3>About Us</h3>
+            <a href="http://127.0.0.1:5502/about.html#:~:text=Location-,Vision,-Let%20us%20eat"> <i class="fas fa-arrow-right"></i>Vision</a>
+            <a href="http://127.0.0.1:5502/about.html#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love"> <i class="fas fa-arrow-right"></i>Mission</a>
+            <a href="https://goo.gl/maps/Yeepko5QdJ3EMDox7" target="_blank"> <i class="fas fa-arrow-right"></i>Location</a>
+        </div>
+
+      </div>
+
+      <div class="share">
+          <a href="https://web.facebook.com/rizq.khazinuddin" class="fab fa-facebook-f" target="_blank"></a>
+          <a href="https://www.instagram.com/irizq_kitchen/" class="fab fa-instagram" target="_blank"></a>
+      </div>
+      <div class="credit">
+          irizqkitchen <span>&copy;</span> 2022
+      </div>
+    </footer>
+  <!-- footer section end here  -->
+
+
+  <!-- swiper js link  -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+  <!-- custom js file  -->
+  <script src="home.js"></script>
+
+</body>
+
+</html>
