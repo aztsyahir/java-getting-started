@@ -27,7 +27,7 @@ public class GettingStartedApplication {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "home";
     }
 
     @GetMapping("/convert")
