@@ -133,7 +133,7 @@ header .formSearch{
 
 /* heroimage */
 .hero-homepage {
-    background: url(../../public/image/Irizq-Kitchen-WebHeader-Desktop.png) no-repeat;
+    background: url("../image/Irizq-Kitchen-WebHeader-Desktop.png") no-repeat;
     min-height: 100vh;
     display: flex;
     align-items: center;
