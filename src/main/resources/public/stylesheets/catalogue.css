@@ -1,0 +1,491 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --black: #1B1722;
+    --white: #f2e8b9;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+    --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+*{
+    font-family: 'Quicksand', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+html{
+    font-size: 62.5%;   
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background-color: var(--white);
+    border-radius: 5rem;
+}
+
+/*header starts here*/
+.header{
+    top: 0;right: 0;left: 0;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    padding: 1.4rem 7%;
+    z-index: 999;
+}
+
+.header .logoContent{
+    display: flex;
+    align-items: center;
+}
+
+.header .logoContent .logo img{
+    height: 4rem;
+}
+
+.header .logoContent .logoName{
+    color: var(--black);
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.header .logoName{
+    padding-left: 10px;
+}
+
+.header .navbar a{
+    font-size: 2rem;
+    margin-right: 3rem;
+    color: var(--black);
+    font-weight: bold;
+}
+
+.header .navbar a:hover{
+    border-bottom: .1rem solid var(--black);
+    padding-bottom: .4rem;
+}
+
+.header .icon i{
+    font-size: 2rem;
+    margin-right: 2rem;
+    color: var(--black);
+    cursor: pointer;
+}
+
+/* search bar */
+header .formSearch{
+    background-color: #ffffff84;
+    width: 300px;
+    height: 44px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header input{          
+    all: unset;
+    font: 16px system-ui;
+    color: black;
+    height: 100%;
+    width: 100%;
+    padding: 6px 10px;
+}
+
+.header ::placeholder{
+    color: black;
+    opacity: 0.7; 
+}
+
+/* search submit button */
+.header button{
+    all: unset;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+}
+
+.header svg {
+    color: black;
+    fill: currentColor;
+    width: 24px;
+    height: 24px;
+}
+/*header ends here*/
+
+/* main */
+main{
+  margin-top: 130px;
+}
+
+h1{
+  font-size: 5rem;
+  position: relative;
+  text-align: center;
+}
+
+h3#main{
+  font-size: 2rem;
+  position: relative;
+  text-align: center;
+}
+
+h3,h4,h5{
+  font-size: 2rem;
+}
+
+/* h5{
+  text-align: center;
+} */
+
+.card#p1 {
+  position: relative;
+  height: 300px;
+  color: #a18a96;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+  background: url('../../public/image/kekpisang.jpg') center no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.card#p2 {
+  position: relative;
+  height: 300px;
+  color: #a18a96;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+  background: url('../../public/image/marble2.jpg') center no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.card#p3 {
+  position: relative;
+  height: 300px;
+  color: #a18a96;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+  background: url('../../public/image/marblecheese2.jpg') center no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+/* redvelvet */
+.card#p4 {
+  position: relative;
+  height: 300px;
+  color: #a18a96;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+  background: url('../../public/image/redvelvet3.jpg') center no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+/* kek batik */
+.card#p5 {
+  position: relative;
+  height: 300px;
+  color: #a18a96;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+  background: url('../../public/image/kekbatik2.jpg') center no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+/* brownies */
+.card#p6 {
+  position: relative;
+  height: 300px;
+  color: #a18a96;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+  background: url('../../public/image/brownies.jpg') center no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(60% + 35px);
+  background-color: #fff;
+  transition: transform .5s.25s ease-in;
+  z-index: -1;
+}
+
+.card::before {
+  top: 0;
+  clip-path:
+      polygon(0 0, 100% 0, 100% 45%, 0% 100%);
+  transform: translateY(-100%);
+}
+
+.card::after {
+  bottom: 0;
+  clip-path: polygon(0 55%, 100% 0, 100% 100%, 0% 100%);
+  transform: translateY(100%);
+}
+
+.card__content {
+  opacity: 0;
+  transition: opacity .25s;
+}
+
+.card__title {
+  color: #6A515E;
+  margin-bottom: 15px;
+}
+
+.card__description {
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.card:hover::before,
+.card:hover::after {
+  transform: translateY(0);
+}
+
+.card:hover .card__content {
+  opacity: 1;
+  transition-delay: .75s;
+}
+/* Style for js*/
+  .cakename{
+      cursor: pointer;
+      width: 50%;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+      margin: auto;
+  }
+  .desc{
+     margin: 20px auto 0 auto;
+     width: 90%; 
+     padding: auto;
+     font-weight: bolder;
+  }
+  /* .active, */
+  .cakename:hover {
+      background-color: #f2e8b9;
+      border-radius: 10px;
+  }
+  .desc{
+      padding:  18px;
+      background-color: #F5F3F5;
+      display: none;
+      overflow: hidden;
+      border-radius: 10px;
+      font-size: 18px;
+  }
+  .cakename::after{
+      font-size: 13px;
+      color: #777;
+      float: right;
+      margin-left: 5px;
+  }
+  .card:hover .card__content {
+    opacity: 1;
+    transition-delay: .75s;
+  }
+  
+/* style end */
+.container{
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    padding: 70px 4%;
+}
+.grid{
+  background-color: #8AA899;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  text-align: center;
+}
+
+/* order button */
+.order button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 92%;
+  font-size: 18px;
+  position: absolute;
+}
+
+/*footer starts here*/
+.footer {
+  background-color: #8AA899;
+  margin-top: 70px;
+  padding-bottom: 10px;
+}
+
+.footer .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 1.5rem;
+  padding: 1% 5%;
+}
+
+.footer .box-container .box h3{
+  font-size: 2.2rem;
+  color: var(--black);
+  padding: 1rem 0;
+}
+.footer .box-container .box p{
+  display: block;
+  font-size: 1.6rem;
+  color: var(--black);
+  padding: 1rem 0;
+}
+
+.footer .box-container .box a{
+  display: block;
+  font-size: 1.6rem;
+  color: var(--black);
+  padding: 1rem 0;
+}
+.footer .box-container .box a i{
+  padding-right: .5rem;
+  color: var(--black);
+}
+.footer .box-container .box a:hover i{
+  padding-right: 2rem;
+}
+
+.footer .share{
+  padding: 1rem 0;
+  text-align: center;
+}
+.footer .share a{
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
+  font-size: 2rem;
+  color: var(--white);
+  background: var(--black);
+  margin: 0 .3rem;
+  border-radius: 50%;
+
+}
+.footer .share a:hover{
+  background: var(--white);
+  color: var(--black);
+}
+.footer .credit{
+  font-size: 15px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  color: var(--black);
+  text-align: center;
+}
+/*footer ends here*/
+
+.swiper-pagination-bullet{
+  background-color: var(--black);
+}
+.swiper-button-next{
+  color: var(--black);
+}
+.swiper-button-prev{
+  color: var(--black);
+}
+
+
+/* media queries for web responsive */
+
+@media (max-width:991px){
+  html{
+      font-size: 55%;
+  }
+  .header{
+      padding: 1.3rem 3rem;
+  }
+  .home .homeContent{
+      margin-left: 0;
+      width: 80%;
+  }
+}
+
+@media (max-width:768px) {
+  #menu-bar{
+      display: inline-block;
+  }
+  .header .navbar{
+      position: absolute;
+      top: 100%;
+      right: -100%;
+      width: 25rem;
+      background-color: var(--white);
+      height: 80vh;
+  }
+  .header .navbar.active{
+      right: 0;
+  }
+  .header .navbar a{
+      display: block;
+      font-size: 2rem;
+      color: black;
+      margin: 1.5rem;
+  }
+
+  .home .homeContent{
+      margin-left: 0;
+      width: 90%;
+  }
+}
+
+@media (max-width:600px){
+  html{
+      font-size: 50%;
+  }
+}
