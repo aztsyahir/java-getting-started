@@ -129,11 +129,23 @@ header .formSearch{
     height: 24px;
 }
 /*header ends here*/
-
-.container{
+body{
     background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
-    padding-top: 8%;
+}
+.formcontainer{
     
+    padding-top: 8%;
+}
+
+.card{
+    border-radius: 10px;
+    background: #efe5c0;
+    box-shadow:  20px 20px 60px #95938c;
+             
+}
+
+.form-label{
+    font-weight: bold;
 }
 
 /*footer starts here*/
@@ -141,6 +153,7 @@ header .formSearch{
     background-color: #8AA899;
     margin-top: 70px;
     padding-bottom: 10px;
+    
 }
 
 .footer .box-container{
@@ -148,6 +161,7 @@ header .formSearch{
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     gap: 1.5rem;
     padding: 1% 5%;
+    width: 100%;
 }
 
 .footer .box-container .box h3{
