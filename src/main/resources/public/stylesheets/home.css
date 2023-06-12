@@ -144,7 +144,7 @@ header .formSearch{
 
 @media only screen and (max-width: 768px){
     .hero-homepage{
-        background: url(image/Irizq-Kitchen-WebHeader-Mobile.png) no-repeat;
+        background: url("../image/Irizq-Kitchen-WebHeader-Mobile.png") no-repeat;
         min-height: 100vh;
         display: flex;
         align-items: center;
