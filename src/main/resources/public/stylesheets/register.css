@@ -76,7 +76,9 @@ html::-webkit-scrollbar-thumb{
     color: var(--black);
     font-weight: bold;
     text-decoration: none;
+    
 }
+
 
 .header .navbar a:hover{
     border-bottom: .1rem solid var(--black);
@@ -130,20 +132,14 @@ header .formSearch{
     height: 24px;
 }
 /*header ends here*/
+
 body{
     background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
 }
+
 .formcontainer{
     
     padding-top: 8%;
-}
-
-.btn{
-    font-weight: bold;
-}
-
-fieldset{
-    font-weight: bold;
 }
 
 .card{

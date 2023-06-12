@@ -68,13 +68,14 @@ html::-webkit-scrollbar-thumb{
     padding-left: 10px;
 }
 
-.header .navbar a{
+.header .navbar a, .Profile, .dropdown-menu{
     font-size: 2rem;
     margin-right: 3rem;
     color: var(--black);
     font-weight: bold;
+    text-decoration: none;
+    
 }
-
 .header .navbar a:hover{
     border-bottom: .1rem solid var(--black);
     padding-bottom: .4rem;
