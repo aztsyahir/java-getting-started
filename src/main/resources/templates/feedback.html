@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/image/cake.png">
+
+    <!-- swiper link  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- cdn icon link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file  -->
+    <link rel="stylesheet" href="../public/stylesheets/feedback.css">
+
+</head>
+
+<body>
+
+    <!-- header section start here  -->
+    <header class="header">
+        <div class="logoContent">
+            <a href="home.html" class="logo"><img src="../public/image/cake.png" alt="cake icon"></a>
+            <h1 class="logoName">iRizq Kitchen</h1>
+        </div>
+
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="catalogue.html">Catalogue</a>
+            <a href="about.html">About</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+
+        <form class="formSearch" id="form" role="search">
+            <input type="search" id="query" name="Search" placeholder="Search..." aria-label="Search through site content">
+            <button>
+                <svg viewBox="0 0 1024 1024">
+                    <path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
+                    </path>
+                </svg>
+            </button>
+        </form>
+    </header>
+    <!-- header section end here  -->
+
+    
+    <main>
+        <div class="container">
+            <form action="#" id="feedbackform">
+                <div class="user">
+                    
+                    <h2>SEND FEEDBACK</h2>
+                    
+                    <div class="rating">
+                        <input type="radio" name="emoji" id="emojirating1" checked>
+                        <label for="emojirating1">
+                            <img src="../public/image/disappointed-face.png" alt="Discontent">
+                            <h5>Discontent</h5>
+                        </label>
+                        <input type="radio" name="emoji" id="emojirating2" checked>
+                        <label for="emojirating2">
+                            <img src="../public/image/confused-face.png" alt="Poor">
+                            <h5>Poor</h5>
+                        </label>
+                        <input type="radio" name="emoji" id="emojirating3" checked>
+                        <label for="emojirating3">
+                            <img src="../public/image/slightly-smiling-face.png" alt="Good">
+                            <h5>Good</h5>
+                        </label>
+                        <input type="radio" name="emoji" id="emojirating4" checked>
+                        <label for="emojirating4">
+                            <img src="../public/image/beaming-face-with-smiling-eyes.png" alt="Happy">
+                            <h5>Happy</h5>
+                        </label>
+                        <input type="radio" name="emoji" id="emojirating5" checked>
+                        <label for="emojirating5">
+                            <img src="../public/image/smiling-face-with-heart-eyes.png " alt="Excellent">
+                            <h5>Excellent</h5>
+                        </label>
+                    </div>
+    
+                    <h3>Commentary</h3>
+    
+                    <div class="username">
+                        <input type="text" name="fname" id="fullname" placeholder="Enter Fullname">
+                        <div id="message1"></div>
+                    </div>
+    
+                    <div class="useremail">
+                        <input type="email" name="uemail" id="email" placeholder="Enter Email">
+                        <div id="message2"></div>
+                    </div>
+    
+                    <h4>Enquiry:</h4>
+    
+                    <div class="enquiry">
+                        <select name="enquiry" id="enquiryform">
+                            <option value="">Select</option>
+                            <option value="cakeReview">Cake Review</option>
+                            <option value="delivery">Delivery</option>
+                            <option value="others">Others</option>
+                        </select>
+                        <div id="message3"></div>
+                    </div>
+    
+                    <h4>Message:</h4>
+    
+                    <div class="usermessage">
+                        <textarea name="message" id="message" cols="99" rows="10" placeholder="Let us know about your opinion on our services!"></textarea>
+                    </div>
+    
+                    <button type="submit" class="submit" onclick="submissionFeedback()">Submit</button>
+                    
+                </div>
+            </form>
+        </div>
+    </main>
+    
+
+    <!-- footer section start here  -->
+    <footer class="footer" id="contact">
+        <div class="box-container">
+            
+            <div class="box">
+                <h3>Opening Hours</h3>
+                <p>Weekdays: 10:00AM - 5:00PM <br> Weekends: 10:00AM - 6:00PM</p>
+            </div>
+
+            <div class="box">
+                <h3>Contact Us</h3>
+                <p>iRizq Kitchen Sabak Bernam (HQ)</p>
+                <p>No.12 Jalan Dewan, Pekan Sabak Bernam, <br> 45200 Sabak Bernam, Selangor</p>
+                <a href="tel:+60 1123 4567" target="_blank"> <i class="fas fa-phone"></i>+60 1123 4567</a>
+                <a href="mailto: irizqkitchen@gmail.com" target="_blank"> <i class="fas fa-envelope"></i>irizqkitchen@gmail.com</a>
+            </div>
+
+            <div class="box">
+                <h3>About Us</h3>
+                <a href="http://127.0.0.1:5500/about.html#:~:text=Location-,Vision,-Let%20us%20eat"> <i class="fas fa-arrow-right"></i>Vision</a>
+                <a href="http://127.0.0.1:5500/about.html#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love"> <i class="fas fa-arrow-right"></i>Mission</a>
+                <a href="https://goo.gl/maps/Yeepko5QdJ3EMDox7" target="_blank"> <i class="fas fa-arrow-right"></i>Location</a>
+            </div>
+
+        </div>
+        <div class="share">
+            <a href="https://web.facebook.com/rizq.khazinuddin" class="fab fa-facebook-f" target="_blank"></a>
+            <a href="https://www.instagram.com/irizq_kitchen/" class="fab fa-instagram" target="_blank"></a>
+        </div>
+        <div class="credit">
+            irizqkitchen <span>&copy;</span> 2022
+        </div>
+    </footer>
+
+
+    <!-- swiper js link  -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <!-- custom js file  -->
+    <script src="../public/javascript/feedback.js"></script>
+
+</body>
+
+</html>
