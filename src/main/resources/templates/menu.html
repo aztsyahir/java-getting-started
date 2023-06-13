@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 
     <!-- custom css file  -->
-    <link rel="stylesheet" href="../public/stylesheets/menu.css"/>
+    <link rel="stylesheet" th:href="@{stylesheets/menu.css}"/>
   </head>
 
  <!-- header section start here  -->
@@ -57,9 +57,9 @@
         <tr>
           <td class="tableListPics1" colspan="2">
             <div class="containerimage">
-              <div class="panel" id="kekpisang1" th:style="'background: url(/image/kekpisang.jpg)'"></div>
-              <div class="panel" id="kekpisang2" th:style="'background: url(/image/kekpisang2.jpg)'"></div>
-              <div class="panel" id="kekpisang3" th:style="'background: url(/image/kekpisang3.jpg)'"></div>
+              <div class="panel" id="kekpisang1" th:style="'background: url(/image/kekpisang.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="kekpisang2" th:style="'background: url(/image/kekpisang2.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="kekpisang3" th:style="'background: url(/image/kekpisang3.jpg) no-repeat center; background-size: cover;'"></div>
             </div>
           </td>
           <td class="tableRadio1">
@@ -177,9 +177,9 @@
         <tr>
           <td class="tableListPics6" colspan="2">
             <div class="containerimage">
-              <div class="panel" id="brownies1" th:style="'background: url(/image/brownies.jpg)'"></div>
-              <div class="panel" id="brownies2" th:style="'background: url(/image/brownies2.jpg)'"></div>
-              <div class="panel" id="brownies3" th:style="'background: url(/image/brownies3.jpg)'"></div>
+              <div class="panel" id="brownies1" th:style="'background: url(/image/brownies.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="brownies2" th:style="'background: url(/image/brownies2.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="brownies3" th:style="'background: url(/image/brownies3.jpg) no-repeat center; background-size: cover;'"></div>
             </div>
           </td>
           <td class="tableRadio6">
@@ -247,7 +247,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
   <!-- custom js file  -->
-  <script src="../public/javascript/menu.js"></script>
+  <script th:src="@{public/javascript/menu.js}"></script>
 
   </body>
 </html>
