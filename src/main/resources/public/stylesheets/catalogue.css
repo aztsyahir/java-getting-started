@@ -87,14 +87,6 @@ html::-webkit-scrollbar-thumb{
     cursor: pointer;
 }
 
-
-
-.header svg {
-    color: black;
-    fill: currentColor;
-    width: 24px;
-    height: 24px;
-}
 /*header ends here*/
 
 /* main */

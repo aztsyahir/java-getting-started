@@ -112,20 +112,7 @@ header .formSearch{
   opacity: 0.7; 
 }
 
-/* search submit button */
-.header button{
-  all: unset;
-  cursor: pointer;
-  width: 44px;
-  height: 44px;
-}
 
-.header svg {
-  color: black;
-  fill: currentColor;
-  width: 24px;
-  height: 24px;
-}
 /*header ends here*/
 
 #faq{
