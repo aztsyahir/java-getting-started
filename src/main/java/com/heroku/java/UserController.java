@@ -17,17 +17,46 @@ import javax.measure.unit.SI;
 
 @SpringBootApplication
 @Controller
-public class GettingStartedApplication {
+public class UserController {
     private final DataSource dataSource;
 
     @Autowired
-    public GettingStartedApplication(DataSource dataSource) {
+    public UserController(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @GetMapping("/")
-    public String index() {
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/about")
+    public String about(){
+        return "about";
+    }
+    @GetMapping("/catalogue")
+    public String catalogue(){
+        return "catalogue";
+    }
+    @GetMapping("/faqs")
+    public String faqs(){
+        return "faqs";
+    }
+    @GetMapping("/feedback")
+    public String feedback(){
+        return "feedback";
+    }
+    @GetMapping("/home")
+    public String home(){
         return "home";
+    }
+    @GetMapping("/menu")
+    public String menu(){
+        return "menu";
+    }
+    @GetMapping("/userregister")
+    public String userregister(){
+        return "userregister";
     }
 
     @GetMapping("/convert")
@@ -67,7 +96,7 @@ public class GettingStartedApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(GettingStartedApplication.class, args);
+        SpringApplication.run(UserController.class, args);
         
     }
 }
