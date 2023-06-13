@@ -92,45 +92,7 @@ html::-webkit-scrollbar-thumb{
     cursor: pointer;
 }
 
-/* search bar */
-header .formSearch{
-    background-color: #ffffff84;
-    width: 300px;
-    height: 44px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
-.header input{          
-    all: unset;
-    font: 16px system-ui;
-    color: black;
-    height: 100%;
-    width: 100%;
-    padding: 6px 10px;
-}
-
-.header ::placeholder{
-    color: black;
-    opacity: 0.7; 
-}
-
-/* search submit button */
-.header button{
-    all: unset;
-    cursor: pointer;
-    width: 44px;
-    height: 44px;
-}
-
-.header svg {
-    color: black;
-    fill: currentColor;
-    width: 24px;
-    height: 24px;
-}
 /*header ends here*/
 
 
@@ -216,6 +178,77 @@ table, th, tr, td{
   height: auto;
 }
 
+#kekpisang1 {
+  background-image: url("../image/kekpisang.jpg");
+}
+
+#kekpisang2 {
+  background-image: url("../image/kekpisang2.jpg");
+}
+
+#kekpisang3 {
+  background-image: url("../image/kekpisang3.jpg");
+}
+
+#kekmarble1 {
+  background-image: url("../image/marble.jpg");
+}
+
+#kekmarble2 {
+  background-image: url("../image/marble2.jpg");
+}
+
+#kekmarble3 {
+  background-image: url("../image/marble3.jpg");
+}
+
+#kekmarblecheese1 {
+  background-image: url("../image/marblecheese.jpg");
+}
+
+#kekmarblecheese2 {
+  background-image: url("../image/marblecheese2.jpg");
+}
+
+#kekmarblecheese3 {
+  background-image: url("../image/marblecheese3.jpg");
+}
+
+#redvelvet1 {
+  background-image: url("../image/redvelvet.jpg");
+}
+
+#redvelvet2 {
+  background-image: url("../image/redvelvet2.jpg");
+}
+
+#redvelvet3 {
+  background-image: url("../image/redvelvet3.jpg");
+}
+
+#kekbatik1 {
+  background-image: url("../image/kekbatik.jpg");
+}
+
+#kekbatik2 {
+  background-image: url("../image/kekbatik2.jpg");
+}
+
+#kekbatik3 {
+  background-image: url("../image/kekbatik3.jpg");
+}
+
+#brownies1 {
+  background-image: url("../image/brownies.jpg");
+}
+
+#brownies2 {
+  background-image: url("../image/brownies3.jpg");
+}
+
+#brownies3 {
+  background-image: url("../image/brownies2.jpg");
+}
 
 .panel {
   background-size: auto;

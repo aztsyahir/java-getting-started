@@ -68,7 +68,7 @@ html::-webkit-scrollbar-thumb{
     padding-left: 10px;
 }
 
-.header .navbar a, .Profile, .dropdown-menu{
+.header .navbar a{
     font-size: 2rem;
     margin-right: 3rem;
     color: var(--black);
@@ -88,45 +88,6 @@ html::-webkit-scrollbar-thumb{
     cursor: pointer;
 }
 
-/* search bar */
-header .formSearch{
-    background-color: #ffffff84;
-    width: 300px;
-    height: 44px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.header input{          
-    all: unset;
-    font: 16px system-ui;
-    color: black;
-    height: 100%;
-    width: 100%;
-    padding: 6px 10px;
-}
-
-.header ::placeholder{
-    color: black;
-    opacity: 0.7; 
-}
-
-/* search submit button */
-.header button{
-    all: unset;
-    cursor: pointer;
-    width: 44px;
-    height: 44px;
-}
-
-.header svg {
-    color: black;
-    fill: currentColor;
-    width: 24px;
-    height: 24px;
-}
 /*header ends here*/
 
 
@@ -203,7 +164,7 @@ div.name{
     font-weight: 600;
     font-size: medium;
     text-transform: capitalize;
-    text-decoration: underline;
+    text-decoration: none;
 }
   
 div.desc {
@@ -305,15 +266,7 @@ div.desc {
 }
 /*footer ends here*/
 
-.swiper-pagination-bullet{
-    background-color: var(--black);
-}
-.swiper-button-next{
-    color: var(--black);
-}
-.swiper-button-prev{
-    color: var(--black);
-}
+
 
 
 /* media queries for web responsive */

@@ -8,7 +8,7 @@
     <title>Home</title>
     
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="../public/image/cake.png">
+    <link rel="icon" type="image/x-icon" th:href="@{image/cake.png}">
 
     <!-- swiper link  -->
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
@@ -33,7 +33,6 @@
       <a th:href="@{/catalogue}">Catalogue</a>
       <a th:href="@{/about}">About</a>
       <a th:href="@{/faqs}">FAQs</a>
-      <a th:href="@{/feedback}">Feedback</a>
       <a th:href="@{/userprofile}">Profile</a>
   </nav>
 </header>
@@ -141,8 +140,8 @@
 
       <div class="box">
           <h3>About Us</h3>
-          <a href="about.html#:~:text=Location-,Vision,-Let%20us%20eat"> <i class="fas fa-arrow-right"></i>Vision</a>
-          <a th:href="@{about.html#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love}"> <i class="fas fa-arrow-right"></i>Mission</a>
+          <a th:href="@{http://localhost:5000/about#:~:text=Location-,Vision,-Let%20us%20eat}"> <i class="fas fa-arrow-right"></i>Vision</a>
+          <a th:href="@{http://localhost:5000/about#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love}"> <i class="fas fa-arrow-right"></i>Mission</a>
           <a href="https://goo.gl/maps/Yeepko5QdJ3EMDox7" target="_blank"> <i class="fas fa-arrow-right"></i>Location</a>
       </div>
 

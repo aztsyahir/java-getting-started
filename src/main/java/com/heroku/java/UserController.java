@@ -32,32 +32,37 @@ public class UserController {
 
     @GetMapping("/about")
     public String about(){
-        return "about";
+        return "user/about";
     }
     @GetMapping("/catalogue")
     public String catalogue(){
-        return "catalogue";
+        return "user/catalogue";
     }
     @GetMapping("/faqs")
     public String faqs(){
-        return "faqs";
+        return "user/faqs";
     }
     @GetMapping("/feedback")
     public String feedback(){
-        return "feedback";
+        return "user/feedback";
     }
     @GetMapping("/home")
     public String home(){
-        return "home";
+        return "user/home";
     }
     @GetMapping("/menu")
     public String menu(){
-        return "menu";
+        return "user/menu";
     }
     @GetMapping("/userregister")
     public String userregister(){
-        return "userregister";
+        return "user/userregister";
     }
+    @GetMapping("/adminregister")
+    public String adminregister(){
+        return "adminregister";
+    }
+    
 
     @GetMapping("/convert")
     String convert(Map<String, Object> model) {
