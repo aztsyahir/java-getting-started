@@ -32,11 +32,16 @@
         <label class="form-check-label" for="inlineRadio2">Customer</label>
       </div>
     </fieldset>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ali@gmail.com" required aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
+    <div class="mb-3">
+      <label for="exampleInputusername" class="form-label">Username</label>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+        <input type="text" 
+        class="form-control" 
+        id="validationDefaultUsername"
+         aria-describedby="inputGroupPrepend2" required>
+      </div>
+    </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" minlength="8" required>

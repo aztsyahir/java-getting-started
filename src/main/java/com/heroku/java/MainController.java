@@ -17,11 +17,11 @@ import javax.measure.unit.SI;
 
 @SpringBootApplication
 @Controller
-public class UserController {
+public class MainController {
     private final DataSource dataSource;
 
     @Autowired
-    public UserController(DataSource dataSource) {
+    public MainController(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -60,7 +60,7 @@ public class UserController {
     }
     @GetMapping("/adminregister")
     public String adminregister(){
-        return "adminregister";
+        return "admin/adminregister";
     }
     
 
@@ -101,7 +101,7 @@ public class UserController {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(UserController.class, args);
+        SpringApplication.run(MainController.class, args);
         
     }
 }
