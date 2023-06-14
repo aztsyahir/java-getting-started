@@ -62,6 +62,10 @@ public class MainController {
     public String adminregister(){
         return "admin/adminregister";
     }
+    @GetMapping("/custprofile")
+    public String custprofile(){
+        return "user/custprofile";
+    }
     
 
     @GetMapping("/convert")
