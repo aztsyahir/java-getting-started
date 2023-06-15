@@ -6,7 +6,8 @@ public class customer {
     public String custphonenum;
     public String custaddress;
     public String custpassword;
-
+    public String radio;
+    
 
     public String getCustname() {
         return this.custname;
@@ -46,6 +47,14 @@ public class customer {
 
     public void setCustpassword(String custpassword) {
         this.custpassword = custpassword;
+    }
+
+    public String getRadio() {
+        return radio;
+    }
+
+    public void setRadio(String radio) {
+        this.radio = radio;
     }
     
 }
