@@ -49,12 +49,5 @@ public class customer {
         this.custpassword = custpassword;
     }
 
-    public String getRadio() {
-        return radio;
-    }
-
-    public void setRadio(String radio) {
-        this.radio = radio;
-    }
     
 }

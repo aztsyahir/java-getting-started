@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -64,7 +64,7 @@ public class customerController {
       return "redirect:/userregister";
     }
     }
-  }
+  
 
 //      @GetMapping("/login")
 //   public String displayLogin(HttpSession session,
@@ -79,52 +79,5 @@ public class customerController {
 
 
   
-  @PostMapping("/login")
-  String homepage(HttpSession session, @ModelAttribute("login") User user, @RequestParam(value="user", defaultValue = "customer")){
-    try (Connection connection = dataSource.getConnection()) {
-      final var statement = connection.createStatement();
-
-      var resultSet = statement.executeQuery("SELECT email, password FROM customer;");
-      System.out.println("Role : " + cust.getRadio());
-
-      if(cust.getRadio().equals("customer")){
-        resultSet = statement.executeQuery("SELECT email, password FROM customer;");
-      }else{
-        resultSet = statement.executeQuery("SELECT custemail, custpassword FROM customer;");
-      }
-      String returnPage = "";
-      System.out.println("User url params : " + user);
-      while (resultSet.next()) {
-        String custemail = resultSet.getString("email");
-        String pwd = resultSet.getString("password");
-         
-          if (cust.getCustemail().equals(custemail) && cust.getCustpassword().equals(pwd)) {
-
-            session.setAttribute("custemail", cust.getCustemail());
-            
-            returnPage = "redirect:/home";
-            break;
-          } else {
-            returnPage = "redirect:/";
-          }
-
-        }
-      connection.close();
-      return returnPage;
-
-    } 
-    catch (SQLException sqe) {
-      System.out.println("Error Code = " + sqe.getErrorCode());
-      System.out.println("SQL state = " + sqe.getSQLState());
-      System.out.println("Message = " + sqe.getMessage());
-      System.out.println("printTrace /n");
-      sqe.printStackTrace();
-
-      return "redirect:/";
-    } 
-    catch (Throwable t) {
-      System.out.println("message : " + t.getMessage());
-      return "redirect:/";
-    }
+ 
 }
-

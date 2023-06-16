@@ -62,46 +62,5 @@ public class bakerController {
     }
   }
 
-//   @PostMapping("/login")
-//   String homepage(HttpSession session, @ModelAttribute("login") baker bake, @RequestParam(value="user", defaultValue = "customer") String user){
-//     try (Connection connection = dataSource.getConnection()) {
-//       final var statement = connection.createStatement();
 
-//       final var resultSet = statement.executeQuery("SELECT bakeremail, bakerpassword FROM baker;");
-
-//       String returnPage = "";
-//       System.out.println("User url params : " + user);
-//       while (resultSet.next()) {
-//         String bakeremail = resultSet.getString("bakeremail");
-//         String pwd = resultSet.getString("bakerpassword");
-         
-//           if (bake.getBakeremail().equals(bakeremail) && bake.getBakerpassword().equals(pwd)) {
-
-//             session.setAttribute("bakeremail", bake.getBakeremail());
-            
-//             returnPage = "redirect:/home";
-//             break;
-//           } else {
-//             returnPage = "redirect:/";
-//           }
-
-//         }
-//       connection.close();
-//       return returnPage;
-
-//     } 
-//     catch (SQLException sqe) {
-//       System.out.println("Error Code = " + sqe.getErrorCode());
-//       System.out.println("SQL state = " + sqe.getSQLState());
-//       System.out.println("Message = " + sqe.getMessage());
-//       System.out.println("printTrace /n");
-//       sqe.printStackTrace();
-
-//       return "redirect:/";
-//     } 
-//     catch (Throwable t) {
-//       System.out.println("message : " + t.getMessage());
-//       return "redirect:/";
-//     }
-// }
 }

@@ -5,14 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpSession;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -81,54 +81,54 @@ public class MainController {
         return "user/custprofile";
     }
     
-     @PostMapping("/login")
-  String homepage(HttpSession session, @ModelAttribute("login") User user){
-    try (Connection connection = dataSource.getConnection()) {
-      final var statement = connection.createStatement();
+//      @PostMapping("/login")
+//   String homepage(HttpSession session, @ModelAttribute("login") User user,customer cust,baker baker){
+//     try (Connection connection = dataSource.getConnection()) {
+//       final var statement = connection.createStatement();
 
-      var resultSet = statement.executeQuery("SELECT email, password FROM customer;");
-      System.out.println("Role : " + user.getRadio());
+//       var resultSet = statement.executeQuery("SELECT email, password FROM customer;");
+//       System.out.println("Role : " + user.getRadio());
 
-      if(user.getRadio().equals("customer")){
-        resultSet = statement.executeQuery("SELECT email, password FROM customer;");
-      }else{
-        resultSet = statement.executeQuery("SELECT email, password FROM baker;");
-      }
-      String returnPage = "";
-      System.out.println("User url params : " + user);
-      while (resultSet.next()) {
-        String email = resultSet.getString("email");
-        String pwd = resultSet.getString("password");
+//       if(user.getRadio().equals("customer")){
+//         resultSet = statement.executeQuery("SELECT email, password FROM customer;");
+//       }else{
+//         resultSet = statement.executeQuery("SELECT email, password FROM baker;");
+//       }
+//       String returnPage = "";
+//       System.out.println("User url params : " + user);
+//       while (resultSet.next()) {
+//         String email = resultSet.getString("email");
+//         String pwd = resultSet.getString("password");
          
-          if (user.getCustemail().equals(email) && user.getCustpassword().equals(pwd)) {
+//           if (user.getCustemail().equals(email) && user.getCustpassword().equals(pwd)) {
 
-            session.setAttribute("custemail", user.getCustemail());
+//             session.setAttribute("custemail", user.getCustemail());
             
-            returnPage = "redirect:/home";
-            break;
-          } else {
-            returnPage = "redirect:/";
-          }
+//             returnPage = "redirect:/home";
+//             break;
+//           } else {
+//             returnPage = "redirect:/";
+//           }
 
-        }
-      connection.close();
-      return returnPage;
+//         }
+//       connection.close();
+//       return returnPage;
 
-    } 
-    catch (SQLException sqe) {
-      System.out.println("Error Code = " + sqe.getErrorCode());
-      System.out.println("SQL state = " + sqe.getSQLState());
-      System.out.println("Message = " + sqe.getMessage());
-      System.out.println("printTrace /n");
-      sqe.printStackTrace();
+//     } 
+//     catch (SQLException sqe) {
+//       System.out.println("Error Code = " + sqe.getErrorCode());
+//       System.out.println("SQL state = " + sqe.getSQLState());
+//       System.out.println("Message = " + sqe.getMessage());
+//       System.out.println("printTrace /n");
+//       sqe.printStackTrace();
 
-      return "redirect:/";
-    } 
-    catch (Throwable t) {
-      System.out.println("message : " + t.getMessage());
-      return "redirect:/";
-    }
-}
+//       return "redirect:/";
+//     } 
+//     catch (Throwable t) {
+//       System.out.println("message : " + t.getMessage());
+//       return "redirect:/";
+//     }
+// }
 
 
     @GetMapping("/convert")
