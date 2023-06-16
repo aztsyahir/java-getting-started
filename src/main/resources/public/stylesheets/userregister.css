@@ -39,20 +39,16 @@ html::-webkit-scrollbar-thumb{
     border-radius: 5rem;
 }
 
+
+
 body{
     background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
 }
+
 .formcontainer{
     
     padding-top: 8%;
-}
-
-.btn{
-    font-weight: bold;
-}
-
-fieldset{
-    font-weight: bold;
+    align-items: center;
 }
 
 .card{

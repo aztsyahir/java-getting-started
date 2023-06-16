@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
-:root{
-    --black: #1B1722;
-    --white: #f2e8b9;
-    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
-    --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+    :root{
+        --black: #1B1722;
+        --white: #f2e8b9;
+        background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+        --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 
-*{
-    font-family: 'Quicksand', sans-serif;
-    margin: 0; padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    transition: .2s linear;
-}
+    *{
+        font-family: 'Quicksand', sans-serif;
+        margin: 0; padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: .2s linear;
+    }
 
 html{
     font-size: 62.5%;   
@@ -68,7 +68,7 @@ html::-webkit-scrollbar-thumb{
     padding-left: 10px;
 }
 
-.header .navbar a, .Profile, .dropdown-menu{
+.header .navbar a{
     font-size: 2rem;
     margin-right: 3rem;
     color: var(--black);
@@ -88,45 +88,6 @@ html::-webkit-scrollbar-thumb{
     cursor: pointer;
 }
 
-/* search bar */
-header .formSearch{
-    background-color: #ffffff84;
-    width: 300px;
-    height: 44px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.header input{          
-    all: unset;
-    font: 16px system-ui;
-    color: black;
-    height: 100%;
-    width: 100%;
-    padding: 6px 10px;
-}
-
-.header ::placeholder{
-    color: black;
-    opacity: 0.7; 
-}
-
-/* search submit button */
-.header button{
-    all: unset;
-    cursor: pointer;
-    width: 44px;
-    height: 44px;
-}
-
-.header svg {
-    color: black;
-    fill: currentColor;
-    width: 24px;
-    height: 24px;
-}
 /*header ends here*/
 
 
@@ -203,7 +164,7 @@ div.name{
     font-weight: 600;
     font-size: medium;
     text-transform: capitalize;
-    text-decoration: underline;
+    text-decoration: none;
 }
   
 div.desc {
@@ -237,124 +198,6 @@ div.desc {
     clear: both;
 }
 /* end of bestsellers styling */
-
-/* customers review */
-div#cust-review{
-    padding: 10px;
-    background: url(image/background.png) center no-repeat;
-    background-size: 100%;
-}
-
-/* Slideshow container */
-.slideshow-container {
-    position: relative;
-}
-  
-/* Slides */
-.mySlides {
-    display: none;
-    padding: 80px;
-    text-align: center;
-}
-  
-/* Next & previous buttons */
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -30px;
-    padding: 16px;
-    color: #888;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
-  
-/* Position the "next button" to the right */
-.next {
-    position: absolute;
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-  
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-    color: white;
-}
-  
-/* The dot/bullet/indicator container */
-.dot-container {
-    text-align: center;
-    padding: 8px;
-    /* background: #ddd; */
-}
-  
-  /* The dots/bullets/indicators */
-.dot {
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-  
-/* Add a background color to the active dot/circle */
-.active, .dot:hover {
-    background-color: #717171;
-}
-  
-/* Add an italic font style to all quotes */
-q{
-    font-style: italic;
-    font-size: medium;
-}
-  
-/* Add a blue color to the author */
-.author{
-    color: green;
-    font-size: medium;
-}
-/* customers review end here */
-
-/* newsletter */
-.newsletter{
-    background: grey; 
-    padding: 40px;
-    font-size: large;
-    text-align: center;
-    color: var(--white);
-}
-
-.newsletter h2{
-    margin-bottom: 25px;
-}
-
-.newsletter #email-box{
-    padding: 4px;
-    border-radius: 4px;
-    width: 30%;
-}
-
-.newsletter #submit-btn{
-    padding: 4px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: var(--black);
-    background: var(--white);
-}
-
-.newsletter form #submit-btn:hover{
-    color: var(--white);
-    background-color: var(--black);
-    outline: 1px solid var(--white);
-} 
-/* newsletter end here */
 
 /*footer starts here*/
 .footer {
@@ -423,15 +266,7 @@ q{
 }
 /*footer ends here*/
 
-.swiper-pagination-bullet{
-    background-color: var(--black);
-}
-.swiper-button-next{
-    color: var(--black);
-}
-.swiper-button-prev{
-    color: var(--black);
-}
+
 
 
 /* media queries for web responsive */

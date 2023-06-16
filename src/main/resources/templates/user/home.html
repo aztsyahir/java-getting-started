@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iRizq Kitchen</title>
+    <title>Home</title>
     
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="../public/image/cake.png">
+    <link rel="icon" type="image/x-icon" th:href="@{image/cake.png}">
 
     <!-- swiper link  -->
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
@@ -17,24 +17,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file  -->
-    <link rel="stylesheet" href="../public/stylesheets/home.css">
+    <link rel="stylesheet" th:href="@{stylesheets/home.css}">
 
 </head>
 
-<!-- header section start here  -->
-<header class="header">
+ <!-- header section start here  -->
+ <header class="header">
   <div class="logoContent">
-      <a href="home.html" class="logo"><img src="../public/image/cake.png" alt="cake icon"></a>
+      <a th:href="@{/home}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
       <h1 class="logoName">iRizq Kitchen</h1>
   </div>
 
   <nav class="navbar">
-      <a href="home.html">Home</a>
-      <a href="catalogue.html">Catalogue</a>
-      <a href="about.html">About</a>
-      <a href="faqs.html">FAQs</a>
-      <a href="feedback.html">Feedback</a>
-      <a href="userprofile.html">Profile</a>
+      <a th:href="@{/home}">Home</a>
+      <a th:href="@{/catalogue}">Catalogue</a>
+      <a th:href="@{/about}">About</a>
+      <a th:href="@{/faqs}">FAQs</a>
+      <a th:href="@{/custprofile}">Profile</a>
   </nav>
 </header>
 <!-- header section end here  -->
@@ -57,8 +56,8 @@
 
           <div class="responsive">
               <div class="gallery">
-                <a target="_blank" href="../public/image/kek-pisang.jpg">
-                  <img src="../public/image/kek-pisang.jpg" alt="Cinque Terre" width="600" height="400">
+                <a target="_blank" th:href="@{image/kek-pisang.jpg}">
+                  <img th:src="@{image/kek-pisang.jpg}" alt="Cinque Terre" width="600" height="400">
                 </a>
                 <div class="name">kek pisang</div>
                 <div class="desc">Moist and sweet cake made with banana slices. A real treat to be savored with a good cup of coffee or a cold glass of milk.</div>
@@ -67,8 +66,8 @@
             
             <div class="responsive">
               <div class="gallery">
-                <a target="_blank" href="../public/image/kek-batik.jpg">
-                  <img src="../public/image/kek-batik.jpg" alt="Forest" width="600" height="400">
+                <a target="_blank" th:href="@{image/kek-batik.jpg}">
+                  <img th:src="@{image/kek-batik.jpg}" alt="Forest" width="600" height="400">
                 </a>
                 <div class="name">kek batik indulgence</div>
                 <div class="desc">An excellent combination rich in chocolate, biscuits, and cream cheese gives it a soft and creamy taste.</div>
@@ -77,8 +76,8 @@
 
             <div class="responsive">
               <div class="gallery">
-                <a target="_blank" href="../public/image/kek-marble.jpg">
-                  <img src="../public/image/kek-marble.jpg" alt="Forest" width="600" height="400">
+                <a target="_blank" th:href="@{image/kek-marble.jpg}">
+                  <img th:src="@{image/kek-marble.jpg}" alt="Forest" width="600" height="400">
                 </a>
                 <div class="name">kek marble</div>
                 <div class="desc">A cake with a streaked or mottled appearance (like marble) can captivate your attention.</div>
@@ -87,8 +86,8 @@
 
             <div class="responsive">
               <div class="gallery">
-                <a target="_blank" href="../public/image/kek-brownies.jpg">
-                  <img src="../public/image/kek-brownies.jpg" alt="Forest" width="600" height="400">
+                <a target="_blank" th:href="@{image/kek-brownies.jpg}">
+                  <img th:src="@{image/kek-brownies.jpg}" alt="Forest" width="600" height="400">
                 </a>
                 <div class="name">brownies</div>
                 <div class="desc">A square or rectangular chocolate-baked confection. Cakey on the outside and fudgy in the middle!</div>
@@ -105,57 +104,8 @@
 
         <!-- audio -->
         <div class="audioMusic">
-          <audio src="./public/audio/bg-music.mp3" controls autoplay class="my-audio"></audio>
+          <audio th:src="@{audio/bg-music.mp3}" controls autoplay class="my-audio"></audio>
         </div>
-
-
-        <!-- customer review -->
-        <div id="cust-review">
-
-          <div class="homepage-content-text">
-            <h2>What Our Customers Say</h2>
-          </div>
-
-          <div class="slideshow-container">
-
-            <div class="mySlides">
-              <q>It was the moistest cake I've ever eaten. The perfect cream cheese frosting, sweet and tangy, sinking into the top of the cake made its moistness. Sweet, but not overpowering. Mega banana flavor, certainly more banana flavor than any banana cake I've ever eaten. Very buttery and cakey from creaming the butter and sugars. Ridiculously rich, decadent.</q>
-              <p class="author">- Anis</p>
-            </div>
-            
-            <div class="mySlides">
-              <q>I just wanted to let you know how much my family enjoyed the cake you made. It was truly delicious! Thanks again. I now have a new favorite bakery!</q>
-              <p class="author">- Hana</p>
-            </div>
-            
-            <div class="mySlides">
-              <q>This cake is so perfect in every term. I have enjoyed every slice of this red velvet cake and that's why I love it.</q>
-              <p class="author">- Eric</p>
-            </div>
-            
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
-            
-          </div>
-            
-            <div class="dot-container">
-              <span class="dot" onclick="currentSlide(1)"></span> 
-              <span class="dot" onclick="currentSlide(2)"></span> 
-              <span class="dot" onclick="currentSlide(3)"></span> 
-            </div>
-
-        </div>
-
-      <!-- newsletter section start here  -->        
-      <div class="newsletter">
-        <form action="#" name="my-newsletter" onsubmit="return subscribe()" required>
-          <img src="../public/image/newsletter.png" alt="newsletter" height="100" width="100">
-          <h2>Subscribe for Latest Update</h2>
-          <input type="email" name="email" id="email-box" placeholder="Email address"> 
-          <button type="submit" id="submit-btn">Subscribe</button>
-        </form>
-      </div>
-      <!-- newsletter section ends here  -->
 
     </main>
     <!--main section end here-->
@@ -168,7 +118,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
   <!-- custom js file  -->
-  <script src="../public/javascript/home.js"></script>
+  <script th:src="@{javascript/home.js}"></script>
 
 </body>
 <!-- footer section start here  -->
@@ -190,8 +140,8 @@
 
       <div class="box">
           <h3>About Us</h3>
-          <a href="http://127.0.0.1:5500/about.html#:~:text=Location-,Vision,-Let%20us%20eat"> <i class="fas fa-arrow-right"></i>Vision</a>
-          <a href="http://127.0.0.1:5500/about.html#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love"> <i class="fas fa-arrow-right"></i>Mission</a>
+          <a th:href="@{http://localhost:5000/about#:~:text=Location-,Vision,-Let%20us%20eat}"> <i class="fas fa-arrow-right"></i>Vision</a>
+          <a th:href="@{http://localhost:5000/about#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love}"> <i class="fas fa-arrow-right"></i>Mission</a>
           <a href="https://goo.gl/maps/Yeepko5QdJ3EMDox7" target="_blank"> <i class="fas fa-arrow-right"></i>Location</a>
       </div>
 

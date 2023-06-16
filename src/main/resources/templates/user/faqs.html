@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,7 +7,7 @@
     <title>FAQs</title>
 
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="../public/image/cake.png" />
+    <link rel="icon" type="image/x-icon" th:href="@{image/cake.png}" />
 
     <!-- swiper link  -->
     <link
@@ -22,32 +22,29 @@
     />
 
     <!-- custom css file  -->
-    <link rel="stylesheet" href="../public/stylesheets/faqs.css" />
+    <link rel="stylesheet" th:href="@{stylesheets/faqs.css}" />
   </head>
 
-  <body>
-    <!-- header section start here  -->
-    <header class="header">
-      <div class="logoContent">
-        <a href="home.html" class="logo"
-          ><img src="../public/image/cake.png" alt="cake icon"
-        /></a>
-        <h1 class="logoName">iRizq Kitchen</h1>
-      </div>
+ <!-- header section start here  -->
+ <header class="header">
+  <div class="logoContent">
+      <a th:href="@{/home}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
+      <h1 class="logoName">iRizq Kitchen</h1>
+  </div>
 
-      <nav class="navbar">
-        <a href="home.html">Home</a>
-        <a href="catalogue.html">Catalogue</a>
-        <a href="about.html">About</a>
-        <a href="faqs.html">FAQs</a>
-        <a href="feedback.html">Feedback</a>
-        <a href="userprofile.html">Profile</a>
-    </nav>
-    </header>
-    <!-- header section end here  -->
-    
+  <nav class="navbar">
+      <a th:href="@{/home}">Home</a>
+      <a th:href="@{/catalogue}">Catalogue</a>
+      <a th:href="@{/about}">About</a>
+      <a th:href="@{/faqs}">FAQs</a>
+      <a th:href="@{/custprofile}">Profile</a>
+  </nav>
+</header>
+<!-- header section end here  -->
+
+  <body>
     <main>
-        <img id="faq" src="../public/image/plaby-faq.png" alt="faq">   
+        <img id="faq" th:src="@{image/plaby-faq.png}" alt="faq">   
           <h1 class="faq-heading">Frequently Asked Questions </h1>
           <section class="faq-container">
             <div class="faq">
@@ -83,15 +80,15 @@
             <hr class="hr-line" />
             <div class="faq">
               <!-- faq question -->
-              <h2 class="faq-question">How do I place an order?</h2>
+              <h2 class="faq-question">Do Irizq kitchen have any social media?</h2>
               <!-- faq answer -->
               <div class="faq-body">
                 <p>
-                  You may place your order through our INSTAGRAM
-                  <span><a href="https://www.instagram.com/irizq_kitchen/">@irizq_kitchen</a></span>
+                  Yes!! we have our INSTAGRAM
+                  <span><a th:href="@{https://www.instagram.com/irizq_kitchen/}">@irizq_kitchen</a></span>
                   or our
-                  <span><a href="https://web.facebook.com/rizq.khazinuddin">FACEBOOK</a></span>
-                  or by calling us at <a href="tel:+60 1123 4567" target="_blank">+60 11-2619 1035</a>
+                  <span><a th:href="@{https://web.facebook.com/rizq.khazinuddin}">FACEBOOK</a></span>
+                  or if you want to contact us just click on <a th:href="@{tel:+60 1123 4567}" target="_blank">+60 11-2619 1035</a>
                 </p>
               </div>
             </div>
@@ -113,12 +110,7 @@
               <!-- faq answer -->
               <div class="faq-body">
                 <p>
-                  For fully-paid payment, you will get a refund of 75% of the price 
-                  or store credit for any cancellations made within 72 hours from 
-                  the date of the order. For those who paid the deposit on their 
-                  orders, store credit worth the deposit amount will be given. We 
-                  do not refund any portion of the purchase price for orders 
-                  cancelled more than 72 hours from the date of the order.
+                 you can go to history page to cancel your previous order if your order still pending.
                 </p>
               </div>
             </div>
@@ -133,8 +125,7 @@
                 <p>
                   We require you to make full payment when the order has been placed. 
                   Please note that your order will not be fulfilled if you do not pay 
-                  for the cake in advance. We accept credit cards over the phone and 
-                  send the receipt through email for your convenience.
+                  for the cake in advance.
                 </p>
               </div>
             </div>
@@ -148,10 +139,7 @@
               <div class="faq-body">
                 <p>
                   Generally speaking, all orders are considered final once payment has 
-                  been made and entered into our system, but we still allow customers 
-                  to change their order with at least an 8-days notice from the day you 
-                  placed your order. Please note the cost of your cake may increase when 
-                  you make any customization orders like changing the design, flavors, etc.
+                  been made and entered into our system.
                 </p>
               </div>
             </div>
@@ -162,9 +150,9 @@
               <!-- faq answer -->
               <div class="faq-body">
                 <p>
-                  Please do contact us immediately at <a href="tel:+60 1123 4567" target="_blank">+60 11-2619 1035</a> 
+                  Please do contact us immediately at <a th:href="@{tel:+60 1123 4567}" target="_blank">+60 11-2619 1035</a> 
                   and send across accompanying images orders to 
-                  <span><a href="https://www.instagram.com/irizq_kitchen/">@irizq_kitchen</a></span> 
+                  <span><a th:href="@{https://www.instagram.com/irizq_kitchen/}">@irizq_kitchen</a></span> 
                   if you receive any damaged cake. 
                 </p>
               </div>
@@ -179,9 +167,7 @@
               <div class="faq-body">
                 <p>
                   We always like to hear from our customers. Please leave your 
-                  feedback about us on our 
-                  <span><a href="feedback.html">feedback page</a></span>
-                  , DM us at <span><a href="https://www.instagram.com/irizq_kitchen/">@irizq_kitchen</a></span>
+                  feedback about us on our DM at <span><a th:href="@{https://www.instagram.com/irizq_kitchen/}">@irizq_kitchen</a></span>
                   , or WhatsApp us with your feedback.
                 </p>
               </div>
@@ -190,53 +176,38 @@
     </main>
 
     <!-- footer section start here  -->
-    <footer class="footer" id="contact">
-      <div class="box-container">
-        <div class="box">
+ <footer class="footer" id="contact">
+  <div class="box-container">
+      
+      <div class="box">
           <h3>Opening Hours</h3>
-          <p>
-            Weekdays: 10:00AM - 5:00PM <br />
-            Weekends: 10:00AM - 6:00PM
-          </p>
-        </div>
+          <p>Weekdays: 10:00AM - 5:00PM <br> Weekends: 10:00AM - 6:00PM</p>
+      </div>
 
-        <div class="box">
+      <div class="box">
           <h3>Contact Us</h3>
           <p>iRizq Kitchen Sabak Bernam (HQ)</p>
-          <p>
-            No.12 Jalan Dewan, Pekan Sabak Bernam, <br />
-            45200 Sabak Bernam, Selangor
-          </p>
-          <a href="tel:+60 1123 4567" target="_blank">
-            <i class="fas fa-phone"></i>+60 1123 4567</a
-          >
-          <a href="mailto: irizqkitchen@gmail.com" target="_blank">
-            <i class="fas fa-envelope"></i>irizqkitchen@gmail.com</a
-          >
-        </div>
+          <p>No.12 Jalan Dewan, Pekan Sabak Bernam, <br> 45200 Sabak Bernam, Selangor</p>
+          <a href="tel:+60 1123 4567" target="_blank"> <i class="fas fa-phone"></i>+60 1123 4567</a>
+          <a href="mailto: irizqkitchen@gmail.com" target="_blank"> <i class="fas fa-envelope"></i>irizqkitchen@gmail.com</a>
+      </div>
 
-        <div class="box">
+      <div class="box">
           <h3>About Us</h3>
-          <a href="http://127.0.0.1:5500/about.html#:~:text=Location-,Vision,-Let%20us%20eat"> <i class="fas fa-arrow-right"></i>Vision</a>
-          <a href="http://127.0.0.1:5500/about.html#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love"> <i class="fas fa-arrow-right"></i>Mission</a>
+          <a th:href="@{http://localhost:5000/about#:~:text=Location-,Vision,-Let%20us%20eat}"> <i class="fas fa-arrow-right"></i>Vision</a>
+          <a th:href="@{http://localhost:5000/about#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love}"> <i class="fas fa-arrow-right"></i>Mission</a>
           <a href="https://goo.gl/maps/Yeepko5QdJ3EMDox7" target="_blank"> <i class="fas fa-arrow-right"></i>Location</a>
       </div>
-      </div>
-      <div class="share">
-        <a
-          href="https://web.facebook.com/rizq.khazinuddin"
-          class="fab fa-facebook-f"
-          target="_blank"
-        ></a>
-        <a
-          href="https://www.instagram.com/irizq_kitchen/"
-          class="fab fa-instagram"
-          target="_blank"
-        ></a>
-      </div>
-      <div class="credit">irizqkitchen <span>&copy;</span> 2022</div>
-    </footer>
 
+  </div>
+  <div class="share">
+      <a href="https://web.facebook.com/rizq.khazinuddin" class="fab fa-facebook-f" target="_blank"></a>
+      <a href="https://www.instagram.com/irizq_kitchen/" class="fab fa-instagram" target="_blank"></a>
+  </div>
+  <div class="credit">
+      irizqkitchen <span>&copy;</span> 2022
+  </div>
+</footer>
     <!-- swiper js link  -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -248,6 +219,6 @@
     ></script>
 
     <!-- custom js file  -->
-    <script src="../public/javascript/faqs.js"></script>
+    <script th:src="@{javascript/faqs.js}"></script>
   </body>
 </html>
