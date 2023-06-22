@@ -36,7 +36,7 @@
                  id="exampleInputName" 
                  placeholder="Ali Bin Abu" 
                  required aria-describedby="nameHelp"
-                 name="custname">
+                 name="fullname">
               </div>
             <div class="mb-3">
               <label for="exampleInputEmail" class="form-label">Email address</label>
@@ -45,17 +45,17 @@
                id="exampleInputEmail"
                 placeholder="ali@gmail.com" 
                 required aria-describedby="emailHelp"
-                name="custemail">
+                name="email">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhone" class="form-label">Phone Number</label>
-                <input type="number"
+                <input type="phonenum"
                  class="form-control" 
                  id="exampleInputNumber"
                   placeholder="012 345 6789"
                    maxlength = "11" 
                    required
-                   name="custphonenum">
+                   name="phonenumber">
               </div>
               <div class="mb-3">
                 <label for="exampleInputAddress" class="form-label">Address</label>
@@ -64,7 +64,7 @@
                   id="exampleInputAddress"  
                   required
                   name="custaddress">
-                  <div id="emailHelp" class="form-text">We'll never share your address with anyone else.</div>
+                  <div id="addressHelp" class="form-text">We'll never share your address with anyone else.</div>
               </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -72,13 +72,13 @@
                class="form-control" 
                id="exampleInputPassword1" 
                minlength="8" required
-               name="custpassword">
+               name="password">
               <div id="passwordHelp" class="form-text">At least 8 characters.</div>
             </div>
             <div class="text-center">
                 <p>
                   Already have account?  
-                  <span><a th:href="@{/login}">SIGN IN HERE</a></span>
+                  <span><a th:href="@{/}">SIGN IN HERE</a></span>
                 </p>
             <button id="btncustregister"type="submit" class="btn btn-warning ">Register</button>
             </div></div>
