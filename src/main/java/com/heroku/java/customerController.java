@@ -1,17 +1,19 @@
 package com.heroku.java;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+//import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RequestParam;
+
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,7 +26,7 @@ import java.sql.SQLException;
 // import org.jscience.physics.amount.Amount;
 // import org.jscience.physics.model.RelativisticModel;
 // import javax.measure.unit.SI;
-
+@SpringBootApplication
 @Controller
 public class customerController {
     private final DataSource dataSource;
@@ -39,7 +41,7 @@ public class customerController {
     public String addAccount(HttpSession session, @ModelAttribute("userregister") customer cust, User user) {
     try {
       Connection connection = dataSource.getConnection();
-      String sql1= "INSERT INTO users (fullname, email, password) VALUES (?,?,?)";
+      String sql1= "INSERT INTO users (fullname, email, password, usertype) VALUES (?,?,?,customer)";
       final var statement1 = connection.prepareStatement(sql1);
       statement1.setString(1, user.getName());
       statement1.setString(2, user.getEmail());
@@ -87,62 +89,103 @@ public class customerController {
     }
     }
   
+    @GetMapping("/custprofile")
+    public String viewprofile(HttpSession session, Model model, customer cust)
+    {
+        String fullname = (String) session.getAttribute("fullname");
+        int usersid = (int) session.getAttribute("usersid");
 
-    //  @PostMapping("/login") 
-    // public String Loginpage(HttpSession session, @ModelAttribute("login") customer customer, User user, Model model, baker baker) { 
+        if(fullname != null){
+            try{
+                Connection connection = dataSource.getConnection();
+                final var statement = connection.prepareStatement
+                ( "SELECT  users.fullname, users.email, users.password,users.usertype, customer.phonenumber, customer.address FROM users JOIN customer ON (users.usersid = customer.usersid) WHERE users.usersid = ?");
+                statement.setInt(1, usersid);
+                 final var resultSet = statement.executeQuery();
 
-    //     try {
-    //         Connection connection = dataSource.getConnection();
-    //         final var statement = connection.createStatement(); 
-    //         String sql ="SELECT usersid, fullname,email, password FROM users"; 
-    //         final var resultSet = statement.executeQuery(sql); 
-            
+                while(resultSet.next()){
+                    String fname = resultSet.getString("fullname");
+                    String email = resultSet.getString("email");
+                    String password = resultSet.getString("password");
+                    String usertype = resultSet.getString("usertype");
+                    String phonenumber = resultSet.getString("phonenumber");
+                    String address = resultSet.getString("address");
 
-    //         String returnPage = ""; 
- 
-    //         while (resultSet.next()) { 
-    //             int usersid = resultSet.getInt("usersid");
-    //             String username = resultSet.getString("fullname"); 
-    //             String password = resultSet.getString("password");
-    //             String usertype = user.getUsertype();  
-                
-    //             //if they choose custoke
-    //             if (usertype.equals("custradio")){
-    //                 if (username.equals(customer.getEmail()) && password.equals(customer.getPassword())) { 
-    //                 session.setAttribute("fullname",customer.getName());
-    //                 session.setAttribute("usersid",usersid);
-    //                 System.out.println("usersid: "+usersid);
-    //                 returnPage = "redirect:/home"; 
-    //                 break; 
-    //             } else { 
-    //                 returnPage = "/login"; 
-    //             } 
+                    //debug
+                    System.out.println("fullname from db = "+fname);
 
-    //             //if they choose employee
-    //             }
-    //             else if (usertype.equals("admin")){
-    //                 if (username.equals(baker.getEmail()) && password.equals(baker.getPassword())) { 
-    //                 session.setAttribute("fullname",customer.getName());
-    //                 returnPage = "redirect:/homeadmin"; 
-    //                 break; 
-    //             } else { 
-    //                 returnPage = "/login"; 
-    //             } 
-    //             }
-    //             else{
-    //                 System.out.println("Username does not match password");
-    //             }
-    //         }
-    //         return returnPage; 
- 
-    //     } catch (Throwable t) { 
-    //         System.out.println("message : " + t.getMessage()); 
-    //         return "/login"; 
-    //     } 
- 
-    // }
+                    customer custprofile = new customer(fullname,email,password,usertype,phonenumber,address);
 
 
-  
+                    model.addAttribute("custprofile", custprofile);
+                    System.out.println("fullname :"+ custprofile.fullname);
+                    // Return the view name for displaying customer details --debug
+                    System.out.println("Session custprofile : " + model.getAttribute("custprofile"));
+
+                }
+               return "custprofile";
+            }
+        catch (SQLException e) {
+            e.printStackTrace();
+            }
+            }else{
+                return "/login";
+            }
+            return "/login";
  
 }
+
+
+ //Update Profile Customer
+        @PostMapping("/updatecust") 
+        public String updateCust(HttpSession session, @ModelAttribute("custprofile") customer cust, Model model, User user) { 
+
+            String fullname = cust.getName();
+            String email = cust.getEmail();
+            String password = cust.getPassword();
+            String phonenum = cust.getPhonenumber();
+            String address = cust.getAddress();
+        
+            try { 
+            Connection connection = dataSource.getConnection();
+            String sql1 = "UPDATE users SET fullname=? ,email=?, password=? WHERE fullname=?";
+            final var statement = connection.prepareStatement(sql1);
+
+            statement.setString(1, fullname);
+            statement.setString(2, email);
+            statement.setString(3, password);
+            statement.executeUpdate();
+            System.out.println("debug= "+fullname+" "+email+" "+password);
+
+            String sql = "SELECT * FROM users where fullname=?";
+            final var stmt = connection.prepareStatement(sql);
+            stmt.setString(1, user.getEmail());
+            final var resultSet = stmt.executeQuery();
+            int id_db = 0;
+            while(resultSet.next()){
+            id_db = resultSet.getInt("usersid");
+            }
+            System.out.println("id database : " + id_db);
+      
+            String sql2= "UPDATE customer SET phonenumber=?, address=? WHERE usersid=?";
+            final var statement2 = connection.prepareStatement(sql2);
+            // statement2.setInt(1, id_db);
+            statement2.setString(1, phonenum);
+            statement2.setString(2, address);
+            statement2.setInt(3,id_db);
+            statement2.executeUpdate();
+            System.out.println("debug= "+phonenum+" "+address+" "+id_db);
+            statement2.executeUpdate();
+                
+            String returnPage = "custprofile"; 
+            return returnPage; 
+ 
+        } catch (Throwable t) { 
+            System.out.println("message : " + t.getMessage()); 
+            System.out.println("error");
+            return "redirect:/login"; 
+        } }
+
+    }
+ 
+    

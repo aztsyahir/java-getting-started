@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
@@ -37,53 +37,62 @@
         <h1 class="registerform d-flex justify-content-center">CUSTOMER PROFILE</h1>
         <form 
         class="d-flex justify-content-center"
+        th:action="@{/updatecust}"
+        method="post"
+        modelAttribute  ="custprofile"
+        th:object="${custprofile}"
         >
         <div class="card col-6">
          <div class="card-body">
             <div class="mb-3">
                 <label for="exampleInputName" class="form-label ">Full Name</label>
-                <input type="fullname"
+                <input type="text"
                 class="form-control text-uppercase"
                  id="exampleInputName" 
                  placeholder="Ali Bin Abu" 
                  required aria-describedby="nameHelp"
-                 name="custname">
+                 name="fullname"
+                 th:text="${custprofile.fullname}">
               </div>
             <div class="mb-3">
               <label for="exampleInputEmail" class="form-label">Email address</label>
-              <input type="email"
+              <input type="text"
                class="form-control" 
                id="exampleInputEmail"
                 placeholder="ali@gmail.com" 
                 required aria-describedby="emailHelp"
-                name="custemail">
+                name="email"
+                th:text="${custprofile.email}">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhone" class="form-label">Phone Number</label>
-                <input type="number"
+                <input type="text"
                  class="form-control" 
                  id="exampleInputNumber"
                   placeholder="012 345 6789"
                    maxlength = "11" 
                    required
-                   name="custphonenum">
+                   name="phonenumber"
+                   th:text="${profilecust.phonenumber}">
               </div>
               <div class="mb-3">
                 <label for="exampleInputAddress" class="form-label">Address</label>
-                <input type="address"
+                <input type="text"
                  class="form-control"
                   id="exampleInputAddress"  
                   required
-                  name="custaddress">
+                  name="address"
+                  th:text="${custprofile.address}">
                   <div id="emailHelp" class="form-text">We'll never share your address with anyone else.</div>
               </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password"
+              <input type="text"
                class="form-control" 
                id="exampleInputPassword1" 
                minlength="8" required
-               name="custpassword">
+               name="password"
+               th:text="${custprofile.password}">
               <div id="passwordHelp" class="form-text">At least 8 characters.</div>
             </div>
             <div class="text-center">

@@ -65,8 +65,13 @@ public class MainController {
         return "user/feedback";
     }
     @GetMapping("/home")
-    public String home(){
-        return "user/home";
+    public String home(HttpSession session){
+       if(session.getAttribute("fullname") != null){ 
+            return "user/home"; 
+        }else{ 
+            System.out.println("Session expired or invalid");
+            return "login"; 
+        } 
     }
     @GetMapping("/menu")
     public String menu(){
@@ -80,10 +85,7 @@ public class MainController {
     public String bakerregister(){
         return "admin/bakerregister";
     }
-    @GetMapping("/custprofile")
-    public String custprofile(){
-        return "user/custprofile";
-    }
+   
     
  @PostMapping("/login") 
     public String Loginpage(HttpSession session, @ModelAttribute("login") customer customer, User user, Model model, baker baker) { 
@@ -106,13 +108,13 @@ public class MainController {
                 
                 //if they choose customer
                 if (usertype.equals("customers")){
-                    // System.out.println("email :"+user.getEmail());
-                    //   System.out.println("usersid: "+usersid);
                     if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) { 
-                    session.setAttribute("fullname",customer.getName());
+                    // session.setAttribute("fullname",customer.getName());
+                    session.setAttribute("fullname",fullname);
                     session.setAttribute("usersid",usersid);
-                    System.out.println("fullname : "+user.getName());
+                    System.out.println("fullname : "+fullname);
                     System.out.println("usersid: "+usersid);
+                    System.out.println("usertype: "+usertype);
                     returnPage = "redirect:/home"; 
                     break; 
                 } else { 
