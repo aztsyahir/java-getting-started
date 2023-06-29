@@ -35,16 +35,13 @@ public class MainController {
 
     @GetMapping("/")
     public String login(HttpSession session) {
-        if(session.getAttribute("fullname") !=null){
-            System.out.println(session.getAttribute("fullname"));
-            return "user/home";
-        }else{
-        return "login";
-        }
+        session.invalidate();
+         return "login";
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public String logout(HttpSession session){
+        session.invalidate();
         return "redirect:/";
     }
 

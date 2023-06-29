@@ -41,11 +41,12 @@ public class customerController {
     public String addAccount(HttpSession session, @ModelAttribute("userregister") customer cust, User user) {
     try {
       Connection connection = dataSource.getConnection();
-      String sql1= "INSERT INTO users (fullname, email, password, usertype) VALUES (?,?,?,customer)";
+      String sql1= "INSERT INTO users (fullname, email, password, usertype) VALUES (?,?,?,?)";
       final var statement1 = connection.prepareStatement(sql1);
       statement1.setString(1, user.getName());
       statement1.setString(2, user.getEmail());
       statement1.setString(3, user.getPassword());
+      statement1.setString(4, "customer");
 
       statement1.executeUpdate();
 
@@ -148,18 +149,20 @@ public class customerController {
         
             try { 
             Connection connection = dataSource.getConnection();
-            String sql1 = "UPDATE users SET fullname=? ,email=?, password=? WHERE fullname=?";
+            String sql1 = "UPDATE users SET fullname=? ,email=?, password=?, usertype=? WHERE email=?";
             final var statement = connection.prepareStatement(sql1);
 
             statement.setString(1, fullname);
             statement.setString(2, email);
             statement.setString(3, password);
+            statement.setString(4, "customer");
+            statement.setString(5, email);
             statement.executeUpdate();
             System.out.println("debug= "+fullname+" "+email+" "+password);
 
             String sql = "SELECT * FROM users where fullname=?";
             final var stmt = connection.prepareStatement(sql);
-            stmt.setString(1, user.getEmail());
+            stmt.setString(1, user.getName());
             final var resultSet = stmt.executeQuery();
             int id_db = 0;
             while(resultSet.next()){
@@ -173,7 +176,7 @@ public class customerController {
             statement2.setString(1, phonenum);
             statement2.setString(2, address);
             statement2.setInt(3,id_db);
-            statement2.executeUpdate();
+           // statement2.executeUpdate();
             System.out.println("debug= "+phonenum+" "+address+" "+id_db);
             statement2.executeUpdate();
                 
@@ -185,6 +188,50 @@ public class customerController {
             System.out.println("error");
             return "redirect:/login"; 
         } }
+
+        //delete controller
+        @GetMapping("/deletecust")
+        public String deleteProfileCust(HttpSession session, customer customer,Model model) {
+            String fullname = (String) session.getAttribute("fullname");
+            int userid = (int) session.getAttribute("usersid");
+
+            if (fullname != null) {
+                try (Connection connection = dataSource.getConnection()) {
+                    // Delete customer record
+                    final var deleteCustomerStatement = connection.prepareStatement("DELETE FROM customer WHERE usersid=?");
+                    deleteCustomerStatement.setInt(1, userid);
+                    int customerRowsAffected = deleteCustomerStatement.executeUpdate();
+
+                    //debug delete
+                    System.out.println("hehe");
+                    
+                    // Delete user record
+                    final var deleteUserStatement = connection.prepareStatement("DELETE FROM users WHERE usersid=?");
+                    deleteUserStatement.setInt(1, userid);
+                    int userRowsAffected = deleteUserStatement.executeUpdate();
+
+                    if (customerRowsAffected > 0 && userRowsAffected > 0) {
+                        // Deletion successful
+                        // You can redirect to a success page or perform any other desired actions
+                        session.invalidate();
+                        return "redirect:/";
+                    } else {
+                        // Deletion failed
+                        // You can redirect to an error page or perform any other desired actions
+                        System.out.println("Delete Failed");
+                    }
+                } catch (SQLException e) {
+                    // Handle any potential exceptions (e.g., log the error, display an error page)
+                    e.printStackTrace();
+
+                    // Deletion failed
+                    // You can redirect to an error page or perform any other desired actions
+                    System.out.println("Error");
+                }
+            }
+            // Username is null or deletion failed, handle accordingly (e.g., redirect to an error page)
+            return "/user/home";
+        }
 
     }
  
