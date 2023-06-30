@@ -30,37 +30,37 @@ public class bakerController {
     this.dataSource = dataSource;
   }
 
-  @PostMapping("/bakerregister")
-  public String AddBaker(HttpSession session, @ModelAttribute("bakerregister") baker bake) {
+  // @PostMapping("/bakerregister")
+  // public String AddBaker(HttpSession session, @ModelAttribute("bakerregister") baker bake) {
 
-    try {
-      Connection connection = dataSource.getConnection();
-      String sql = "INSERT INTO baker(bakername, bakeremail, bakerphonenumber, bakeraddress, bakerpassword) VALUES (?, ?, ?, ?, ?)";
-      final var statement = connection.prepareStatement(sql);
+  //   try {
+  //     Connection connection = dataSource.getConnection();
+  //     String sql = "INSERT INTO baker(bakername, bakeremail, bakerphonenumber, bakeraddress, bakerpassword) VALUES (?, ?, ?, ?, ?)";
+  //     final var statement = connection.prepareStatement(sql);
 
-      statement.setString(1, bake.getBakername());
-      statement.setString(2, bake.getBakeremail());
-      statement.setString(3, bake.getBakerphonenumber());
-      statement.setString(4, bake.getBakeraddress());
-      statement.setString(5, bake.getBakerpassword());
+  //     statement.setString(1, bake.getBakername());
+  //     statement.setString(2, bake.getBakeremail());
+  //     statement.setString(3, bake.getBakerphonenumber());
+  //     statement.setString(4, bake.getBakeraddress());
+  //     statement.setString(5, bake.getBakerpassword());
 
-      statement.executeUpdate();
+  //     statement.executeUpdate();
 
-      connection.close();
-      return "redirect:/login";
-    } catch (SQLException sqe) {
-      System.out.println("Error Code = " + sqe.getErrorCode());
-      System.out.println("SQL state = " + sqe.getSQLState());
-      System.out.println("Message = " + sqe.getMessage());
-      System.out.println("printTrace /n");
-      sqe.printStackTrace();
+  //     connection.close();
+  //     return "redirect:/login";
+  //   } catch (SQLException sqe) {
+  //     System.out.println("Error Code = " + sqe.getErrorCode());
+  //     System.out.println("SQL state = " + sqe.getSQLState());
+  //     System.out.println("Message = " + sqe.getMessage());
+  //     System.out.println("printTrace /n");
+  //     sqe.printStackTrace();
 
-      return "redirect:/bakerregister";
-    } catch (Exception e) {
-      System.out.println("E message : " + e.getMessage());
-      return "redirect:/bakerregister";
-    }
-  }
+  //     return "redirect:/bakerregister";
+  //   } catch (Exception e) {
+  //     System.out.println("E message : " + e.getMessage());
+  //     return "redirect:/bakerregister";
+  //   }
+  // }
 
 
 }
