@@ -78,19 +78,15 @@ public class MainController {
     public String userregister(){
         return "user/userregister";
     }
-    @GetMapping("/bakerregister")
-    public String bakerregister(){
-        return "admin/bakerregister";
-    }
    
     
  @PostMapping("/login") 
-    public String Loginpage(HttpSession session, @ModelAttribute("login") customer customer, User user, Model model, baker baker) { 
+    public String Loginpage(HttpSession session, @ModelAttribute("login") customer customer, User user, Model model) { 
 
         try {
             Connection connection = dataSource.getConnection();
             final var statement = connection.createStatement(); 
-            String sql ="SELECT usersid, fullname,email, password FROM users"; 
+            String sql ="SELECT usersid, fullname,email, password,usertype FROM users"; 
             final var resultSet = statement.executeQuery(sql); 
             
 
@@ -101,14 +97,15 @@ public class MainController {
                 String email = resultSet.getString("email"); 
                 String fullname = resultSet.getString("fullname");
                 String password = resultSet.getString("password");
-                String usertype = user.getUsertype();  
+                String usertype = resultSet.getString("usertype");  
                 
                 //if they choose customer
-                if (usertype.equals("customers")){
+                if (usertype.equals("customer")){
                     if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) { 
                     // session.setAttribute("fullname",customer.getName());
                     session.setAttribute("fullname",fullname);
                     session.setAttribute("usersid",usersid);
+                    //debug
                     System.out.println("fullname : "+fullname);
                     System.out.println("usersid: "+usersid);
                     System.out.println("usertype: "+usertype);
@@ -120,11 +117,15 @@ public class MainController {
                 }
                 //if they choose employee
                 
-                else if (usertype.equals("admin")){
-                    if (email.equals(baker.getEmail()) && password.equals(baker.getPassword())) { 
-                    session.setAttribute("fullname",customer.getName());
+                else if (usertype.equals("baker")){
+                    if (email.equals(user.getEmail()) && password.equals(user.getPassword())) { 
+                    session.setAttribute("fullname",fullname);
                     session.setAttribute("usersid",usersid);
-                    returnPage = "redirect:/homeadmin"; 
+                     //debug
+                    System.out.println("fullname : "+fullname);
+                    System.out.println("usersid: "+usersid);
+                    System.out.println("usertype: "+usertype);
+                    returnPage = "redirect:/bakerorder"; 
                     break; 
                 } else { 
                     returnPage = "/login"; 
