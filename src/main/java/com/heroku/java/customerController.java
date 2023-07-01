@@ -233,6 +233,11 @@ public class customerController {
             return "/user/home";
         }
 
+        @GetMapping("/cart")
+         public String cart(){
+        return "user/cart";
+    }
+
     }
  
     
