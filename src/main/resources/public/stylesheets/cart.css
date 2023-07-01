@@ -90,34 +90,32 @@ cursor: pointer;
 
 /*header ends here*/
 
-main{
+ main{
     margin: 120px auto;
     text-align: left;
     font-size: 2rem;
     padding: 7px;
-    
 }
 
 .container {
     display: flex;
-    gap: 20px;
   }
-  
+  th,td{
+    padding: 0 15px;
+  }
+
   .cart {
     flex-grow: 1;
-  }
+  } 
   
   .summary {
     flex-basis: 40%;
-    background-color: lightgray;
     padding: 10px;
   }
   
-  .total {
-    flex-basis: 20%;
-    background-color: lightblue;
-    padding: 10px;
-  }
+button{
+    font-size: 2rem;
+}
 
 /*footer starts here*/
 .footer {

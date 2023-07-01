@@ -43,7 +43,7 @@
         <div class="cart">
           <h1>Shopping Cart</h1>
     
-          <table>
+          <!-- <table>
             <thead>
               <tr>
                 <th>Item</th>
@@ -62,21 +62,46 @@
                 <td>$15.00</td>
                 <td>2</td>
               </tr>
-              <!-- Add more rows for additional items -->
+
+            </tbody>
+          </table> -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Item1</td>
+                <td>RM8.60</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Item2</td>
+                <td>RM18.60</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Item3</td>
+                <td>RM9</td>
+                <td>1</td>
+              </tr>
             </tbody>
           </table>
         </div>
     
         <div class="summary">
           <h2>Order Summary</h2>
-          <p>Total Items: 2</p>
-          <p>Subtotal: $25.00</p>
-          <p>Tax: $2.50</p>
-        </div>
-    
-        <div class="total">
-          <p><strong>Total: $27.50</strong></p>
-          <button id="btncheckout"type="submit" class="btn btn-primary" >Checkout</button>
+          <p><strong> Items: 4</strong></p>
+          <p><strong>Total: RM36.20</strong></p>
+          <button type="button" class="btn btn-dark">Checkout</button>
         </div>
       </div>
     </main>
