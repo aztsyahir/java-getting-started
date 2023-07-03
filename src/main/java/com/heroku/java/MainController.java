@@ -4,15 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 import jakarta.servlet.http.HttpSession;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -32,15 +35,13 @@ public class MainController {
 
     @GetMapping("/")
     public String login(HttpSession session) {
-        // if(session.getAttribute("custname") !=null){
-        //     return "user/home";
-        // }else{
-        // return "login";
-        // }
-        return "login";
+        session.invalidate();
+         return "login";
     }
+
     @GetMapping("/logout")
-    public String logout(){
+    public String logout(HttpSession session){
+        session.invalidate();
         return "redirect:/";
     }
 
@@ -61,8 +62,13 @@ public class MainController {
         return "user/feedback";
     }
     @GetMapping("/home")
-    public String home(){
-        return "user/home";
+    public String home(HttpSession session){
+       if(session.getAttribute("fullname") != null){ 
+            return "user/home"; 
+        }else{ 
+            System.out.println("Session expired or invalid");
+            return "login"; 
+        } 
     }
     @GetMapping("/menu")
     public String menu(){
@@ -72,63 +78,71 @@ public class MainController {
     public String userregister(){
         return "user/userregister";
     }
-    @GetMapping("/bakerregister")
-    public String bakerregister(){
-        return "admin/bakerregister";
-    }
-    @GetMapping("/custprofile")
-    public String custprofile(){
-        return "user/custprofile";
-    }
+   
     
-     @PostMapping("/login")
-  String homepage(HttpSession session, @ModelAttribute("login") User user){
-    try (Connection connection = dataSource.getConnection()) {
-      final var statement = connection.createStatement();
+ @PostMapping("/login") 
+    public String Loginpage(HttpSession session, @ModelAttribute("login") customer customer, User user, Model model) { 
 
-      var resultSet = statement.executeQuery("SELECT email, password FROM customer;");
-      System.out.println("Role : " + user.getRadio());
-
-      if(user.getRadio().equals("customer")){
-        resultSet = statement.executeQuery("SELECT email, password FROM customer;");
-      }else{
-        resultSet = statement.executeQuery("SELECT email, password FROM baker;");
-      }
-      String returnPage = "";
-      System.out.println("User url params : " + user);
-      while (resultSet.next()) {
-        String email = resultSet.getString("email");
-        String pwd = resultSet.getString("password");
-         
-          if (user.getCustemail().equals(email) && user.getCustpassword().equals(pwd)) {
-
-            session.setAttribute("custemail", user.getCustemail());
+        try {
+            Connection connection = dataSource.getConnection();
+            final var statement = connection.createStatement(); 
+            String sql ="SELECT usersid, fullname,email, password,usertype FROM users"; 
+            final var resultSet = statement.executeQuery(sql); 
             
-            returnPage = "redirect:/home";
-            break;
-          } else {
-            returnPage = "redirect:/";
-          }
 
-        }
-      connection.close();
-      return returnPage;
-
-    } 
-    catch (SQLException sqe) {
-      System.out.println("Error Code = " + sqe.getErrorCode());
-      System.out.println("SQL state = " + sqe.getSQLState());
-      System.out.println("Message = " + sqe.getMessage());
-      System.out.println("printTrace /n");
-      sqe.printStackTrace();
-
-      return "redirect:/";
-    } 
-    catch (Throwable t) {
-      System.out.println("message : " + t.getMessage());
-      return "redirect:/";
+            String returnPage = ""; 
+ 
+            while (resultSet.next()) { 
+                int usersid = resultSet.getInt("usersid");
+                String email = resultSet.getString("email"); 
+                String fullname = resultSet.getString("fullname");
+                String password = resultSet.getString("password");
+                String usertype = resultSet.getString("usertype");  
+                
+                //if they choose customer
+                if (usertype.equals("customer")){
+                    if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) { 
+                    // session.setAttribute("fullname",customer.getName());
+                    session.setAttribute("fullname",fullname);
+                    session.setAttribute("usersid",usersid);
+                    //debug
+                    System.out.println("fullname : "+fullname);
+                    System.out.println("usersid: "+usersid);
+                    System.out.println("usertype: "+usertype);
+                    returnPage = "redirect:/home"; 
+                    break; 
+                } else { 
+                    returnPage = "/login"; 
+                } 
+                }
+                //if they choose employee
+                
+                else if (usertype.equals("baker")){
+                    if (email.equals(user.getEmail()) && password.equals(user.getPassword())) { 
+                    session.setAttribute("fullname",fullname);
+                    session.setAttribute("usersid",usersid);
+                     //debug
+                    System.out.println("fullname : "+fullname);
+                    System.out.println("usersid: "+usersid);
+                    System.out.println("usertype: "+usertype);
+                    returnPage = "redirect:/bakerorder"; 
+                    break; 
+                } else { 
+                    returnPage = "/login"; 
+                } 
+                }
+                else{
+                    System.out.println("email does not match password");
+                }
+            }
+            return returnPage; 
+ 
+        } catch (Throwable t) { 
+            System.out.println("message : " + t.getMessage()); 
+            return "/login"; 
+        } 
+ 
     }
-}
 
 
     @GetMapping("/convert")

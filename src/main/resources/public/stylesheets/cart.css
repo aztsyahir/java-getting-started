@@ -39,80 +39,88 @@ border-radius: 5rem;
 
 /*header starts here*/
 .header{
-    top: 0;right: 0;left: 0;
-    background-color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    padding: 1.4rem 7%;
-    z-index: 999;
+top: 0;right: 0;left: 0;
+background-color: var(--white);
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: fixed;
+padding: 1.4rem 7%;
+z-index: 999;
 }
 
 .header .logoContent{
-    display: flex;
-    align-items: center;
+display: flex;
+align-items: center;
 }
 
 .header .logoContent .logo img{
-    height: 4rem;
+height: 4rem;
 }
 
 .header .logoContent .logoName{
-    color: var(--black);
-    font-size: 2rem;
-    font-weight: bolder;
+color: var(--black);
+font-size: 2rem;
+font-weight: bolder;
 }
 
 .header .logoName{
-    padding-left: 10px;
+padding-left: 10px;
 }
 
 .header .navbar a{
-    font-size: 2rem;
-    margin-right: 3rem;
-    color: var(--black);
-    font-weight: bold;
-    text-decoration: none;
-}
+font-size: 2rem;
+margin-right: 3rem;
+color: var(--black);
+font-weight: bold;
+text-decoration: none;
 
+}
 .header .navbar a:hover{
-    border-bottom: .1rem solid var(--black);
-    padding-bottom: .4rem;
+border-bottom: .1rem solid var(--black);
+padding-bottom: .4rem;
 }
 
 .header .icon i{
-    font-size: 2rem;
-    margin-right: 2rem;
-    color: var(--black);
-    cursor: pointer;
+font-size: 2rem;
+margin-right: 2rem;
+color: var(--black);
+cursor: pointer;
 }
 
 /*header ends here*/
-body{
-    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
-}
-.formcontainer{
-    
-    padding-top: 10%;
-    margin-bottom: 20px;
-}
-.card-body{
-    border-radius: 10px;
-    background: #efe5c0;
-    box-shadow:  20px 20px 60px #95938c;
-             
+
+ main{
+    margin: 120px auto;
+    text-align: left;
+    font-size: 2rem;
+    padding: 7px;
 }
 
-.form-label{
-    font-weight: bold;
+.container {
+    display: flex;
+  }
+  th,td{
+    padding: 0 15px;
+  }
+
+  .cart {
+    flex-grow: 1;
+  } 
+  
+  .summary {
+    flex-basis: 40%;
+    padding: 10px;
+  }
+  
+button{
+    font-size: 2rem;
 }
 
 /*footer starts here*/
 .footer {
     background-color: #8AA899;
     padding-bottom: 10px;
-    padding-top: 20px;
 }
 
 .footer .box-container{
@@ -175,3 +183,55 @@ body{
     text-align: center;
 }
 /*footer ends here*/
+
+
+
+
+/* media queries for web responsive */
+
+@media (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    .header{
+        padding: 1.3rem 3rem;
+    }
+    .home .homeContent{
+        margin-left: 0;
+        width: 80%;
+    }
+}
+
+@media (max-width:768px) {
+    #menu-bar{
+        display: inline-block;
+    }
+    .header .navbar{
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: 25rem;
+        background-color: var(--white);
+        height: 80vh;
+    }
+    .header .navbar.active{
+        right: 0;
+    }
+    .header .navbar a{
+        display: block;
+        font-size: 2rem;
+        color: black;
+        margin: 1.5rem;
+    }
+
+    .home .homeContent{
+        margin-left: 0;
+        width: 90%;
+    }
+}
+
+@media (max-width:600px){
+    html{
+        font-size: 50%;
+    }
+}

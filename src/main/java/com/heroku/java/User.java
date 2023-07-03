@@ -1,27 +1,51 @@
 package com.heroku.java;
 
 public class User {
-    public String name;
+    public String fullname;
     public String email;
-    public String phonenumber;
-    public String address;
     public String password;
-    public String radio;
+    public String usertype;
 
-    public User(String name, String email, String phonenumber, String address, String password) {
-        this.name = name;
+     public User(String fullname, String email, String password, String usertype) {
+        this.fullname = fullname;
         this.email = email;
-        this.phonenumber = phonenumber;
-        this.address = address;
         this.password = password;
-
-     public String getRadio() {
-        return radio;
+        this.usertype= usertype;
     }
 
-    public void setRadio(String radio) {
-        this.radio = radio;
+    public String getName() {
+        return this.fullname;
     }
-}
+
+    public void setName(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsertype() {
+        return this.usertype;
+    }
+
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
+    }
+
+
+
 }
 
