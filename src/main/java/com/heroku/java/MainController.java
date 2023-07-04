@@ -34,9 +34,9 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String login(HttpSession session) {
+    public String home(HttpSession session) {
         session.invalidate();
-         return "login";
+         return "user/home";
     }
 
     @GetMapping("/logout")
@@ -50,29 +50,30 @@ public class MainController {
         return "user/about";
     }
     @GetMapping("/catalogue")
-    public String catalogue(){
-        return "user/catalogue";
-    }
-    @GetMapping("/faqs")
-    public String faqs(){
-        return "user/faqs";
-    }
-    @GetMapping("/feedback")
-    public String feedback(){
-        return "user/feedback";
-    }
-    @GetMapping("/home")
-    public String home(HttpSession session){
-       if(session.getAttribute("fullname") != null){ 
-            return "user/home"; 
+    public String catalogue(HttpSession session){
+         if(session.getAttribute("fullname") != null){ 
+            return "user/catalogue"; 
         }else{ 
             System.out.println("Session expired or invalid");
             return "login"; 
         } 
     }
+    @GetMapping("/faqs")
+    public String faqs(){
+        return "user/faqs";
+    }
+    @GetMapping("/login")
+    public String login(){
+       return "login";
+    }
     @GetMapping("/menu")
-    public String menu(){
-        return "user/menu";
+    public String menu(HttpSession session){
+        if(session.getAttribute("fullname") != null){ 
+            return "user/menu"; 
+        }else{ 
+            System.out.println("Session expired or invalid");
+            return "login"; 
+        } 
     }
     @GetMapping("/userregister")
     public String userregister(){
@@ -102,14 +103,14 @@ public class MainController {
                 //if they choose customer
                 if (usertype.equals("customer")){
                     if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) { 
-                    // session.setAttribute("fullname",customer.getName());
+                    
                     session.setAttribute("fullname",fullname);
                     session.setAttribute("usersid",usersid);
                     //debug
                     System.out.println("fullname : "+fullname);
                     System.out.println("usersid: "+usersid);
                     System.out.println("usertype: "+usertype);
-                    returnPage = "redirect:/home"; 
+                    returnPage = "redirect:/catalogue"; 
                     break; 
                 } else { 
                     returnPage = "/login"; 

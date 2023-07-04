@@ -1,12 +1,11 @@
 package com.heroku.java;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +14,10 @@ import jakarta.servlet.http.HttpSession;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-// import java.util.ArrayList;
-// import java.util.Map;
+ import java.util.ArrayList;
+ import java.util.Map;
 import java.sql.SQLException;
+//import java.util.ArrayList;
 
 // import org.jscience.physics.amount.Amount;
 // import org.jscience.physics.model.RelativisticModel;
@@ -60,23 +60,6 @@ public class bakerController {
       statement1.setString(4, "baker");
 
       statement1.executeUpdate();
-
-    // //   Get id from database for sql 2 from sql 1
-    //   String sql = "SELECT * FROM users where email=?";
-    //   final var stmt = connection.prepareStatement(sql);
-    //   stmt.setString(1, user.getEmail());
-    //   final var resultSet = stmt.executeQuery();
-    //   //id user
-    //   int id_db = 0;
-    //   while(resultSet.next()){
-    //     id_db = resultSet.getInt("usersid");
-    //   }
-
-    //   System.out.println("id database : " + id_db);
-
-    //   String sql2= "INSERT INTO baker (usersid) VALUES (?)";
-    //   final var statement2 = connection.prepareStatement(sql2);
-    //   statement2.setInt(1, id_db);
 
       connection.close();
       return "redirect:/";
@@ -227,6 +210,38 @@ public class bakerController {
             // Username is null or deletion failed, handle accordingly (e.g., redirect to an error page)
             return "/baker/bakerorder";
         }
+
+        @GetMapping("/bakermenu")
+          // public String bakermenu(HttpSession session,cake cake,Model model){
+          public String bakermenu(){
+
+        //     try(Connection connection = dataSource.getConnection()) {
+              
+        //       final var statement = connection.createStatement();
+        //       final var resultSet = statement.executeQuery("SELECT caketype, cakeprice, cakesize , cakeimg FROM cake ORDER BY cakeid;");
+
+        //       // int row = 0;
+        // ArrayList<cake> cakes = new ArrayList<>();
+        // while (resultSet.next()) {
+        //   String caketype = resultSet.getString("caketype");
+        //   String cakeprice = resultSet.getString("cakeprice");
+        //   Integer cakesize = resultSet.getInt("cakesize");
+        //   byte[] cakeimg = resultSet.getBytes("cakeimg");
+        //   cake Cake = new cake(caketype,cakeprice,cakesize,cakeimg);
+        //   cakes.add(Cake);
+        // }
+        // model.addAttribute("bakermenu", cake);
+        // connection.close();
+        return "admin/bakermenu";
+              
+            // } catch (Exception e) {
+            //   // TODO: handle exception
+            //   return "redirect/login";
+            // }
+
+          
+        }
+      
 
 
 }

@@ -238,6 +238,16 @@ public class customerController {
         return "user/cart";
     }
 
+    @GetMapping("/paymentFileUpload")
+         public String paymentFileUpload(){
+        return "user/paymentFileUpload";
+    }
+
+    @GetMapping("/orderHistory")
+         public String orderHistory(){
+        return "user/orderHistory   ";
+    }
+
     }
  
     
