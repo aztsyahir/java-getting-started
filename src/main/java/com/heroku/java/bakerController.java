@@ -241,7 +241,12 @@ public class bakerController {
 
           
         }
-      
+        @GetMapping("/cakeregister")
+        
+        public String cakeregister()
+        {
+            return "admin/cakeregister";
+        }
 
 
 }

@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpSession;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.ResultSet;
 // import java.util.ArrayList;
 // import java.util.Map;
 import java.sql.SQLException;
@@ -48,24 +49,29 @@ public class customerController {
       statement1.setString(3, user.getPassword());
       statement1.setString(4, "customer");
 
-      statement1.executeUpdate();
+      statement1.execute();
 
     //   Get id from database for sql 2 from sql 1
-      String sql = "SELECT * FROM users where email=?";
-      final var stmt = connection.prepareStatement(sql);
-      stmt.setString(1, user.getEmail());
-      final var resultSet = stmt.executeQuery();
-      //id user
-      int id_db = 0;
-      while(resultSet.next()){
-        id_db = resultSet.getInt("usersid");
-      }
+    //   String sql = "SELECT * FROM users where email=?";
+    //   final var stmt = connection.prepareStatement(sql);
+    //   stmt.setString(1, user.getEmail());
+    //   final var resultSet = stmt.executeQuery();
+    //   //id user
+    //   int id_db = 0;
+    //   while(resultSet.next()){
+    //     id_db = resultSet.getInt("usersid");
+    //   }
+    ResultSet cust_name =statement1.getResultSet();  
+    int users_id = 0;
+     if (cust_name.next()) {
+          users_id= cust_name.getInt(1);
+        }
 
-      System.out.println("id database : " + id_db);
+      System.out.println("id database : " + users_id);
       
       String sql2= "INSERT INTO customer (usersid, phonenumber, address) VALUES (?,?,?)";
       final var statement2 = connection.prepareStatement(sql2);
-      statement2.setInt(1, id_db);
+      statement2.setInt(1, users_id);
       statement2.setString(2, cust.getPhonenumber());
       statement2.setString(3, cust.getAddress());
 

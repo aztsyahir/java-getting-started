@@ -11,7 +11,7 @@
      <!-- cdn icon link  -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
      <!-- custom css file  -->
-     <link rel="stylesheet" th:href="@{stylesheets/bakerprofile.css}"> 
+     <link rel="stylesheet" th:href="@{stylesheets/cakeregister.css}"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
 
@@ -31,32 +31,45 @@
 
   <body>
     <div class="container">
-    <form class="row g-3">
+      <h1 class="d-flex justify-content-center" style="font-weight: bold;">CAKE REGISTRATION</h1>
+    <form 
+    class="row g-3 d-flex justify-content-center"
+    method="post"
+    th:action="@{/cakeregister}"
+    modelAttribute>
+      <div class = "card col-6 " style="background: #f2e8b9;">
+        <div>
       <div class="mb-3">
-        <label for="inputCakename" class="form-label">Cake Name</label>
+        <label for="inputCakename" class="form-label" style="font-weight: bold;">Cake Name</label>
         <input type="text" class="form-control" id="caketype" name="caketype">
       </div>
-      <div class="mb-3">
-        <label for="inputPrice" class="form-label">Price</label>
+      <div class=" mb-3">
+        <label for="inputPrice" class="form-label" style="font-weight: bold;">Price</label>
+        <div class="input-group" >
         <span class="input-group-text">RM</span>
-        <input type="text" class="form-control" id="cakeprice">
+        <input type="number" class="form-control" id="cakeprice">
+        </div>
       </div>
       <div class="mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Size</label>
+        <label for="inputSize" class="form-label" style="font-weight: bold;">Size</label>
+        <div class="input-group">
+        <span class="input-group-text" for="inputGroupSelect01">Size</span>
         <select class="form-select" id="cakesize">
           <option selected>Choose...</option>
           <option value="6">6"</option>
           <option value="8">8"</option>
           <option value="10">10"</option>
         </select>
+        </div>
       </div>
       <div class="mb-3">
-        <label for="formFile" class="form-label">Ca
-          ke Image</label>
-        <input class="form-control" type="file" id="cakeimg">
+        <label for="formFile" class="form-label" style="font-weight: bold;">Cake Image (10mb and below only)</label>
+        <input class="form-control" type="file" id="cakeimg" accept="image/*" max-size="10000000" required>
       </div>
-      <div class="">
-        <button type="submit" class="btn btn-primary align-items-center">Sign in</button>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-warning align-items-center">Sign in</button>
+      </div>
+      </div> 
       </div>
     </form>
     </div>
