@@ -113,7 +113,7 @@ public class MainController {
                     returnPage = "redirect:/catalogue"; 
                     break; 
                 } else { 
-                    returnPage = "/login"; 
+                    returnPage = "login"; 
                 } 
                 }
                 //if they choose employee
@@ -129,7 +129,7 @@ public class MainController {
                     returnPage = "redirect:/bakerorder"; 
                     break; 
                 } else { 
-                    returnPage = "/login"; 
+                    returnPage = "login"; 
                 } 
                 }
                 else{
@@ -140,7 +140,7 @@ public class MainController {
  
         } catch (Throwable t) { 
             System.out.println("message : " + t.getMessage()); 
-            return "/login"; 
+            return "login"; 
         } 
  
     }

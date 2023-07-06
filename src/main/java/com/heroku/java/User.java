@@ -1,6 +1,7 @@
 package com.heroku.java;
 
 public class User {
+    
     public String fullname;
     public String email;
     public String password;
