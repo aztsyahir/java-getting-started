@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
@@ -24,23 +25,26 @@ import java.sql.SQLException;
 // import javax.measure.unit.SI;
 
 @Controller
-public class bakerController {
+public class staffController {
   private final DataSource dataSource;
 
   @Autowired
-  public bakerController(DataSource dataSource) {
+  public staffController(DataSource dataSource) {
     this.dataSource = dataSource;
   }
 
-  @GetMapping("/bakerregister")
-  public String bakerregister(){
-      return "admin/bakerregister";
+  @Autowired
+  private BCryptPasswordEncoder passwordEncoder;
+
+  @GetMapping("/staffregister")
+  public String staffregister(){
+      return "admin/staffregister";
   }
 
-  @GetMapping("/bakerorder")
-    public String bakerorder(HttpSession session){
+  @GetMapping("/stafforder")
+    public String stafforder(HttpSession session){
        if(session.getAttribute("fullname") != null){ 
-            return "admin/bakerorder"; 
+            return "admin/stafforder"; 
         }else{ 
             System.out.println("Session expired or invalid");
             return "login"; 
@@ -48,15 +52,20 @@ public class bakerController {
 
     }
 
-    @PostMapping("/bakerregister")
-    public String addAccount(HttpSession session, @ModelAttribute("bakerregister")  User user) {
+    @PostMapping("/staffregister")
+    public String addAccountStaff(HttpSession session, @ModelAttribute("staffregister")  staff staff) {
     try {
       Connection connection = dataSource.getConnection();
-      String sql1= "INSERT INTO users (fullname, email, password, usertype) VALUES (?,?,?,?)";
+      String sql1= "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole) VALUES (?,?,?,?)";
       final var statement1 = connection.prepareStatement(sql1);
-      statement1.setString(1, user.getName());
-      statement1.setString(2, user.getEmail());
-      statement1.setString(3, user.getPassword());
+
+      String staffsname = staff.getStaffsname();
+      String staffsemail = staff.getStaffsemail();
+      String staffspassword = staff.getStaffspassword();    
+
+      statement1.setString(1, staffsname);
+      statement1.setString(2, staffsemail);
+      statement1.setString(3, passwordEncoder.encode(staffspassword));
       statement1.setString(4, "baker");
 
       statement1.executeUpdate();
@@ -71,62 +80,62 @@ public class bakerController {
       System.out.println("printTrace /n");
       sqe.printStackTrace();
 
-      return "redirect:/bakerregister";
+      return "redirect:/staffregister";
     } catch (Exception e) {
       System.out.println("E message : " + e.getMessage());
-      return "redirect:/bakerregister";
+      return "redirect:/staffregister";
     }
     }
 
-  @GetMapping("/bakerprofile")
-    public String viewprofilebaker(HttpSession session, Model model)
-    {
-        String fullname = (String) session.getAttribute("fullname");
-        int usersid = (int) session.getAttribute("usersid");
-        System.out.println("fullname : "+fullname);
-         System.out.println("user id : "+usersid);
+//   @GetMapping("/staffprofile")
+//     public String viewprofilestaff(HttpSession session, Model model)
+//     {
+//         String staffsname = (String) session.getAttribute("fullname");
+//         int staffsid = (int) session.getAttribute("staffsid");
+//         System.out.println("staff fullname : "+staffsname);
+//          System.out.println("staff id : "+staffsid);
 
-        if(fullname != null){
-            try{
-                Connection connection = dataSource.getConnection();
-                final var statement = connection.prepareStatement
-                ( "SELECT  fullname, email, password,usertype FROM users WHERE usersid = ?");
-                statement.setInt(1, usersid);
-                 final var resultSet = statement.executeQuery();
+//         if(staffsname != null){
+//             try{
+//                 Connection connection = dataSource.getConnection();
+//                 final var statement = connection.prepareStatement
+//                 ( "SELECT  staffssname, staffsemail, staffspassword, staffsrole FROM staffs WHERE staffsid = ?");
+//                 statement.setInt(1, staffsid);
+//                  final var resultSet = statement.executeQuery();
 
-                while(resultSet.next()){
-                    String fname = resultSet.getString("fullname");
-                    String email = resultSet.getString("email");
-                    String password = resultSet.getString("password");
-                    String usertype = resultSet.getString("usertype");
+//                 while(resultSet.next()){
+//                     String fname = resultSet.getString("fullname");
+//                     String email = resultSet.getString("email");
+//                     String password = resultSet.getString("password");
+//                     String usertype = resultSet.getString("usertype");
 
-                    //debug
-                    System.out.println("fullname from db = "+fname);
+//                     //debug
+//                     System.out.println("fullname from db = "+fname);
 
-                    User bakerprofile = new User(fullname,email,password,usertype);
+//                     User staffprofile = new User(fullname,email,password,usertype);
 
 
-                    model.addAttribute("bakerprofile", bakerprofile);
-                    System.out.println("fullname :"+ bakerprofile.fullname);
-                    // Return the view name for displaying baker details --debug
-                    System.out.println("Session bakerprofile : " + model.getAttribute("bakerprofile"));
+//                     model.addAttribute("staffprofile", staffprofile);
+//                     System.out.println("fullname :"+ staffprofile.fullname);
+//                     // Return the view name for displaying staff details --debug
+//                     System.out.println("Session staffprofile : " + model.getAttribute("staffprofile"));
 
-                }
-               return "bakerprofile";
-            }
-        catch (SQLException e) {
-            e.printStackTrace();
-            }
-            }else{
-                return "/login";
-            }
-            return "/login";
+//                 }
+//                return "staffprofile";
+//             }
+//         catch (SQLException e) {
+//             e.printStackTrace();
+//             }
+//             }else{
+//                 return "/login";
+//             }
+//             return "/login";
  
-}
+// }
 
-//Update Profile baker
-        @PostMapping("/updatebaker") 
-        public String updateBaker(HttpSession session, @ModelAttribute("bakerprofile") Model model, User user) { 
+//Update Profile staff
+        @PostMapping("/updatestaff") 
+        public String updatestaff(HttpSession session, @ModelAttribute("staffprofile") Model model, User user) { 
 
             String fullname = user.getName();
             String email = user.getEmail();
@@ -158,7 +167,7 @@ public class bakerController {
       
             statement.executeUpdate();
                 
-            String returnPage = "bakerprofile"; 
+            String returnPage = "staffprofile"; 
             return returnPage; 
  
         } catch (Throwable t) { 
@@ -168,17 +177,17 @@ public class bakerController {
         } }
 
         //delete controller
-        @GetMapping("/deletebaker")
+        @GetMapping("/deletestaff")
         public String deleteProfileCust(HttpSession session, Model model) {
             String fullname = (String) session.getAttribute("fullname");
             int userid = (int) session.getAttribute("usersid");
 
             if (fullname != null) {
                 try (Connection connection = dataSource.getConnection()) {
-                    // Delete baker record
-                    // final var deleteBakerStatement = connection.prepareStatement("DELETE FROM baker WHERE usersid=?");
-                    // deleteBakerStatement.setInt(1, userid);
-                    // int bakerRowsAffected = deleteBakerStatement.executeUpdate();
+                    // Delete staff record
+                    // final var deletestaffStatement = connection.prepareStatement("DELETE FROM staff WHERE usersid=?");
+                    // deletestaffStatement.setInt(1, userid);
+                    // int staffRowsAffected = deletestaffStatement.executeUpdate();
 
                     // //debug delete
                     // System.out.println("hehe");
@@ -208,12 +217,12 @@ public class bakerController {
                 }
             }
             // Username is null or deletion failed, handle accordingly (e.g., redirect to an error page)
-            return "/baker/bakerorder";
+            return "/staff/stafforder";
         }
 
-        @GetMapping("/bakermenu")
-          // public String bakermenu(HttpSession session,cake cake,Model model){
-          public String bakermenu(){
+        @GetMapping("/staffmenu")
+          // public String staffmenu(HttpSession session,cake cake,Model model){
+          public String staffmenu(){
 
         //     try(Connection connection = dataSource.getConnection()) {
               
@@ -230,9 +239,9 @@ public class bakerController {
         //   cake Cake = new cake(caketype,cakeprice,cakesize,cakeimg);
         //   cakes.add(Cake);
         // }
-        // model.addAttribute("bakermenu", cake);
+        // model.addAttribute("staffmenu", cake);
         // connection.close();
-        return "admin/bakermenu";
+        return "admin/staffmenu";
               
             // } catch (Exception e) {
             //   // TODO: handle exception
