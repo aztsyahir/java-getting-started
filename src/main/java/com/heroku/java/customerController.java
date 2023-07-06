@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpSession;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.ResultSet;
 // import java.util.ArrayList;
 // import java.util.Map;
 import java.sql.SQLException;
@@ -41,31 +42,38 @@ public class customerController {
     public String addAccount(HttpSession session, @ModelAttribute("userregister") customer cust, User user) {
     try {
       Connection connection = dataSource.getConnection();
-      String sql1= "INSERT INTO users (fullname, email, password, usertype) VALUES (?,?,?,?)";
+      String sql1= "INSERT INTO users (fullname, email, password, usertype) VALUES (?,?,?,?) RETURNING usersid AS usersid";
       final var statement1 = connection.prepareStatement(sql1);
       statement1.setString(1, user.getName());
       statement1.setString(2, user.getEmail());
       statement1.setString(3, user.getPassword());
       statement1.setString(4, "customer");
-
-      statement1.executeUpdate();
-
-    //   Get id from database for sql 2 from sql 1
-      String sql = "SELECT * FROM users where email=?";
-      final var stmt = connection.prepareStatement(sql);
-      stmt.setString(1, user.getEmail());
-      final var resultSet = stmt.executeQuery();
-      //id user
-      int id_db = 0;
-      while(resultSet.next()){
-        id_db = resultSet.getInt("usersid");
+      statement1.execute();
+      ResultSet rs = statement1.getResultSet();
+      
+      int users_id = 0;
+      if (rs.next()){
+        users_id = rs.getInt(1);
       }
 
-      System.out.println("id database : " + id_db);
+
+
+    // //   Get id from database for sql 2 from sql 1
+    //   String sql = "SELECT * FROM users where email=?";
+    //   final var stmt = connection.prepareStatement(sql);
+    //   stmt.setString(1, user.getEmail());
+    //   final var resultSet = stmt.executeQuery();
+    //   //id user
+    //   int id_db = 0;
+    //   while(resultSet.next()){
+    //     id_db = resultSet.getInt("usersid");
+    //   }
+
+      System.out.println("id database : " + users_id);
       
       String sql2= "INSERT INTO customer (usersid, phonenumber, address) VALUES (?,?,?)";
       final var statement2 = connection.prepareStatement(sql2);
-      statement2.setInt(1, id_db);
+      statement2.setInt(1, users_id);
       statement2.setString(2, cust.getPhonenumber());
       statement2.setString(3, cust.getAddress());
 
@@ -74,7 +82,7 @@ public class customerController {
       System.out.println("phonenumber: "+cust.getPhonenumber());
 
       connection.close();
-      return "redirect:/";
+      return "redirect:/catalogue";
 
     } catch (SQLException sqe) {
       System.out.println("Error Code = " + sqe.getErrorCode());
