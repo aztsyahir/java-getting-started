@@ -23,9 +23,9 @@
         <form 
         class="d-flex justify-content-center"
         method="post"
-        th:action="@{/userregister}"
-        modelAttribute="userregister"
-        th:object="(${userregister})"
+        th:action="@{/customerregister}"
+        modelAttribute="customerregister"
+        th:object="(${customerregister})"
         >
         <div class="card col-6">
          <div class="card-body">
@@ -36,7 +36,7 @@
                  id="exampleInputName" 
                  placeholder="Ali Bin Abu" 
                  required aria-describedby="nameHelp"
-                 name="fullname">
+                 name="custname">
               </div>
             <div class="mb-3">
               <label for="exampleInputEmail" class="form-label">Email address</label>
@@ -45,7 +45,7 @@
                id="exampleInputEmail"
                 placeholder="ali@gmail.com" 
                 required aria-describedby="emailHelp"
-                name="email">
+                name="custemail">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhone" class="form-label">Phone Number</label>
@@ -56,7 +56,7 @@
                   placeholder="012 345 6789"
                    maxlength = "11" 
                    required aria-describedby="phonenumHelp"
-                   name="phonenumber">
+                   name="custphone">
               </div>
               <div class="mb-3">
                 <label for="exampleInputAddress" class="form-label">Address</label>
@@ -73,13 +73,13 @@
                class="form-control" 
                id="exampleInputPassword1" 
                minlength="8" required
-               name="password">
+               name="custpassword">
               <div id="passwordHelp" class="form-text">At least 8 characters.</div>
             </div>
             <div class="text-center">
                 <p>
                   Already have account?  
-                  <span><a th:href="@{/}">SIGN IN HERE</a></span>
+                  <span><a th:href="@{/login}">SIGN IN HERE</a></span>
                 </p>
             <button id="btncustregister"type="submit" class="btn btn-warning ">Register</button>
             </div></div>

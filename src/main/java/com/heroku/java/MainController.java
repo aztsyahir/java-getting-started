@@ -35,132 +35,163 @@ public class MainController {
         this.dataSource = dataSource;
     }
 
+
     @GetMapping("/")
     public String home(HttpSession session) {
         session.invalidate();
-         return "user/home";
+        return "user/home";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
 
     @GetMapping("/about")
-    public String about(){
+    public String about() {
         return "user/about";
     }
+
     @GetMapping("/catalogue")
-    public String catalogue(HttpSession session){
-         if(session.getAttribute("fullname") != null){ 
-            return "user/catalogue"; 
-        }else{ 
+    public String catalogue(HttpSession session) {
+        if (session.getAttribute("fullname") != null) {
+            return "user/catalogue";
+        } else {
             System.out.println("Session expired or invalid");
-            return "login"; 
-        } 
+            return "login";
+        }
     }
+
     @GetMapping("/faqs")
-    public String faqs(){
+    public String faqs() {
         return "user/faqs";
     }
-    @GetMapping("/login")
-    public String login(){
-       return "login";
-    }
+
+    // @GetMapping("/login")
+    // public String login() {
+    //     return "login";
+    // }
+
     @GetMapping("/menu")
-    public String menu(HttpSession session){
-        if(session.getAttribute("fullname") != null){ 
-            return "user/menu"; 
-        }else{ 
+    public String menu(HttpSession session) {
+        if (session.getAttribute("fullname") != null) {
+            return "user/menu";
+        } else {
             System.out.println("Session expired or invalid");
-            return "login"; 
-        } 
-    }
-    @GetMapping("/userregister")
-    public String userregister(){
-        return "user/userregister";
-    }
-   
-    
- @PostMapping("/login") 
-    public String Loginpage(HttpSession session, @ModelAttribute("login") customer customer, User user, Model model) { 
-
-        try {
-            Connection connection = dataSource.getConnection();
-            final var statement = connection.createStatement(); 
-            String sql ="SELECT usersid, fullname,email, password,usertype FROM users"; 
-            final var resultSet = statement.executeQuery(sql); 
-            
-
-            String returnPage = ""; 
- 
-            while (resultSet.next()) { 
-                int usersid = resultSet.getInt("usersid");
-                String email = resultSet.getString("email"); 
-                String fullname = resultSet.getString("fullname");
-                String password = resultSet.getString("password");
-                String usertype = resultSet.getString("usertype");  
-                
-                //if they choose customer
-                if (usertype.equals("customer")){
-                    if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) { 
-                    
-                    session.setAttribute("fullname",fullname);
-                    session.setAttribute("usersid",usersid);
-                    //debug
-                    System.out.println("fullname : "+fullname);
-                    System.out.println("usersid: "+usersid);
-                    System.out.println("usertype: "+usertype);
-                    returnPage = "redirect:/catalogue"; 
-                    break; 
-                } else { 
-                    returnPage = "login"; 
-                } 
-                }
-                //if they choose employee
-                
-                else if (usertype.equals("baker")){
-                    if (email.equals(user.getEmail()) && password.equals(user.getPassword())) { 
-                    session.setAttribute("fullname",fullname);
-                    session.setAttribute("usersid",usersid);
-                     //debug
-                    System.out.println("fullname : "+fullname);
-                    System.out.println("usersid: "+usersid);
-                    System.out.println("usertype: "+usertype);
-                    returnPage = "redirect:/bakerorder"; 
-                    break; 
-                } else { 
-                    returnPage = "login"; 
-                } 
-                }
-                else{
-                    System.out.println("email does not match password");
-                }
-            }
-            return returnPage; 
- 
-        } catch (Throwable t) { 
-            System.out.println("message : " + t.getMessage()); 
-            return "login"; 
-        } 
- 
+            return "login";
+        }
     }
 
+    @GetMapping("/customerregister")
+    public String custregister() {
+        return "user/customerregister";
+    }
+
+    // @PostMapping("/login")
+    // public String Loginpage(HttpSession session, @ModelAttribute("login") customer cust, staff staff, Model model) {
+    //     String returnPage = null;
+    //     try {
+    //         Connection connection = dataSource.getConnection();
+    //         final var statement = connection.createStatement();
+    //         // final var statement2 = connection.createStatement();
+    //         String sql = "SELECT staffsid, staffsname,staffsemail, staffspassword,staffsrole FROM staffs";
+    //         // String sql2 ="SELECT custsId, staffsname,staffsemail,
+    //         // staffspassword,staffsrole FROM staffs";
+    //         final var resultSet = statement.executeQuery(sql);
+    //         // final var resultSet2 = statement2.executeQuery(sql2);
+
+    //         while (resultSet.next()) {
+    //             int staffsid = resultSet.getInt("staffsid");
+    //             String staffsname = resultSet.getString("staffsname");
+    //             String staffsemail = resultSet.getString("staffsemail");
+    //             String staffspassword = resultSet.getString("staffspassword");
+    //             String staffsrole = resultSet.getString("staffsrole");
+    //             // int custid = resultSet.getInt("custid");
+    //             // String custname = resultSet.getString("custname");
+    //             // String custemail = resultSet.getString("custemail");
+    //             // String custpassword = resultSet.getString("custpassword");
+
+    //             // if they're admin
+    //             if (staffsrole.equals("admin")) {
+    //                 if (staffsemail.equals(staff.getStaffsemail())
+    //                         && passwordEncoder.matches(staff.getStaffspassword(),staffspassword)) {
+
+    //                     session.setAttribute("staffsname", staffsname);
+    //                     session.setAttribute("staffsid", staffsid);
+    //                     // debug
+    //                     System.out.println("admin name : " + staffsname);
+    //                     System.out.println("admin id: " + staffsid);
+    //                     System.out.println("admin role: " + staffsrole);
+    //                     returnPage = "redirect:/staffmenu";
+    //                     break;
+    //                 } else {
+    //                     System.out.println("debug admin");
+    //                     returnPage = "login";
+    //                 }
+    //             }
+
+    //             // if they're baker
+    //             else if (staffsrole.equals("baker")) {
+    //                 if (staffsemail.equals(staff.getStaffsemail())
+    //                         && staffspassword.equals(staff.getStaffspassword())) {
+
+    //                     session.setAttribute("staffsname", staffsname);
+    //                     session.setAttribute("staffsid", staffsid);
+    //                     // debug
+    //                     System.out.println("baker name : " + staffsname);
+    //                     System.out.println("baker id: " + staffsid);
+    //                     System.out.println("baker role: " + staffsrole);
+    //                     returnPage = "redirect:/staffmenu";
+    //                     break;
+    //                 } else {
+    //                     System.out.println("debug baker");
+    //                     returnPage = "login";
+    //                 }
+    //             }
+    //             // if they're customer
+
+    //             else {
+    //                 // if (custemail.equals(cust.getCustemail()) &&
+    //                 // custpassword.equals(cust.getCustpassword())) {
+
+    //                 // session.setAttribute("custemail",custemail);
+    //                 // session.setAttribute("custid",custid);
+    //                 // //debug
+    //                 // System.out.println("baker name : "+custname);
+    //                 // System.out.println("baker id: "+custid);
+    //                 // System.out.println("baker role: customer");
+    //                 // returnPage = "redirect:/catalogue";
+    //                 // break;
+    //                 // } else {
+    //                 returnPage = "login";
+    //                 // System.out.println("email does not match password");
+    //                 // }
+    //             }
+    //         }
+    //         return returnPage;
+
+    //     } catch (Throwable t) {
+    //         System.out.println("message : " + t.getMessage());
+    //         System.out.println("debug failure");
+    //         return "login";
+    //     }
+
+    // }
 
     @GetMapping("/convert")
     String convert(Map<String, Object> model) {
-    RelativisticModel.select();
+        RelativisticModel.select();
 
-    final var result = java.util.Optional
-            .ofNullable(System.getenv().get("ENERGY"))
-            .map(Amount::valueOf)
-            .map(energy -> "E=mc^2: " + energy + " = " + energy.to(SI.KILOGRAM))
-            .orElse("ENERGY environment variable is not set!");
+        final var result = java.util.Optional
+                .ofNullable(System.getenv().get("ENERGY"))
+                .map(Amount::valueOf)
+                .map(energy -> "E=mc^2: " + energy + " = " + energy.to(SI.KILOGRAM))
+                .orElse("ENERGY environment variable is not set!");
 
-    model.put("result", result);
-    return "convert";
-}
+        model.put("result", result);
+        return "convert";
+    }
 
     @GetMapping("/database")
     String database(Map<String, Object> model) {
@@ -185,12 +216,14 @@ public class MainController {
     }
 
     @Bean
-  public BCryptPasswordEncoder bCryptPasswordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    
 
     public static void main(String[] args) {
         SpringApplication.run(MainController.class, args);
-        
+
     }
 }

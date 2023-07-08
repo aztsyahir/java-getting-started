@@ -37,7 +37,9 @@ public class staffController {
   private BCryptPasswordEncoder passwordEncoder;
 
   @GetMapping("/staffregister")
-  public String staffregister(){
+  public String staffregister(HttpSession session){
+    int staffsid = (int) session.getAttribute("staffsid");
+     System.out.println( "staff id :"+staffsid);
       return "admin/staffregister";
   }
 
@@ -59,19 +61,23 @@ public class staffController {
       String sql1= "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole) VALUES (?,?,?,?)";
       final var statement1 = connection.prepareStatement(sql1);
 
-      String staffsname = staff.getStaffsname();
-      String staffsemail = staff.getStaffsemail();
-      String staffspassword = staff.getStaffspassword();    
+      String fullname = staff.getFullname();
+      String email = staff.getEmail();
+      String password = staff.getPassword();    
+      System.out.println("password : "+password);
+       System.out.println("fullname : "+fullname);
+        System.out.println("email : "+email);
 
-      statement1.setString(1, staffsname);
-      statement1.setString(2, staffsemail);
-      statement1.setString(3, passwordEncoder.encode(staffspassword));
+      statement1.setString(1, fullname);
+      statement1.setString(2, email);
+      statement1.setString(3, passwordEncoder.encode(password));
       statement1.setString(4, "baker");
+      statement1.setInt(5,(int)session.getAttribute("staffsid"));
 
       statement1.executeUpdate();
 
       connection.close();
-      return "redirect:/";
+      return "redirect:/login";
 
     } catch (SQLException sqe) {
       System.out.println("Error Code = " + sqe.getErrorCode());
@@ -87,83 +93,75 @@ public class staffController {
     }
     }
 
-//   @GetMapping("/staffprofile")
-//     public String viewprofilestaff(HttpSession session, Model model)
-//     {
-//         String staffsname = (String) session.getAttribute("fullname");
-//         int staffsid = (int) session.getAttribute("staffsid");
-//         System.out.println("staff fullname : "+staffsname);
-//          System.out.println("staff id : "+staffsid);
+  @GetMapping("/staffprofile")
+    public String viewprofilestaff(HttpSession session, Model model)
+    {
+        String fullname = (String) session.getAttribute("staffsname");
+        int userid = (int) session.getAttribute("staffsid");
+        String staffrole = (String) session.getAttribute("staffsrole");
+        System.out.println("staff fullname : "+fullname);
+        System.out.println("staff id : "+userid);
+        System.out.println("staff role : "+staffrole);
 
-//         if(staffsname != null){
-//             try{
-//                 Connection connection = dataSource.getConnection();
-//                 final var statement = connection.prepareStatement
-//                 ( "SELECT  staffssname, staffsemail, staffspassword, staffsrole FROM staffs WHERE staffsid = ?");
-//                 statement.setInt(1, staffsid);
-//                  final var resultSet = statement.executeQuery();
+        if(fullname != null){
+            try{
+                Connection connection = dataSource.getConnection();
+                final var statement = connection.prepareStatement
+                ( "SELECT  staffsname, staffsemail, staffspassword,staffsrole FROM staffs WHERE staffsid = ?");
+                statement.setInt(1, userid);
+                 final var resultSet = statement.executeQuery();
 
-//                 while(resultSet.next()){
-//                     String fname = resultSet.getString("fullname");
-//                     String email = resultSet.getString("email");
-//                     String password = resultSet.getString("password");
-//                     String usertype = resultSet.getString("usertype");
+                while(resultSet.next()){
+                    String fname = resultSet.getString("staffsname");
+                    String email = resultSet.getString("staffsemail");
+                    String password = resultSet.getString("staffspassword");
+                    String staffsrole = resultSet.getString("staffsrole");
+                    //debug
+                    System.out.println("fullname from db = "+fname);
 
-//                     //debug
-//                     System.out.println("fullname from db = "+fname);
-
-//                     User staffprofile = new User(fullname,email,password,usertype);
+                    staff staffprofile = new staff(userid,fname,email,password,staffsrole);
 
 
-//                     model.addAttribute("staffprofile", staffprofile);
-//                     System.out.println("fullname :"+ staffprofile.fullname);
-//                     // Return the view name for displaying staff details --debug
-//                     System.out.println("Session staffprofile : " + model.getAttribute("staffprofile"));
+                    model.addAttribute("staffprofile", staffprofile);
+                    System.out.println("fullname :"+ staffprofile.getFullname());
+                    // Return the view name for displaying staff details --debug
+                    System.out.println("Session staffprofile : " + model.getAttribute("staffprofile"));
 
-//                 }
-//                return "staffprofile";
-//             }
-//         catch (SQLException e) {
-//             e.printStackTrace();
-//             }
-//             }else{
-//                 return "/login";
-//             }
-//             return "/login";
+                }
+               return "staffprofile";
+            }
+        catch (SQLException e) {
+            e.printStackTrace();
+            }
+            }else{
+                return "/login";
+            }
+            return "/login";
  
-// }
+}
 
 //Update Profile staff
         @PostMapping("/updatestaff") 
-        public String updatestaff(HttpSession session, @ModelAttribute("staffprofile") Model model, User user) { 
+        public String updatestaff(HttpSession session, @ModelAttribute("staffprofile") staff staff,Model model) { 
+            int staffsid = (int) session.getAttribute("staffsid");
 
-            String fullname = user.getName();
-            String email = user.getEmail();
-            String password = user.getPassword();
-            String usertype = user.getUsertype();
+            String staffsname = staff.getFullname();
+            String staffsemail = staff.getEmail();
+            String staffspassword = staff.getPassword();
+            String staffsrole = staff.getStaffsrole();
         
             try { 
             Connection connection = dataSource.getConnection();
-            String sql1 = "UPDATE users SET fullname=? ,email=?, password=?, usertype=? WHERE email=?";
+            String sql1 = "UPDATE staffs SET staffsname=? ,staffsemail=?, staffspassword=?, staffrole=? WHERE staffsid=?";
             final var statement = connection.prepareStatement(sql1);
 
-            statement.setString(1, fullname);
-            statement.setString(2, email);
-            statement.setString(3, password);
-            statement.setString(4, usertype);
-            statement.setString(5, email);
+            statement.setString(1, staffsname);
+            statement.setString(2, staffsemail);
+            statement.setString(3, passwordEncoder.encode(staffspassword));
+            statement.setString(4, staffsrole);
+            statement.setInt(5, staffsid);
             statement.executeUpdate();
-            System.out.println("debug= "+fullname+" "+email+" "+password);
-
-            String sql = "SELECT * FROM users where fullname=?";
-            final var stmt = connection.prepareStatement(sql);
-            stmt.setString(1, user.getName());
-            final var resultSet = stmt.executeQuery();
-            int id_db = 0;
-            while(resultSet.next()){
-            id_db = resultSet.getInt("usersid");
-            }
-            System.out.println("id database : " + id_db);
+            System.out.println("debug= "+staffsid+" "+staffsname+" "+staffsemail);
       
             statement.executeUpdate();
                 
@@ -193,9 +191,9 @@ public class staffController {
                     // System.out.println("hehe");
                     
                     // Delete user record
-                    final var deleteUserStatement = connection.prepareStatement("DELETE FROM users WHERE usersid=?");
-                    deleteUserStatement.setInt(1, userid);
-                    int userRowsAffected = deleteUserStatement.executeUpdate();
+                    final var deleteStaffStatement = connection.prepareStatement("DELETE FROM staffs WHERE staffsid=?");
+                    deleteStaffStatement.setInt(1, userid);
+                    int userRowsAffected = deleteStaffStatement.executeUpdate();
 
                     if ( userRowsAffected > 0) {
                         // Deletion successful
