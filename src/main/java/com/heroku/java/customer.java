@@ -2,33 +2,33 @@ package com.heroku.java;
 
 public class customer extends User{
     
-    public String phonenumber;
-    public String address;
-
+    public String custaddress;
+    public int custphone;
+    
     //constructor
 
-    public customer(String fullname, String email, String password,String usertype, String phonenumber, String address){
-        super(fullname, email, password, usertype);
-        this.phonenumber = phonenumber;
-        this.address = address;
+
+    public customer(int userid,String fullname,String email,String password,String custaddress, int custphone) {
+        super(userid, fullname, email, password);
+        this.custaddress = custaddress;
+        this.custphone = custphone;
     }
 
 
-    public String getPhonenumber() {
-        return this.phonenumber;
+    public String getCustaddress() {
+        return this.custaddress;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setCustaddress(String custaddress) {
+        this.custaddress = custaddress;
     }
 
-    public String getAddress() {
-        return this.address;
+    public int getCustphone() {
+        return this.custphone;
     }
 
-    public void setCustaddress(String address) {
-        this.address = address;
+    public void setCustphone(int custphone) {
+        this.custphone = custphone;
     }
-
 
 }
