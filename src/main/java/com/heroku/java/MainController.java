@@ -35,7 +35,6 @@ public class MainController {
         this.dataSource = dataSource;
     }
 
-
     @GetMapping("/")
     public String home(HttpSession session) {
         session.invalidate();
@@ -54,13 +53,13 @@ public class MainController {
     }
 
     @GetMapping("/catalogue")
-    public String catalogue(HttpSession session) {
-        if (session.getAttribute("fullname") != null) {
+    public String catalogue() {
+        // if (session.getAttribute("fullname") != null) {
             return "user/catalogue";
-        } else {
-            System.out.println("Session expired or invalid");
-            return "login";
-        }
+        // } else {
+        //     System.out.println("Session expired or invalid");
+        //     return "login";
+        // }
     }
 
     @GetMapping("/faqs")
@@ -75,12 +74,12 @@ public class MainController {
 
     @GetMapping("/menu")
     public String menu(HttpSession session) {
-        if (session.getAttribute("fullname") != null) {
+        // if (session.getAttribute("fullname") != null) {
             return "user/menu";
-        } else {
-            System.out.println("Session expired or invalid");
-            return "login";
-        }
+        // } else {
+        //     System.out.println("Session expired or invalid");
+        //     return "login";
+        // }
     }
 
     @GetMapping("/customerregister")

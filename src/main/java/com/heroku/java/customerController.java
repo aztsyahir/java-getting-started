@@ -48,15 +48,15 @@ public class customerController {
       String sql= "INSERT INTO customers (custname, custemail, custpassword, custaddress,custphone) VALUES (?,?,?,?,?)";
       final var statement1 = connection.prepareStatement(sql);
 
-      String custsname = cust.getFullname();
-      String custsemail = cust.getEmail();
-      String custspassword = cust.getPassword();
+      String fullname = cust.getFullname();
+      String email = cust.getEmail();
+      String password = cust.getPassword();
       String custsaddress = cust.getCustaddress();
       int custsphone = cust.getCustphone();
       
-      statement1.setString(1, custsname);
-      statement1.setString(2, custsemail);
-      statement1.setString(3, passwordEncoder.encode(custspassword));
+      statement1.setString(1, fullname);
+      statement1.setString(2, email);
+      statement1.setString(3, passwordEncoder.encode(password));
       statement1.setString(4, custsaddress);
       statement1.setInt(5, custsphone);
       statement1.executeUpdate();
@@ -105,7 +105,7 @@ public class customerController {
                     //debug
                     System.out.println("fullname from db = "+custname);
 
-                    customer custprofile = new customer( userid,custname, custemail, custpassword, custaddress, custphone) ;
+                    customer custprofile = new customer( userid, custname, custemail, custpassword, custaddress, custphone) ;
 
 
                     model.addAttribute("custprofile", custprofile);

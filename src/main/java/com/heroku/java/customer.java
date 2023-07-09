@@ -6,9 +6,12 @@ public class customer extends User{
     public int custphone;
     
     //constructor
+    public customer(){
+
+    }
 
 
-    public customer(int userid,String fullname,String email,String password,String custaddress, int custphone) {
+    public customer(int userid, String fullname, String email, String password, String custaddress, int custphone) {
         super(userid, fullname, email, password);
         this.custaddress = custaddress;
         this.custphone = custphone;
