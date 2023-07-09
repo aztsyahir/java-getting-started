@@ -52,13 +52,13 @@ public class customerController {
       String custsemail = cust.getEmail();
       String custspassword = cust.getPassword();
       String custsaddress = cust.getCustaddress();
-      int custsphone = cust.getCustphone();
+      String custsphone = cust.getCustphone();
       
       statement1.setString(1, custsname);
       statement1.setString(2, custsemail);
       statement1.setString(3, passwordEncoder.encode(custspassword));
       statement1.setString(4, custsaddress);
-      statement1.setInt(5, custsphone);
+      statement1.setString(5, custsphone);
       statement1.executeUpdate();
 
       //debug
@@ -88,10 +88,11 @@ public class customerController {
         int userid = (int) session.getAttribute("custid");
 
         if(fullname != null){
+
             try{
                 Connection connection = dataSource.getConnection();
                 final var statement = connection.prepareStatement
-                ( "SELECT* FROM customers WHERE custsid=?");
+                ( "SELECT* FROM customers WHERE custid=?");
                 statement.setInt(1, userid);
                  final var resultSet = statement.executeQuery();
 
@@ -100,7 +101,7 @@ public class customerController {
                     String custemail = resultSet.getString("custemail");
                     String custpassword = resultSet.getString("custpassword");
                     String custaddress = resultSet.getString("custaddress");
-                    int custphone = resultSet.getInt("custphone");
+                    String custphone = resultSet.getString("custphone");
 
                     //debug
                     System.out.println("fullname from db = "+custname);
@@ -137,44 +138,57 @@ public class customerController {
             String custemail = cust.getEmail();
             String custaddress = cust.getCustaddress();
             String custpassword = cust.getPassword();
-            int custphone = cust.getCustphone();
+            String custphone = cust.getCustphone();
         
             try { 
             Connection connection = dataSource.getConnection();
-            String sql = "UPDATE customers SET custname=? ,custemail=?, custpassword=?, custaddress=?, custphone=? WHERE custid=?";
+            String sql = "UPDATE customers SET custname=? ,custemail=?, custaddress=?, custphone=? WHERE custid=?";
             
             final var statement = connection.prepareStatement(sql);
-            statement.setInt(1, custid);
-
             statement.setString(1, custname);
             statement.setString(2, custemail);
-            statement.setString(3, custpassword);
-            statement.setString(4, custaddress);
-            statement.setInt(5, custphone);
+            statement.setString(3, custaddress);
+            statement.setString(4, custphone);
+            statement.setInt(5, custid);
             statement.executeUpdate();
-            System.out.println("debug= "+custname+" "+custemail+" "+custpassword);
+            System.out.println("debug= "+custname+" "+custemail+" "+custpassword+" "+custphone+" "+custid);
             System.out.println("id database : " + custid);
                 
+            // Check if the staff has entered a new password
+            if(!custpassword.isEmpty()){
+                // Hash the new password
+                String newpassword = passwordEncoder.encode(custpassword);
+
+            // Update the staff's password in the database
+            String sql2 = "UPDATE staffs SET staffspassword=? WHERE staffsid=?";
+            final var passwordStatement = connection.prepareStatement(sql2);
+            passwordStatement.setString(1, newpassword);
+            passwordStatement.setInt(2, custid);
+            passwordStatement.executeUpdate();
+
+            }
+            
+
             String returnPage = "custprofile"; 
             return returnPage; 
  
         } catch (Throwable t) { 
             System.out.println("message : " + t.getMessage()); 
             System.out.println("error");
-            return "redirect:/login"; 
+            return "redirect:/custprofile"; 
         } }
 
         //delete controller
         @GetMapping("/deletecust")
         public String deleteProfileCust(HttpSession session, customer customer,Model model) {
-            String custemail = (String) session.getAttribute("custemail");
-            int custid = (int) session.getAttribute("custid");
+            String fullname = (String) session.getAttribute("custname");
+            int userid = (int) session.getAttribute("custid");
 
-            if (custemail != null) {
+            if (fullname != null) {
                 try (Connection connection = dataSource.getConnection()) {
                     // Delete customer record
-                    final var deleteCustomerStatement = connection.prepareStatement("DELETE FROM customer WHERE usersid=?");
-                    deleteCustomerStatement.setInt(1, custid);
+                    final var deleteCustomerStatement = connection.prepareStatement("DELETE FROM customers WHERE custid=?");
+                    deleteCustomerStatement.setInt(1, userid);
                     int customerRowsAffected = deleteCustomerStatement.executeUpdate();
 
                     //debug delete
@@ -201,7 +215,8 @@ public class customerController {
                 }
             }
             // fullname is null or deletion failed, handle accordingly (e.g., redirect to an error page)
-            return "/user/catalogue";
+            System.out.println("deletion failed");
+            return "redirect:/custprofile";
         }
 
         @GetMapping("/cart")

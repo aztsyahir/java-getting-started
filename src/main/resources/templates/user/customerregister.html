@@ -36,7 +36,7 @@
                  id="exampleInputName" 
                  placeholder="Ali Bin Abu" 
                  required aria-describedby="nameHelp"
-                 name="custname">
+                 name="fullname">
               </div>
             <div class="mb-3">
               <label for="exampleInputEmail" class="form-label">Email address</label>
@@ -45,17 +45,19 @@
                id="exampleInputEmail"
                 placeholder="ali@gmail.com" 
                 required aria-describedby="emailHelp"
-                name="custemail">
+                name="email">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhone" class="form-label">Phone Number</label>
                 <input type="tel"
                  class="form-control"
-                 pattern="[0-9]{10}" 
+                 pattern="[0-9]{10,11}" 
                  id="exampleInputNumber"
-                  placeholder="012 345 6789"
-                   maxlength = "11" 
-                   required aria-describedby="phonenumHelp"
+                  placeholder="0123456789"
+                  minlength="10" 
+                  maxlength = "11" 
+                   required 
+                   aria-describedby="phonenumHelp"
                    name="custphone">
               </div>
               <div class="mb-3">
@@ -73,7 +75,7 @@
                class="form-control" 
                id="exampleInputPassword1" 
                minlength="8" required
-               name="custpassword">
+               name="password">
               <div id="passwordHelp" class="form-text">At least 8 characters.</div>
             </div>
             <div class="text-center">
