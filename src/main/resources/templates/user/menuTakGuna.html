@@ -43,6 +43,8 @@
 
     <!-- main section starts here -->
     <main>
+      <h1>CATALOGUE</h1>
+      <!-- <h3 id="main">Click the name of the cake for details</h3> -->
       <table class="tableOrder">
         <tr>
           <th class="tableHeader1" colspan="3">MENU</th>
@@ -51,31 +53,44 @@
         <!-- KEK PISANG -->
         <tr>
           <td class="tableList1" colspan="2">KEK PISANG</td>
-          <td class="tableOption1">FLAVOUR & SIZE</td>
+          <td class="tableOption1">SIZE</td>
         </tr>
         <tr>
           <td class="tableListPics1" colspan="2">
             <div class="containerimage">
               <div class="panel" id="kekpisang1" th:style="'background: url(/image/kekpisang.jpg) no-repeat center; background-size: cover;'"></div>
-              <div class="panel" id="kekpisang2" th:style="'background: url(/image/kekpisang2.jpg) no-repeat center; background-size: cover;'"></div>
-              <div class="panel" id="kekpisang3" th:style="'background: url(/image/kekpisang3.jpg) no-repeat center; background-size: cover;'"></div>
+              <!-- <div class="panel" id="kekpisang2" th:style="'background: url(/image/kekpisang2.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="kekpisang3" th:style="'background: url(/image/kekpisang3.jpg) no-repeat center; background-size: cover;'"></div> -->
             </div>
           </td>
           <td class="tableRadio1">
             <ul>
-              <strong> Original</strong><br>
-              <input type="radio" id="pisang6" name="pisang" value="pisang">
-              <label for="pisang">Original 6" (RM13)</label><br>
-              
-              <label for="qty">Quantity:</label>
-              <input type="number" id="qty1" name="qty1" min="0"><br><br>
-              
-              <input type="radio" id="pisang" name="pisang" value="pisang">
-              <label for="pisang">Original 8" (RM26)</label><br>
-
-              <label for="qty">Quantity:</label>
-              <input type="number" id="qty2" name="qty2" min="0"><br>
+              <li>6" (RM13)</li>
+              <li>8" (RM26)</li>
             </ul>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="font-size: medium; background-color: #4c4c4c; border: #4c4c4c;"><strong>Place Order</strong></button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+              <div class="offcanvas-header">
+              <h2 class="offcanvas-title" id="offcanvasRightLabel">Kek Pisang</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+
+              <div class="offcanvas-body">
+                Details: <br>
+                <form id="myForm" action="/src/main/resources/templates/user/paymentFileUpload.html">
+                  <label for="cakesize">Size: </label>
+                  <select name="cakesize" id="cakesize">
+                    <option value="null">Choose size</option>
+                    <option value="6">6"</option>
+                    <option value="8">8"</option>
+                  </select><br>
+                  <label for="cakeqty">Quantity: </label>
+                  <input type="number" name="cakeqty" id="cakeqty"><br>
+                  <input type="button" onclick="myFunction()" value="Submit">
+                </form>
+              </div>
+            </div>
           </td>
         </tr>
 
@@ -87,68 +102,38 @@
         <tr>
           <td class="tableListPics5" colspan="2">
             <div class="containerimage">
-              <div class="panel" id="kekbatik1" th:style="'background: url(/image/kekbatik.jpg) no-repeat center; background-size: cover;'"></div>
               <div class="panel" id="kekbatik2" th:style="'background: url(/image/kekbatik2.jpg) no-repeat center; background-size: cover;'"></div>
-              <div class="panel" id="kekbatik3" th:style="'background: url(/image/kekbatik3.jpg) no-repeat center; background-size: cover;'"></div>
+              <!-- <div class="panel" id="kekbatik2" th:style="'background: url(/image/kekbatik2.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="kekbatik3" th:style="'background: url(/image/kekbatik3.jpg) no-repeat center; background-size: cover;'"></div> -->
             </div>
           </td>
           <td class="tableRadio5">
             <ul>
-              <input type="radio" id="batik6" name="batik" value="batik6">
-              <label for="batik6">6" (RM32)</label><br>
-
-              <label for="qty">Quantity:</label>
-              <input type="number" id="qty3" name="qty3" min="0"><br><br>
-
-              <input type="radio" id="batik8" name="batik" value="batik8">
-              <label for="batik8">8" (RM62)</label><br>
-
-              <label for="qty">Quantity:</label>
-              <input type="number" id="qty4" name="qty4" min="0"><br>
+              <li>6" (RM32)</li>
+              <li>8" (RM65)</li>
             </ul>
           </td>
         </tr>
 
-        <!-- BROWNIES -->
+        <!-- CUPCAKES -->
         <tr>
-          <td class="tableList6" colspan="2">BROWNIES</td>
-          <td class="tableOption6">SIZE</td>
+          <td class="tableList6" colspan="2">CUPCAKES</td>
+          <td class="tableOption6">TOPPINGS</td>
         </tr>
         <tr>
           <td class="tableListPics6" colspan="2">
             <div class="containerimage">
-              <div class="panel" id="brownies1" th:style="'background: url(/image/brownies.jpg) no-repeat center; background-size: cover;'"></div>
-              <div class="panel" id="brownies2" th:style="'background: url(/image/brownies2.jpg) no-repeat center; background-size: cover;'"></div>
-              <div class="panel" id="brownies3" th:style="'background: url(/image/brownies3.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="brownies1" th:style="'background: url(/image/cupcake.jpg) no-repeat center; background-size: cover;'"></div>
+              <!-- <div class="panel" id="brownies2" th:style="'background: url(/image/brownies2.jpg) no-repeat center; background-size: cover;'"></div>
+              <div class="panel" id="brownies3" th:style="'background: url(/image/brownies3.jpg) no-repeat center; background-size: cover;'"></div> -->
             </div>
           </td>
           <td class="tableRadio6">
             <ul>
-              <input type="radio" id="brownies6" name="brownies" value="brownies6">
-              <label for="brownies6">6" (RM22)</label><br>
-
-              <label for="qty">Quantity:</label>
-              <input type="number" id="qty5" name="qty5" min="0"><br><br>
-
-              <input type="radio" id="brownies8" name="brownies" value="brownies8">
-              <label for="brownies8">8" (RM40)</label><br>
-
-              <label for="qty">Quantity:</label>
-              <input type="number" id="qty6" name="qty6" min="0"><br><br>
-
-              <input type="radio" id="brownies10" name="brownies" value="brownies10">
-              <label for="brownies10">10" (RM60)</label><br>
-
-              <label for="qty">Quantity:</label>
-              <input type="number" id="qty7" name="qty7" min="0"><br>
+              <li>Chocolate</li>
+              <li>Sprinkles</li>
+              <li>Marshmallow</li>
             </ul>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="3" style="background-color: #4c4c4c">
-            <p class="order">
-              <a th:href="@{/cart}"><button type="submit">Click Here To Submit Your Order!</button></a>
-            </p>
           </td>
         </tr>
       </table>

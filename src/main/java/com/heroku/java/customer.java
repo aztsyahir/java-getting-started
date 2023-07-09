@@ -10,6 +10,8 @@ public class customer extends User{
 
     }
 
+    
+
     public customer(int userid,String fullname,String email,String password,String custaddress, String custphone) {
         super(userid, fullname, email, password);
         this.custaddress = custaddress;
