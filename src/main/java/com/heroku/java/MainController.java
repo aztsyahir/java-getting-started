@@ -49,7 +49,7 @@ public class MainController {
 
     @GetMapping("/catalogue")
     public String catalogue(HttpSession session) {
-        if (session.getAttribute("fullname") != null) {
+        if (session.getAttribute("custid") != null) {
             return "user/catalogue";
         } else {
             System.out.println("Session expired or invalid");

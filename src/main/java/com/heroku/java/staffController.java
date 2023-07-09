@@ -319,6 +319,16 @@ public class staffController {
         // model.addAttribute("staffmenu", cake);
         // connection.close();
         return "admin/staffmenu";
+              
+            // } catch (Exception e) {
+            //   TODO: handle exception
+            //   return "redirect/login";
+            // }
+
+        // } catch (Exception e) {
+        // // TODO: handle exception
+        // return "redirect/login";
+        // }
 
         // } catch (Exception e) {
         // // TODO: handle exception
