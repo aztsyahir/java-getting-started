@@ -37,11 +37,11 @@ public class customerController {
         this.dataSource = dataSource;
     }
 
-      @Autowired
-  private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
 
-     @PostMapping("/customerregister")
+    @PostMapping("/customerregister")
     public String addAccount(HttpSession session, @ModelAttribute("customerregister") customer cust,User user) {
     try {
       Connection connection = dataSource.getConnection();
@@ -225,12 +225,12 @@ public class customerController {
     }
 
     @GetMapping("/paymentFileUpload")
-         public String paymentFileUpload(){
+        public String paymentFileUpload(){
         return "user/paymentFileUpload";
     }
 
     @GetMapping("/orderHistory")
-         public String orderHistory(){
+        public String orderHistory(){
         return "user/orderHistory   ";
     }
 

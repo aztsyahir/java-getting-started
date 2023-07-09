@@ -10,7 +10,7 @@
         <link rel="icon" type="image/x-icon" th:href="@{/image/cake.png}">
 
         <!-- CSS Bootstrap only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
     
         <!-- swiper link  -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -19,10 +19,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
         <!-- custom css file  -->
-        <link rel="stylesheet" th:href="@{stylesheets/catalogue.css}">
+        <link rel="stylesheet" th:href="@{stylesheets/cata.css}">
     
     </head>
-<body>
+    <body>
     <!-- header section start here  -->
     <header class="header">
         <div class="logoContent">
@@ -73,7 +73,7 @@
                     <div class="panel" id="kekpisang1" th:style="'background: url(/image/kekpisang.jpg) no-repeat center; background-size: cover;'"></div>
                     <div class="myForm1">
                       <h3 class="offcanvas-title1" id="offcanvasRightLabel">Order Details</h3><br><br>
-                      <form id="myForm" action="/src/main/resources/templates/user/paymentFileUpload.html">
+                      <form id="myForm1" action="/src/main/resources/templates/user/paymentFileUpload.html">
                         <label for="cakesize">Size: </label>
                         <select name="cakesize1" id="cakesize1">
                           <option value="size1">Choose size</option>
@@ -83,8 +83,9 @@
                         <label for="cakeqty">Quantity: </label>
                         <input type="number" name="cakeqty1" id="cakeqty1" placeholder="eg. 1" min="1"><br>
                         <label for="cakeprice1">Total: RM </label><br><br>
-                        <div class="submitOrder1">
-                          <input type="button" onclick="myFunction()" value="Place Order" style="font-weight: 800; border: 1px solid #f9eaa7; border-radius: 15px; background-color: #f9eaa7; padding: 8px 30%;"></div>
+                        <div class="submitOrder1" id="submitOrder1">
+                          <a th:href="@{/paymentFileUpload}" style="color: #000000; font-weight: 800; border: 1px solid #f9eaa7; border-radius: 15px; background-color: #f9eaa7; padding: 8px 30%;">Place Order</a>
+                        </div>
                       </form>
                     </div>
                   </div>
@@ -122,7 +123,7 @@
                     <div class="panel" id="kekbatik2" th:style="'background: url(/image/kekbatik2.jpg) no-repeat center; background-size: cover;'"></div>
                     <div class="myForm2">
                       <h3 class="offcanvas-title1" id="offcanvasRightLabel">Order Details</h3><br><br>
-                      <form id="myForm" action="/src/main/resources/templates/user/paymentFileUpload.html">
+                      <form id="myForm2" action="/src/main/resources/templates/user/paymentFileUpload.html">
                         <label for="cakesize">Size: </label>
                         <select name="cakesize2" id="cakesize2">
                           <option value="size4">Choose size</option>
@@ -132,8 +133,9 @@
                         <label for="cakeqty">Quantity: </label>
                         <input type="number" name="cakeqty2" id="cakeqty2" placeholder="eg. 1" min="1"><br>
                         <label for="cakeprice2">Total: RM </label><br><br>
-                        <div class="submitOrder2">
-                          <input type="button" onclick="myFunction()" value="Place Order" style="font-weight: 800; border: 1px solid #f9eaa7; border-radius: 15px; background-color: #f9eaa7; padding: 8px 30%;"></div>
+                        <div class="submitOrder2" id="submitOrder2">
+                          <a th:href="@{/paymentFileUpload}" style="color: #000000; font-weight: 800; border: 1px solid #f9eaa7; border-radius: 15px; background-color: #f9eaa7; padding: 8px 30%;">Place Order</a>
+                        </div>
                       </form>
                     </div>
                   </div>
@@ -173,7 +175,7 @@
                     <div class="panel" id="cupcake1" th:style="'background: url(/image/cupcake.jpg) no-repeat center; background-size: cover;'"></div>
                     <div class="myForm3">
                       <h3 class="offcanvas-title3" id="offcanvasRightLabel">Order Details</h3><br><br>
-                      <form id="myForm" action="/src/main/resources/templates/user/paymentFileUpload.html">
+                      <form id="myForm3" action="/src/main/resources/templates/user/paymentFileUpload.html">
                         <label for="cakesize">Size: </label>
                         <select name="cupcaketopping" id="cupcaketopping">
                           <option value="topping1">Choose topping</option>
@@ -184,36 +186,13 @@
                         <label for="cakeqty">Quantity: </label>
                         <input type="number" name="cakeqty3" id="cakeqty3" placeholder="eg. 1" min="1"><br>
                         <label for="cakeprice3">Total: RM </label><br><br>
-                        <div class="submitOrder3">
-                          <input type="button" onclick="myFunction()" value="Place Order" style="font-weight: 800; border: 1px solid #f9eaa7; border-radius: 15px; background-color: #f9eaa7; padding: 8px 30%;"></div>
+                        <div class="submitOrder3" id="submitOrder3">
+                          <a th:href="@{/paymentFileUpload}" style="color: #000000; font-weight: 800; border: 1px solid #f9eaa7; border-radius: 15px; background-color: #f9eaa7; padding: 8px 30%;">Place Order</a>
+                        </div>
                       </form>
                     </div>
                   </div>
                 </div>
-                <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="font-size: medium; background-color: #4c4c4c; border: #4c4c4c;"><strong>Place Order</strong></button>
-    
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                  <div class="offcanvas-header">
-                  <h2 class="offcanvas-title" id="offcanvasRightLabel">Cupcakes</h2>
-                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-    
-                  <div class="offcanvas-body">
-                    Details: <br>
-                    <form id="myForm" action="/src/main/resources/templates/user/paymentFileUpload.html">
-                      <label for="cupcaketopping">Toppings: </label>
-                      <select name="cupcaketopping" id="cupcaketopping">
-                        <option value="topping1">Choose topping</option>
-                        <option value="topping2">Chocolate</option>
-                        <option value="topping3">Sprinkles</option>
-                        <option value="topping4">Marshmallow</option>
-                      </select><br>
-                      <label for="cakeqty">Quantity: </label>
-                      <input type="number" name="cakeqty3" id="cakeqty3" placeholder="eg. 1" min="1"><br>
-                      <input type="button" onclick="myFunction()" value="Submit">
-                    </form>
-                  </div>
-                </div> -->
               </td>
             </tr>
           </table>
@@ -224,9 +203,6 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-    <!-- custom js file  -->
-    <script th:src="@{javascript/catalogue.js}"></script>
 
 </body>
 </html>
