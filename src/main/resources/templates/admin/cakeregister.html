@@ -13,6 +13,7 @@
      <!-- custom css file  -->
      <link rel="stylesheet" th:href="@{stylesheets/cakeregister.css}"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   </head>
 
   <header class="header">
@@ -31,6 +32,48 @@
 
   <body>
     <div class="container">
+      <h1 class="d-flex justify-content-center" style="font-weight: bold;">CAKE REGISTRATION</h1>
+      <table style="width:90%" style="border: 1px solid black;">
+        <tr>
+          <th>No</th>
+          <th>Product Name</th>
+          <th>Size</th>
+          <th>Price (RM)</th>
+          <th>Picture</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <input id="userInput" type="text" placeholder="eg. marble cake" maxlength="25">
+            <button id="enter"><i class="fa-solid fa-pencil"></i></button>
+            <ul></ul>
+          </td>
+          <td>
+            <select class="form-select" id="cakesize" style="width: 90%;">
+              <option selected>Select size</option>
+              <option value="6">6"</option>
+              <option value="8">8"</option>
+              <option value="10">10"</option>
+            </select>
+          </td>
+          <td>
+            <input id="userInput" type="number" placeholder="eg. 39" min="1">
+            <button id="enter"><i class="fa-solid fa-pencil"></i></button>
+            <ul></ul>
+          </td>
+          <td>
+            <label for="formFile" class="form-label" style="font-style: italic;">Note: File size must be 10mb and below only</label>
+            <input class="form-control" type="file" id="cakeimg" accept="image/*" max-size="10000000" required>
+          </td>
+        </tr>
+      </table>
+
+      <button type="submit">Save</button>
+      <button type="reset">Reset</button>
+
+    </div>
+
+    <!-- <div class="container">
       <h1 class="d-flex justify-content-center" style="font-weight: bold;">CAKE REGISTRATION</h1>
     <form 
     class="row g-3 d-flex justify-content-center"
@@ -72,9 +115,10 @@
       </div> 
       </div>
     </form>
-    </div>
+    </div> -->
 
-  
+    <script th:src="@{javascript/cakeregister.js}"></script>
+
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
