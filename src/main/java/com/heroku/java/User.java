@@ -1,23 +1,36 @@
 package com.heroku.java;
 
 public class User {
+    public int userid;
     public String fullname;
     public String email;
     public String password;
-    public String usertype;
 
-     public User(String fullname, String email, String password, String usertype) {
+    public User(){
+        
+    }
+
+    public User(int userid, String fullname, String email, String password) {
+        this.userid = userid;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
-        this.usertype= usertype;
     }
 
-    public String getName() {
+
+    public int getUserid() {
+        return this.userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public String getFullname() {
         return this.fullname;
     }
 
-    public void setName(String fullname) {
+    public void setFullname(String fullname) {
         this.fullname = fullname;
     }
 
@@ -37,15 +50,5 @@ public class User {
         this.password = password;
     }
 
-    public String getUsertype() {
-        return this.usertype;
-    }
-
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
-    }
-
-
-
+   
 }
-

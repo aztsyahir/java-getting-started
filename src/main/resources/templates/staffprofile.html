@@ -11,22 +11,23 @@
      <!-- cdn icon link  -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
      <!-- custom css file  -->
-     <link rel="stylesheet" th:href="@{stylesheets/bakerprofile.css}"> 
+     <link rel="stylesheet" th:href="@{stylesheets/staffprofile.css}"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
 
   <!-- header section start here  -->
  <header class="header">
     <div class="logoContent">
-        <a th:href="@{/home}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
+        <a th:href="@{/stafforder}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
         <h1 class="logoName">iRizq Kitchen Admin</h1>
     </div>
   
     <nav class="navbar">
-        <a th:href="@{/bakerorder}">Order List</a>
-        <a th:href="@{/bakermenu}">Menu</a>
-        <a th:href="@{/bakerregister}">Register new baker</a>
-        <a th:href="@{/bakerprofile}">Profile</a>
+        <a th:href="@{/stafflist}">Baker list</a>
+        <a th:href="@{/stafforder}">Order List</a>
+        <a th:href="@{/staffmenu}">Menu</a>
+        <a th:href="@{/staffregister}">Register new baker</a>
+        <a th:href="@{/staffprofile}">Profile</a>
     </nav>
   </header>
   <!-- header section end here  -->  
@@ -36,10 +37,10 @@
         <h1 class="registerform d-flex justify-content-center">BAKER PROFILE</h1>
         <form 
         class="d-flex justify-content-center"
-        th:action="@{/updatebaker}"
+        th:action="@{/staffupdate}"
         method="post"
-        modelAttribute  ="bakerprofile"
-        th:object="${bakerprofile}"
+        modelAttribute  ="staffprofile"
+        th:object="${staffprofile}"
         >
         <div class="card col-6">
          <div class="card-body">
@@ -51,7 +52,7 @@
                  aria-describedby="nameHelp"
                  required
                  name="fullname"
-                 th:value="${bakerprofile.fullname}">
+                 th:value="${staffprofile.fullname}">
               </div>
             <div class="mb-3">
               <label for="exampleInputEmail" class="form-label">Email address</label>
@@ -61,32 +62,32 @@
                aria-describedby="emailHelp"
                required
                name="email"
-               th:value="${bakerprofile.email}">
+               th:value="${staffprofile.email}">
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="text"
+              <label for="exampleInputPassword1" class="form-label ">Password</label>
+              <input type="password"
                class="form-control" 
                id="exampleInputPassword1" 
                minlength="8" 
                required
                name="password"
-               th:value="${bakerprofile.password}">
+               th:value="${staffprofile.password}">
               <div id="passwordHelp" class="form-text">At least 8 characters.</div>
             </div>
             <div class="text-center">
             <button id="btncustsave"type="submit" class="btn btn-warning ">SAVE</button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signoutbakerModal">
+            <!-- Button trigger modal signout -->
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signoutstaffModal">
               SIGN OUT
              </button>
-             <!-- Button trigger modal -->
-             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletebakerModal">
+             <!-- Button trigger modal delete -->
+             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletestaffModal">
               DELETE ACCOUNT
              </button>
 
              <!-- Modal Signout-->
-            <div class="modal fade" id="signoutbakerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="signoutcustModalLabel" aria-hidden="true">
+            <div class="modal fade" id="signoutstaffModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="signoutcustModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -105,7 +106,7 @@
             </div>
  
             <!-- Modal delete -->
-            <div class="modal fade" id="deletebakerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deletestaffModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -117,7 +118,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CANCEL</button>
-            <a th:href="@{/deletebaker}"><button type="button" class="btn btn-danger">YES, I'M SURE</button></a>
+            <a th:href="@{/deletestaff}"><button type="button" class="btn btn-danger">YES, I'M SURE</button></a>
             </div>
             </div>
             </div>

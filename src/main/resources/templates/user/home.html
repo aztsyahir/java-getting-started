@@ -29,11 +29,7 @@
   </div>
 
   <nav class="navbar">
-      <a th:href="@{/home}">Home</a>
-      <a th:href="@{/catalogue}">Catalogue</a>
-      <a th:href="@{/about}">About</a>
-      <a th:href="@{/faqs}">FAQs</a>
-      <a th:href="@{/custprofile}">Profile</a>
+      <a th:href="@{/login}">LOGIN</a>
   </nav>
 </header>
 <!-- header section end here  -->
@@ -94,7 +90,7 @@
 
         <!-- audio -->
         <div class="audioMusic">
-          <audio th:src="@{audio/bg-music.mp3}" controls autoplay class="my-audio"></audio>
+          <audio th:src="@{audio/bg-music.mp3}" controls autoplay class="my-audio " style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden;"></audio>
         </div>
 
     </main>

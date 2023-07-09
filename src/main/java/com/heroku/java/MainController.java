@@ -3,6 +3,8 @@ package com.heroku.java;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,130 +36,66 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String login(HttpSession session) {
+    public String home(HttpSession session) {
         session.invalidate();
-         return "login";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session){
-        session.invalidate();
-        return "redirect:/";
+        return "user/home";
     }
 
     @GetMapping("/about")
-    public String about(){
+    public String about() {
         return "user/about";
     }
+
     @GetMapping("/catalogue")
-    public String catalogue(){
-        return "user/catalogue";
+    public String catalogue() {
+        // if (session.getAttribute("fullname") != null) {
+            return "user/catalogue";
+        // } else {
+        //     System.out.println("Session expired or invalid");
+        //     return "login";
+        // }
     }
+
     @GetMapping("/faqs")
-    public String faqs(){
+    public String faqs() {
         return "user/faqs";
     }
-    @GetMapping("/feedback")
-    public String feedback(){
-        return "user/feedback";
-    }
-    @GetMapping("/home")
-    public String home(HttpSession session){
-       if(session.getAttribute("fullname") != null){ 
-            return "user/home"; 
-        }else{ 
-            System.out.println("Session expired or invalid");
-            return "login"; 
-        } 
-    }
+
+    // @GetMapping("/login")
+    // public String login() {
+    //     return "login";
+    // }
+
     @GetMapping("/menu")
-    public String menu(){
-        return "user/menu";
+    public String menu(HttpSession session) {
+        // if (session.getAttribute("fullname") != null) {
+            return "user/menu";
+        // } else {
+        //     System.out.println("Session expired or invalid");
+        //     return "login";
+        // }
     }
-    @GetMapping("/userregister")
-    public String userregister(){
-        return "user/userregister";
+
+    @GetMapping("/customerregister")
+    public String custregister() {
+        return "user/customerregister";
     }
-   
+
     
- @PostMapping("/login") 
-    public String Loginpage(HttpSession session, @ModelAttribute("login") customer customer, User user, Model model) { 
-
-        try {
-            Connection connection = dataSource.getConnection();
-            final var statement = connection.createStatement(); 
-            String sql ="SELECT usersid, fullname,email, password,usertype FROM users"; 
-            final var resultSet = statement.executeQuery(sql); 
-            
-
-            String returnPage = ""; 
- 
-            while (resultSet.next()) { 
-                int usersid = resultSet.getInt("usersid");
-                String email = resultSet.getString("email"); 
-                String fullname = resultSet.getString("fullname");
-                String password = resultSet.getString("password");
-                String usertype = resultSet.getString("usertype");  
-                
-                //if they choose customer
-                if (usertype.equals("customer")){
-                    if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) { 
-                    // session.setAttribute("fullname",customer.getName());
-                    session.setAttribute("fullname",fullname);
-                    session.setAttribute("usersid",usersid);
-                    //debug
-                    System.out.println("fullname : "+fullname);
-                    System.out.println("usersid: "+usersid);
-                    System.out.println("usertype: "+usertype);
-                    returnPage = "redirect:/home"; 
-                    break; 
-                } else { 
-                    returnPage = "/login"; 
-                } 
-                }
-                //if they choose employee
-                
-                else if (usertype.equals("baker")){
-                    if (email.equals(user.getEmail()) && password.equals(user.getPassword())) { 
-                    session.setAttribute("fullname",fullname);
-                    session.setAttribute("usersid",usersid);
-                     //debug
-                    System.out.println("fullname : "+fullname);
-                    System.out.println("usersid: "+usersid);
-                    System.out.println("usertype: "+usertype);
-                    returnPage = "redirect:/bakerorder"; 
-                    break; 
-                } else { 
-                    returnPage = "/login"; 
-                } 
-                }
-                else{
-                    System.out.println("email does not match password");
-                }
-            }
-            return returnPage; 
- 
-        } catch (Throwable t) { 
-            System.out.println("message : " + t.getMessage()); 
-            return "/login"; 
-        } 
- 
-    }
-
 
     @GetMapping("/convert")
     String convert(Map<String, Object> model) {
-    RelativisticModel.select();
+        RelativisticModel.select();
 
-    final var result = java.util.Optional
-            .ofNullable(System.getenv().get("ENERGY"))
-            .map(Amount::valueOf)
-            .map(energy -> "E=mc^2: " + energy + " = " + energy.to(SI.KILOGRAM))
-            .orElse("ENERGY environment variable is not set!");
+        final var result = java.util.Optional
+                .ofNullable(System.getenv().get("ENERGY"))
+                .map(Amount::valueOf)
+                .map(energy -> "E=mc^2: " + energy + " = " + energy.to(SI.KILOGRAM))
+                .orElse("ENERGY environment variable is not set!");
 
-    model.put("result", result);
-    return "convert";
-}
+        model.put("result", result);
+        return "convert";
+    }
 
     @GetMapping("/database")
     String database(Map<String, Object> model) {
@@ -181,8 +119,15 @@ public class MainController {
         }
     }
 
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    
+
     public static void main(String[] args) {
         SpringApplication.run(MainController.class, args);
-        
+
     }
 }
