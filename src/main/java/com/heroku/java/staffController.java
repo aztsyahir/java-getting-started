@@ -325,15 +325,7 @@ public class staffController {
             //   return "redirect/login";
             // }
 
-        // } catch (Exception e) {
-        // // TODO: handle exception
-        // return "redirect/login";
-        // }
-
-        // } catch (Exception e) {
-        // // TODO: handle exception
-        // return "redirect/login";
-        // }
+      
 
     }
 
