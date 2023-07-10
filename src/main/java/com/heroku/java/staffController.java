@@ -296,43 +296,39 @@ public class staffController {
         return "/staff/stafforder";
     }
 
-    @GetMapping("/staffmenu")
-    // public String staffmenu(HttpSession session,cake cake,Model model){
-    public String staffmenu() {
+    // @GetMapping("/staffmenu")
+    // // public String staffmenu(HttpSession session,cake cake,Model model){
+    // public String staffmenu() {
 
-        // try(Connection connection = dataSource.getConnection()) {
+    //     // try(Connection connection = dataSource.getConnection()) {
 
-        // final var statement = connection.createStatement();
-        // final var resultSet = statement.executeQuery("SELECT caketype, cakeprice,
-        // cakesize , cakeimg FROM cake ORDER BY cakeid;");
+    //     // final var statement = connection.createStatement();
+    //     // final var resultSet = statement.executeQuery("SELECT caketype, cakeprice,
+    //     // cakesize , cakeimg FROM cake ORDER BY cakeid;");
 
-        // // int row = 0;
-        // ArrayList<cake> cakes = new ArrayList<>();
-        // while (resultSet.next()) {
-        // String caketype = resultSet.getString("caketype");
-        // String cakeprice = resultSet.getString("cakeprice");
-        // Integer cakesize = resultSet.getInt("cakesize");
-        // byte[] cakeimg = resultSet.getBytes("cakeimg");
-        // cake Cake = new cake(caketype,cakeprice,cakesize,cakeimg);
-        // cakes.add(Cake);
-        // }
-        // model.addAttribute("staffmenu", cake);
-        // connection.close();
-        return "admin/staffmenu";
+    //     // // int row = 0;
+    //     // ArrayList<cake> cakes = new ArrayList<>();
+    //     // while (resultSet.next()) {
+    //     // String caketype = resultSet.getString("caketype");
+    //     // String cakeprice = resultSet.getString("cakeprice");
+    //     // Integer cakesize = resultSet.getInt("cakesize");
+    //     // byte[] cakeimg = resultSet.getBytes("cakeimg");
+    //     // cake Cake = new cake(caketype,cakeprice,cakesize,cakeimg);
+    //     // cakes.add(Cake);
+    //     // }
+    //     // model.addAttribute("staffmenu", cake);
+    //     // connection.close();
+    //     return "admin/staffmenu";
               
-            // } catch (Exception e) {
-            //   TODO: handle exception
-            //   return "redirect/login";
-            // }
+    //         // } catch (Exception e) {
+    //         //   TODO: handle exception
+    //         //   return "redirect/login";
+    //         // }
 
       
 
-    }
+    // }
 
-    @GetMapping("/cakeregister")
-
-    public String cakeregister() {
-        return "admin/cakeregister";
-    }
+   
 
 }

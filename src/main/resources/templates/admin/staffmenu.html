@@ -15,7 +15,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
 
-<!-- header section start here  -->
+  <body>
+    <!-- header section start here  -->
 <header class="header">
   <div class="logoContent">
       <a th:href="@{/stafforder}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
@@ -30,50 +31,51 @@
   </nav>
 </header>
 <!-- header section end here   -->
-
-  <body>
-    <div class="menubakerT d-flex flex-wrap justify-content-evenly align-items-center">
-      <!-- Iterate over the employee list and display each employee in a card -->
-      <div class="offset-2 justify-content-evenly align-items-center col-9">
-          <table class="table table-striped text-center d-flex justify-content-center"
-          th:action="@{/updatecake}"
-          method="post"
-          modelAttribute  ="staffsmenu"
-          th:object="${staffsmenu}"
-          >
+        <h1>Product List</h1>
+    
+        <h2>Cakes</h2>
+        <table>
             <thead>
                 <tr>
-                    <th scope="col">CAKE ID</th>
-                    <th scope="col">CAKE TYPE</th>
-                    <th scope="col">CAKE PRICE</th>
-                    <th scope="col">CAKE SIZE</th> 
-                    <th scope="col">CAKE IMAGE</th> 
-                   
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Image</th>
+                    <th>Cake Size</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Use Thymeleaf loop to iterate over the employees -->
-                <tr th:each="cake: ${cake}">
-                    <td th:text="${cake.cakeid}"></td> 
-                    <td th:text="${cake.caketype}"></td> 
-                    <td th:text="${cake.cakeprice}"></td>
+                <tr th:each="cake : ${cakes}">
+                    <td th:text="${cake.proid}"></td>
+                    <td th:text="${cake.proname}"></td>
+                    <td th:text="${cake.proprice}"></td>
+                    <td th:text="${cake.proimg}"></td>
                     <td th:text="${cake.cakesize}"></td>
-                    <td th:text="${cake.cakeimg}"></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-dark btn-sm" type="button" id="dropdownMenuButton${i}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm" aria-labelledby="dropdownMenuButton${i}">
-                          <a class="dropdown-item" th:href="@{/update-account(id=${user.id})}">Edit</a>
-                          <a class="dropdown-item" th:href="@{/delete-account(id=${user.id})}">Delete</a>
-                          <!-- <a class="dropdown-item" th:data-id="${user.id}" data-toggle="modal" data-target="#deleteModal">Delete</a> -->
-                        </div>
-                      </div>
-                    </td>
                 </tr>
             </tbody>
-        </table>  
+        </table>
+    
+        <h2>Cupcakes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Image</th>
+                    <th>Cupcake Toppings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cupcake : ${cupcakes}">
+                    <td th:text="${cupcake.proid}"></td>
+                    <td th:text="${cupcake.proname}"></td>
+                    <td th:text="${cupcake.proprice}"></td>
+                    <td th:text="${cupcake.proimg}"></td>
+                    <td th:text="${cupcake.cuptoppings}"></td>
+                </tr>
+            </tbody>
+        </table>
         <!-- Modal -->
         <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
