@@ -66,22 +66,30 @@ public class MainController {
     //     return "login";
     // }
 
-    @GetMapping("/menu")
-    public String menu(HttpSession session) {
-        // if (session.getAttribute("fullname") != null) {
-            return "user/menu";
-        // } else {
-        //     System.out.println("Session expired or invalid");
-        //     return "login";
-        // }
-    }
+    // @GetMapping("/menu")
+    // public String menu(HttpSession session) {
+    //     // if (session.getAttribute("fullname") != null) {
+    //         return "user/menu";
+    //     // } else {
+    //     //     System.out.println("Session expired or invalid");
+    //     //     return "login";
+    //     // }
+    // }
 
+    @GetMapping("/payment")
+    public String payment() {
+        return "user/payment";
+    }
+    
     @GetMapping("/customerregister")
     public String custregister() {
         return "user/customerregister";
     }
 
-    
+    @GetMapping("/stafforderhistory")
+    public String stafforderhistory(){
+        return "admin/stafforderhistory";
+    }
 
     @GetMapping("/convert")
     String convert(Map<String, Object> model) {
