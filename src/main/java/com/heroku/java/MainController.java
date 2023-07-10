@@ -81,7 +81,10 @@ public class MainController {
         return "user/customerregister";
     }
 
-    
+    @GetMapping("/stafforderhistory")
+    public String stafforderhistory(){
+        return "admin/stafforderhistory";
+    }
 
     @GetMapping("/convert")
     String convert(Map<String, Object> model) {
