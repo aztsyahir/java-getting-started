@@ -1,56 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Order History</title>
+
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" th:href="@{image/cake.png}">
+
+  <!-- swiper link  -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- cdn icon link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- custom css file  -->
+  <link rel="stylesheet" th:href="@{stylesheets/paymentFileUpload.css}">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .rejected {
+      background-color: #ffcccc;
+    }
+
+    .pending {
+      background-color: #ffffcc;
+    }
+
+    .success {
+      background-color: #ccffcc;
+    }
+
+    .paid {
+      color: green;
+      font-weight: bold;
+    }
+
+    .unpaid {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
-  
-  <h1>My Orders</h1><br>
+  <h1>Order History</h1>
 
-  <div class=".table-responsive">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Order</th>
-          <th scope="col">Date</th>
-          <th scope="col">Payment Status</th>
-          <th scope="col">Fulfillment Status</th>
-          <th scope="col">Total</th>
-          <th scope="col">Invoice</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Payment Status</th>
+        <th>Order Status</th>
+        <th>Total</th>
+        <th>Invoice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Display orders with details -->
+      <tr th:each="order : ${orders}">
+        <td th:text="${order.orderId}"></td>
+        <td th:text="${order.date}"></td>
+        <td th:text="${order.paymentStatus}" th:class="${order.paymentStatus.toLowerCase()}"></td>
+        <td th:text="${order.orderStatus}" th:class="${order.orderStatus.toLowerCase()}"></td>
+        <td th:text="${order.total}"></td>
+        <td><a th:href="@{'/invoice/' + ${order.orderId}}">View Invoice</a></td>
+        <!-- <td><a th:href="@{/invoice/{orderId}(orderId=${order.orderId})}">View Invoice</a></td> -->
+      </tr>
+    </tbody>
+  </table>
 </body>
+
+  <!-- swiper js link  -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </html>
