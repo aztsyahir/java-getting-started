@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import jakarta.servlet.http.HttpSession;
@@ -61,7 +61,6 @@ public class loginController {
 
             final var resultSet = statement.executeQuery();
             
-            System.out.println("staffsid : "+user.getEmail());
             System.out.println("staffs pass : "+password);
             System.out.println("staffsemail : "+email);
             if (resultSet.next()) {
@@ -94,13 +93,13 @@ public class loginController {
 
                     } else if(staffsrole.equals("baker")){
                         
-                        session.setAttribute("staffsrole","admin" );
+                        session.setAttribute("staffsrole","baker" );
                         connection.close();
                         
                         // debug
-                        System.out.println("admin name : " + fullname);
-                        System.out.println("admin id: " + userid);
-                        System.out.println("admin role: " + staffsrole);
+                        System.out.println("staff name : " + fullname);
+                        System.out.println("staff id: " + userid);
+                        System.out.println("staff role: " + staffsrole);
                          return "redirect:/staffprofile";
                     }
                 }
@@ -113,17 +112,17 @@ public class loginController {
                 
                 final var resultSet2 = statement2.executeQuery();
                 while(resultSet2.next()){
-                    int custid = resultSet.getInt("custid");
-                    String custname = resultSet.getString("custname");
-                    String custemail = resultSet.getString("custemail");
-                    String custpassword = resultSet.getString("custpassword");
+                    int userid = resultSet2.getInt("custid");
+                    String fullname = resultSet2.getString("custname");
+                    String custemail = resultSet2.getString("custemail");
+                    String custpassword = resultSet2.getString("custpassword");
 
-                    System.out.println("fullname : "+custname);
+                    System.out.println("fullname : "+fullname);
                     if(custemail.equals(email)
                             && passwordEncoder.matches(password,custpassword)){
 
-                            session.setAttribute("custid",custid);
-                            session.setAttribute("custname",custname);
+                            session.setAttribute("custid",userid);
+                            session.setAttribute("custname",fullname);
                           
                             connection.close();
                               return "redirect:/custprofile";
@@ -147,5 +146,12 @@ public class loginController {
             return "redirect:login?error";
           }
 
+    }
+
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 }

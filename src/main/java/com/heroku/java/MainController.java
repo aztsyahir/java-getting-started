@@ -35,17 +35,10 @@ public class MainController {
         this.dataSource = dataSource;
     }
 
-
     @GetMapping("/")
     public String home(HttpSession session) {
         session.invalidate();
         return "user/home";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
     }
 
     @GetMapping("/about")
@@ -54,13 +47,13 @@ public class MainController {
     }
 
     @GetMapping("/catalogue")
-    public String catalogue(HttpSession session) {
-        if (session.getAttribute("fullname") != null) {
+    public String catalogue() {
+        // if (session.getAttribute("fullname") != null) {
             return "user/catalogue";
-        } else {
-            System.out.println("Session expired or invalid");
-            return "login";
-        }
+        // } else {
+        //     System.out.println("Session expired or invalid");
+        //     return "login";
+        // }
     }
 
     @GetMapping("/faqs")
@@ -75,12 +68,12 @@ public class MainController {
 
     @GetMapping("/menu")
     public String menu(HttpSession session) {
-        if (session.getAttribute("fullname") != null) {
+        // if (session.getAttribute("fullname") != null) {
             return "user/menu";
-        } else {
-            System.out.println("Session expired or invalid");
-            return "login";
-        }
+        // } else {
+        //     System.out.println("Session expired or invalid");
+        //     return "login";
+        // }
     }
 
     @GetMapping("/customerregister")
@@ -88,96 +81,7 @@ public class MainController {
         return "user/customerregister";
     }
 
-    // @PostMapping("/login")
-    // public String Loginpage(HttpSession session, @ModelAttribute("login") customer cust, staff staff, Model model) {
-    //     String returnPage = null;
-    //     try {
-    //         Connection connection = dataSource.getConnection();
-    //         final var statement = connection.createStatement();
-    //         // final var statement2 = connection.createStatement();
-    //         String sql = "SELECT staffsid, staffsname,staffsemail, staffspassword,staffsrole FROM staffs";
-    //         // String sql2 ="SELECT custsId, staffsname,staffsemail,
-    //         // staffspassword,staffsrole FROM staffs";
-    //         final var resultSet = statement.executeQuery(sql);
-    //         // final var resultSet2 = statement2.executeQuery(sql2);
-
-    //         while (resultSet.next()) {
-    //             int staffsid = resultSet.getInt("staffsid");
-    //             String staffsname = resultSet.getString("staffsname");
-    //             String staffsemail = resultSet.getString("staffsemail");
-    //             String staffspassword = resultSet.getString("staffspassword");
-    //             String staffsrole = resultSet.getString("staffsrole");
-    //             // int custid = resultSet.getInt("custid");
-    //             // String custname = resultSet.getString("custname");
-    //             // String custemail = resultSet.getString("custemail");
-    //             // String custpassword = resultSet.getString("custpassword");
-
-    //             // if they're admin
-    //             if (staffsrole.equals("admin")) {
-    //                 if (staffsemail.equals(staff.getStaffsemail())
-    //                         && passwordEncoder.matches(staff.getStaffspassword(),staffspassword)) {
-
-    //                     session.setAttribute("staffsname", staffsname);
-    //                     session.setAttribute("staffsid", staffsid);
-    //                     // debug
-    //                     System.out.println("admin name : " + staffsname);
-    //                     System.out.println("admin id: " + staffsid);
-    //                     System.out.println("admin role: " + staffsrole);
-    //                     returnPage = "redirect:/staffmenu";
-    //                     break;
-    //                 } else {
-    //                     System.out.println("debug admin");
-    //                     returnPage = "login";
-    //                 }
-    //             }
-
-    //             // if they're baker
-    //             else if (staffsrole.equals("baker")) {
-    //                 if (staffsemail.equals(staff.getStaffsemail())
-    //                         && staffspassword.equals(staff.getStaffspassword())) {
-
-    //                     session.setAttribute("staffsname", staffsname);
-    //                     session.setAttribute("staffsid", staffsid);
-    //                     // debug
-    //                     System.out.println("baker name : " + staffsname);
-    //                     System.out.println("baker id: " + staffsid);
-    //                     System.out.println("baker role: " + staffsrole);
-    //                     returnPage = "redirect:/staffmenu";
-    //                     break;
-    //                 } else {
-    //                     System.out.println("debug baker");
-    //                     returnPage = "login";
-    //                 }
-    //             }
-    //             // if they're customer
-
-    //             else {
-    //                 // if (custemail.equals(cust.getCustemail()) &&
-    //                 // custpassword.equals(cust.getCustpassword())) {
-
-    //                 // session.setAttribute("custemail",custemail);
-    //                 // session.setAttribute("custid",custid);
-    //                 // //debug
-    //                 // System.out.println("baker name : "+custname);
-    //                 // System.out.println("baker id: "+custid);
-    //                 // System.out.println("baker role: customer");
-    //                 // returnPage = "redirect:/catalogue";
-    //                 // break;
-    //                 // } else {
-    //                 returnPage = "login";
-    //                 // System.out.println("email does not match password");
-    //                 // }
-    //             }
-    //         }
-    //         return returnPage;
-
-    //     } catch (Throwable t) {
-    //         System.out.println("message : " + t.getMessage());
-    //         System.out.println("debug failure");
-    //         return "login";
-    //     }
-
-    // }
+    
 
     @GetMapping("/convert")
     String convert(Map<String, Object> model) {

@@ -3,12 +3,16 @@ package com.heroku.java;
 public class customer extends User{
     
     public String custaddress;
-    public int custphone;
+    public String custphone;
     
     //constructor
+    public customer(){
 
+    }
 
-    public customer(int userid,String fullname,String email,String password,String custaddress, int custphone) {
+    
+
+    public customer(int userid,String fullname,String email,String password,String custaddress, String custphone) {
         super(userid, fullname, email, password);
         this.custaddress = custaddress;
         this.custphone = custphone;
@@ -23,11 +27,11 @@ public class customer extends User{
         this.custaddress = custaddress;
     }
 
-    public int getCustphone() {
+    public String getCustphone() {
         return this.custphone;
     }
 
-    public void setCustphone(int custphone) {
+    public void setCustphone(String custphone) {
         this.custphone = custphone;
     }
 
