@@ -61,21 +61,14 @@ public class MainController {
         return "user/faqs";
     }
 
-    // @GetMapping("/login")
-    // public String login() {
-    //     return "login";
-    // }
+    
 
-    @GetMapping("/menu")
-    public String menu(HttpSession session) {
-        // if (session.getAttribute("fullname") != null) {
-            return "user/menu";
-        // } else {
-        //     System.out.println("Session expired or invalid");
-        //     return "login";
-        // }
+
+    @GetMapping("/payment")
+    public String payment() {
+        return "user/payment";
     }
-
+    
     @GetMapping("/customerregister")
     public String custregister() {
         return "user/customerregister";

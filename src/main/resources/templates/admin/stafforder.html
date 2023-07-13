@@ -31,7 +31,7 @@
     </nav>
   </header>
   <!-- header section end here  -->  
-
+  
   <body>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
@@ -43,7 +43,21 @@
               <th scope="col">Order</th>
               <th scope="col">Validate</th>
             </tr>
-          </thead>    
+          </thead> 
+          <tbody>
+            <!-- Use Thymeleaf loop to iterate over the employees -->
+            <tr th:each="customer: ${customer}">
+              <td th:text="${customer.orderid}"></td> 
+              <td th:text="${customer.orderdate}"></td> 
+              <td th:text="${customer.custname}"></td>
+              <td th:text="${customer.custaddress}"></td>
+              <td th:text="${customer.custorder}"></td>
+              <td>
+                <a class="btn btn-danger" th:href="@{/delete/{customerId}(customerId=${customer.orderid})}" onclick="return confirm('Are you sure you want to delete this order?')">Delete</a>
+                <a class="btn btn-success" th:href="@{/complete/{customerId}(customerId=${customer.orderid})}">Complete</a>
+            </td>
+          </tr>
+          </tbody>   
     </table>
 
     <!--Separate Popper and Bootstrap JS -->

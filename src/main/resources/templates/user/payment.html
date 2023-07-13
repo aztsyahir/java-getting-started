@@ -8,6 +8,9 @@
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" th:href="@{image/cake.png}">
 
+        <!-- CSS Bootstrap only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+
         <!-- swiper link  -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     
@@ -15,14 +18,21 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
         <!-- custom css file  -->
-        <!-- <link rel="stylesheet" th:href="@{stylesheets/paymentFileUpload.css}"> -->
+        <link rel="stylesheet" th:href="@{stylesheets/payment.css}">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         
         <style>
-            body {
-            padding: 20px;
+            :root{
+            --black: #1B1722;
+            --white: #f2e8b9;
+            background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+            --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
+
+            /* body {
+            padding: 20px;
+            } */
 
             table {
             width: 100%;
@@ -55,6 +65,23 @@
 
 <body>
   
+  <!-- header section start here  -->
+  <header class="header">
+    <div class="logoContent">
+        <a th:href="@{/home}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
+        <h1 class="logoName">iRizq Kitchen</h1>
+    </div>
+
+    <nav class="navbar">
+        <a th:href="@{/catalogue}">Catalogue</a>
+        <a th:href="@{/about}">About</a>
+        <a th:href="@{/faqs}">FAQs</a>
+        <a th:href="@{/custprofile}">Profile</a>
+    </nav>
+  </header>
+  <!-- header section end here  -->  
+  
+  <main>
     <h1>Upload Image</h1>
   
     <form method="post" enctype="multipart/form-data" th:action="@{/upload}">
@@ -85,8 +112,7 @@
         </tr>
       </tbody>
     </table>
-  
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </main>
 
 </body>
     <!-- swiper js link  -->
@@ -94,4 +120,7 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <!-- custom javascript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>
