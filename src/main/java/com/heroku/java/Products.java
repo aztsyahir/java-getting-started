@@ -1,22 +1,28 @@
     package com.heroku.java;
 
-    public class Products {
+import org.springframework.web.multipart.MultipartFile;
+
+public class Products {
         public int proid ;
         public String proname;
         public String protype;
         public int proprice;
         public byte[] proimg;
+        public MultipartFile proimgs;
+        String proimage;
 
         public Products(){
 
         }
 
-        public Products(int proid, String proname, String protype, int proprice, byte[] proimg) {
+        public Products(int proid, String proname, String protype, int proprice, byte[] proimg, MultipartFile proimgs,String proimage) {
             this.proid = proid;
             this.proname = proname;
             this.protype = protype;
             this.proprice = proprice;
             this.proimg = proimg;
+            this.proimgs = proimgs;
+            this.proimage = proimage;
         }
 
 
@@ -60,5 +66,19 @@
             this.proimg = proimg;
         }
 
-        
+        public MultipartFile getProimgs(){
+            return this.proimgs;
+        }
+
+        public void setProimgs(MultipartFile proimgs){
+            this.proimgs = proimgs;
+        }
+
+        public String getProimage(){
+            return this.proimage;
+        }
+
+        public void setProimage(String proimage){
+            this.proimage = proimage;
+        }
     }

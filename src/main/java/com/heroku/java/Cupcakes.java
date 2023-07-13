@@ -1,5 +1,7 @@
 package com.heroku.java;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Cupcakes extends Products{
     public String cuptoppings;
 
@@ -7,8 +9,8 @@ public class Cupcakes extends Products{
 
     }
 
-    public Cupcakes(int proid,String proname,String protype,int proprice,byte[] proimg,String cuptoppings){
-        super(proid,proname,protype,proprice,proimg);
+    public Cupcakes(int proid,String proname,String protype,int proprice,byte[] proimg,MultipartFile proimgs,String proimage,String cuptoppings){
+        super(proid,proname,protype,proprice,proimg,proimgs,proimage);
         this.cuptoppings =cuptoppings;
     }
 
