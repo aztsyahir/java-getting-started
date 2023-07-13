@@ -11,12 +11,17 @@
      <!-- cdn icon link  -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
      <!-- custom css file  -->
-     <link rel="stylesheet" th:href="@{stylesheets/bakerprofile.css}"> 
+     <link rel="stylesheet" th:href="@{stylesheets/staffmenu.css}"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+      .body {
+        background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+       
+      }
+    </style>
   </head>
 
-  <body>
-    <!-- header section start here  -->
+        <!-- header section start here  -->
 <header class="header">
   <div class="logoContent">
       <a th:href="@{/stafforder}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
@@ -31,17 +36,23 @@
   </nav>
 </header>
 <!-- header section end here   -->
-        <h1>Product List</h1>
+
+    <body >
+<section style="padding-top: 100px;">
+        <h1 class="text-center" style="font-weight: bold;">PRODUCT LIST</h1>
     
-        <h2>Cakes</h2>
-        <table>
+        <h2 class="d-flex justify-content-center" style="margin-top: 40px; font-weight: bold;">CAKES</h2>
+        <div style="display: flex; justify-content: center;">
+        <div style="text-align: center;">
+        <table class="table table-bordered border-dark image-table " style="font-size: 16px;" >
             <thead>
-                <tr>
+                <tr style="background-color: #efdbaa;">
                     <th>Product ID</th>
                     <th>Product Name</th>
-                    <th>Product Price</th>
+                    <th>Product Price (RM)</th>
                     <th>Product Image</th>
-                    <th>Cake Size</th>
+                    <th>Cake Size (INCH)</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,21 +60,34 @@
                     <td th:text="${cake.proid}"></td>
                     <td th:text="${cake.proname}"></td>
                     <td th:text="${cake.proprice}"></td>
-                    <td th:text="${cake.proimg}"></td>
+                    <td><img th:src="${cake.proimage}" alt="Product Image" style="width: 200px; height: 200px; "></td>
                     <td th:text="${cake.cakesize}"></td>
+                    <td>
+                      <span><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#deletestaffModal">
+                        EDIT PRODUCT
+                       </button></span>
+                      <span><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletestaffModal">
+                        DELETE PRODUCT
+                       </button></span>
+                    </td>
                 </tr>
             </tbody>
         </table>
+      </div>
+        </div>
     
-        <h2>Cupcakes</h2>
-        <table>
-            <thead>
-                <tr>
+        <h2 class="d-flex justify-content-center" style="margin-top: 30px; font-weight: bold;">CUPCAKES</h2>
+        <div style="display: flex; justify-content: center;">
+        <div style="text-align: center;">
+        <table class="table table-bordered border-dark image-table" style="font-size: 16px; background-color: #efdbaa;"  >
+            <thead >
+                <tr >
                     <th>Product ID</th>
                     <th>Product Name</th>
-                    <th>Product Price</th>
+                    <th>Product Price (RM)</th>
                     <th>Product Image</th>
                     <th>Cupcake Toppings</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,13 +95,21 @@
                     <td th:text="${cupcake.proid}"></td>
                     <td th:text="${cupcake.proname}"></td>
                     <td th:text="${cupcake.proprice}"></td>
-                    <td th:text="${cupcake.proimg}"></td>
+                    <td> <img th:src="${cupcake.proimage}" alt="Product Image" style="width: 200px; height: 200px;"></td>
                     <td th:text="${cupcake.cuptoppings}"></td>
+                    <td><span><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editproductModal">
+                      EDIT PRODUCT
+                     </button></span>
+                    <span><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletestaffModal">
+                      DELETE PRODUCT
+                     </button></span></td>
                 </tr>
             </tbody>
         </table>
+        </div>
+        </div>
         <!-- Modal -->
-        <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editproductModal" tabindex="-1" role="dialog" aria-labelledby="editproductModal" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -90,22 +122,18 @@
                 Are you sure you want to delete this item?
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a id="deleteButton" class="btn btn-danger">Delete</a>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CANCEL</button>
+                <a id="deleteButton" class="btn btn-danger">SAVE</a>
               </div>
             </div>
           </div>
-        </div> -->
-
-        <a th:href="@{/add-account}"><button class="btn btn-outline-success me-2" type="button">ADD NEW CAKE</button></a>
-      </div> 
-    </div>
-
-
-
+        </div>
+        <div class="d-flex justify-content-center">
+        <a th:href="@{/cakeregister}"><button class="btn btn-success" type="button">ADD NEW PRODUCTS</button></a>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    
+    </section>
   </body>
 </html>

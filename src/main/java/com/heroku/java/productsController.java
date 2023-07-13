@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import jakarta.servlet.http.HttpSession;
@@ -20,11 +19,13 @@ import jakarta.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
-// import java.util.ArrayList;
-// import java.util.Map;
+import java.util.Map;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Base64;
+
+
 
 // import org.jscience.physics.amount.Amount;
 // import org.jscience.physics.model.RelativisticModel;
@@ -47,7 +48,7 @@ public class productsController {
     }
 
     @PostMapping("/cakeregister")
-    public String AddCake(HttpSession session,  @ModelAttribute("cakeregister")Products products,Cakes cake, Cupcakes cupcake){
+    public String AddCake(HttpSession session,  @ModelAttribute("cakeregister")Products products,  @RequestParam("proimgs") MultipartFile proimgs,Cakes cake, Cupcakes cupcake){
 
         try {
             Connection connection = dataSource.getConnection();
@@ -57,19 +58,20 @@ public class productsController {
             String proname = products.getProname();
             String protype = products.getProtype();
             int proprice = products.getProprice();
-            byte[] proimg = products.getProimg();
+
             System.out.println(cake.getCakesize());
             System.out.println(cupcake.getCuptoppings());
             
             statement.setString(1, proname);
             statement.setString(2, protype);
             statement.setInt(3, proprice );
-            statement.setBytes(4,proimg );
+            statement.setBytes(4,proimgs.getBytes());
             statement.executeUpdate();
+            
             System.out.println("product name : "+proname);
             System.out.println("type : "+protype);
             System.out.println("product price : RM"+proprice);
-            System.out.println("proimg: "+proimg);
+            System.out.println("proimg: "+proimgs.getBytes());
 
              //   Get id from database for sql 2 from sql 1
       String sql1 = "SELECT * FROM products where proname=?";
@@ -117,47 +119,86 @@ public class productsController {
             // TODO: handle exception
             return "redirect:/cakeregister";
         }
-         return "redirect:/cakeregister";
+         return "redirect:/staffmenu";
     }
 
-    @GetMapping("/staffmenu")
-    public String productList(HttpSession session, Model model ,Cakes cake,Cupcakes cupcake) {
-       String staffsrole = (String) session.getAttribute("staffsid");
-
-      try {
-        List<Cakes> cakes = new ArrayList<>();
-         List<Cupcakes> cupcakes = new ArrayList<>();
-
-        Connection connection = dataSource.getConnection();
-
-        final var statement = connection.createStatement();
-        final var resultSet = statement.executeQuery( "SELECT p.proid, p.proname, p.protype, p.proprice, p.proimg FROM products p ");
-
-        if(resultSet.next()){
-            int proid = resultSet.getInt("proid");
-            String proname = resultSet.getString("proname");
-            String protype = resultSet.getString("protype");
-            int proprice = resultSet.getInt("proprice");
-            byte[] proimg = resultSet.getBytes("proimg");
-
-            //debug
-            System.out.println("product name : " +proname);
-
-            if (protype.equals("cake")){
-                
-            }
-
-        }
-
+      @GetMapping("/staffmenu")
+      public String productList(HttpSession session, Model model ,Cakes cake,Cupcakes cupcake) {
+        // String staffsrole = (String) session.getAttribute("staffsid");
+          List<Cakes> cakes = new ArrayList<>();
+          List<Cupcakes> cupcakes = new ArrayList<>();
+        try {
+          System.out.println("pass connection first");
+          Connection connection = dataSource.getConnection();
+          String sql = "SELECT proid,proname,protype,proprice,proimg FROM products ORDER BY proname";
+          final var statement = connection.createStatement();
+          final var resultSet = statement.executeQuery(sql);
         
+          System.out.println("pass connection 2");
+        
+          while(resultSet.next()){
+              int proid = resultSet.getInt("proid");
+              String proname = resultSet.getString("proname");
+              String protype = resultSet.getString("protype");
+              int proprice = resultSet.getInt("proprice");  
 
-        model.addAttribute("cakes", cakes);
-        model.addAttribute("cupcakes", cupcakes);
+              System.out.println("product name : " +proname);
 
-      } catch (Exception e) {
-        // TODO: handle exception
+              byte[] proimgBytes = resultSet.getBytes("proimg");
+              String proimgBase64 = Base64.getEncoder().encodeToString(proimgBytes);
+              String proimage = "data:image/jpeg;base64,"+proimgBase64;
+
+
+              //debug
+              System.out.println("product name : " +proname);
+              System.out.println("product id from db : "+proid);
+
+              if (protype.equals("cake")){
+                  String sql2 = "SELECT cakesize FROM cakes WHERE proid=?";
+                  final var statement2 = connection.prepareStatement(sql2);
+                  statement2.setInt(1,proid);
+                  final var resultSet2 = statement2.executeQuery();
+                  System.out.println("cake here <<<<<<");
+
+                  if (resultSet2.next()) {
+                  int cakesize = resultSet2.getInt("cakesize");
+                  
+                  Cakes Cake = new Cakes(proid, proname, protype, proprice,null, null, proimage, cakesize);
+                  cakes.add(Cake);
+                  System.out.println("cakesize here>>>>>");
+                  System.out.println("cake id  2 : "+proid);
+
+                  }
+                
+              }
+                  if (protype.equals("cupcake")) {
+                      String sql3 = "SELECT cuptoppings FROM cupcakes WHERE proid=?";
+                      final var statement3 = connection.prepareStatement(sql3);
+                      statement3.setInt(1, proid);
+                      final var resultSet3 = statement3.executeQuery();
+                      System.out.println("cupcake here<<<<<<");
+
+      
+                      if (resultSet3.next()) {
+                          String cuptoppings = resultSet3.getString("cuptoppings");
+                          Cupcakes Cupcake = new Cupcakes(proid, proname, protype, proprice, null, null, proimage, cuptoppings);
+                          cupcakes.add(Cupcake);
+                          System.out.println("cuptopping here>>>>>>");
+
+                      }
+                  }
+
+                }
+          
+          model.addAttribute("cakes", cakes);
+          model.addAttribute("cupcakes", cupcakes);
+
+          connection.close();
+        
+        } catch (Exception e) {
+          // TODO: handle exception
+        }
+        return "admin/staffmenu";
       }
-      return "staffmenu";
-    }
-    
+      
 }

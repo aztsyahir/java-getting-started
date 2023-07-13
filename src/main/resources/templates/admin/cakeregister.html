@@ -81,6 +81,7 @@
     th:action="@{/cakeregister}"
     modelAttribute="cakeregister"
     th:object="(${cakeregister})"
+    enctype="multipart/form-data"
     >
       <div class = "card col-6 " style="background: #f2e8b9;">
         <div>
@@ -135,7 +136,7 @@
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label" style="font-weight: bold;">Cake Image (10mb and below only)</label>
-        <input class="form-control" type="file" name="proimg" id="proimg" accept="image/*" max-size="10000000" required>
+        <input class="form-control" type="file" name="proimgs" id="proimgs" accept="image/jpeg" required>
       </div>
 
       <div class="d-flex justify-content-center">

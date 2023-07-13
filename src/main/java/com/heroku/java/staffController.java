@@ -64,7 +64,7 @@ public class staffController {
         String staffsrole = (String) session.getAttribute("staffsrole");
         System.out.println("staffrole stafflist : " + staffsrole);
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT staffsid, staffsname, staffsemail, staffspassword, staffsrole FROM staffs WHERE staffsrole=?;";
+            String sql = "SELECT staffsid, staffsname, staffsemail, staffspassword, staffsrole FROM staffs WHERE staffsrole=?";
             final var statement = connection.prepareStatement(sql);
             statement.setString(1, "baker");
             final var resultSet = statement.executeQuery();
@@ -85,7 +85,7 @@ public class staffController {
 
             }
 
-            return "admin/stafflist";
+         return "admin/stafflist";
         } catch (SQLException e) {
             e.printStackTrace();
             // Handle the exception as desired (e.g., show an error message)
