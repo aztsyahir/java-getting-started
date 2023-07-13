@@ -330,9 +330,14 @@ public class staffController {
     }
 
     @GetMapping("/cakeregister")
-
     public String cakeregister() {
         return "admin/cakeregister";
     }
+
+    @GetMapping("/stafforderhistory")
+    public String stafforderhistory() {
+        return "admin/stafforderhistory";
+    }
+
 
 }
