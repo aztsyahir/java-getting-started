@@ -4,15 +4,22 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Customer Profile</title>
+
       <!-- favicon -->
       <link rel="icon" type="image/x-icon" th:href="@{image/cake.png}">
+
       <!-- css bootstrap -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+      <!-- swiper link  -->
+      <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+
       <!-- cdn icon link  -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
       <!-- custom css file  -->
       <link rel="stylesheet" th:href="@{stylesheets/custprofile.css}"> 
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+     
     </head>
 
     <!-- header section start here  -->
@@ -23,7 +30,6 @@
       </div>
     
       <nav class="navbar">
-          <a th:href="@{/home}">Home</a>
           <a th:href="@{/catalogue}">Catalogue</a>
           <a th:href="@{/about}">About</a>
           <a th:href="@{/faqs}">FAQs</a>
@@ -34,75 +40,74 @@
 
     <body>
       <div class="formcontainer">
-          <h1 class="registerform d-flex justify-content-center">CUSTOMER PROFILE</h1>
+          <h1 class="registerform d-flex justify-content-center" style="font-weight: 800; font-size: 50px; margin-bottom: 5%;">CUSTOMER PROFILE</h1>
           <form 
           class="d-flex justify-content-center"
           th:action="@{/updatecust}"
           method="post"
           modelAttribute  ="custprofile"
-          th:object="${custprofile}"
-          >
-          <div class="card col-6">
+          th:object="${custprofile}">
+          <div class="card col-6" style="margin-bottom: 5%;">
           <div class="card-body">
               <div class="mb-3">
-                  <label for="exampleInputName" class="form-label ">Full Name</label>
+                  <label for="exampleInputName" class="form-label" style="font-size: 18px;">Full Name</label>
                   <input type="text"
                   class="form-control text-uppercase"
                   id="exampleInputName"  
                   aria-describedby="nameHelp"
                   required
                   name="fullname"
-                  th:value="${custprofile.fullname}">
+                  th:value="${custprofile.fullname}" style="font-size: 18px;">
                 </div>
               <div class="mb-3">
-                <label for="exampleInputEmail" class="form-label">Email address</label>
+                <label for="exampleInputEmail" class="form-label" style="font-size: 18px;">Email address</label>
                 <input type="text"
                 class="form-control" 
                 id="exampleInputEmail"
                 aria-describedby="emailHelp"
                 required
                 name="email"
-                th:value="${custprofile.email}">
+                th:value="${custprofile.email}" style="font-size: 18px;">
               </div>
               <div class="mb-3">
-                  <label for="exampleInputPhone" class="form-label">Phone Number</label>
+                  <label for="exampleInputPhone" class="form-label" style="font-size: 18px;">Phone Number</label>
                   <input type="text"
                   class="form-control" 
                   id="exampleInputNumber"
                   maxlength = "11" 
                   required
                   name="custphone"
-                  th:value="(${custprofile.custphone})">
+                  th:value="(${custprofile.custphone})" style="font-size: 18px;">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputAddress" class="form-label">Address</label>
+                  <label for="exampleInputAddress" class="form-label" style="font-size: 18px;">Address</label>
                   <input type="text"
                   class="form-control"
                   id="exampleInputAddress" 
                   required 
                   name="custaddress"
-                  th:value="${custprofile.custaddress}">
-                    <div id="emailHelp" class="form-text">We'll never share your address with anyone else.</div>
+                  th:value="${custprofile.custaddress}" style="font-size: 18px;">
+                    <div id="emailHelp" class="form-text" style="font-size: 12px;">We'll never share your address with anyone else.</div>
                 </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <label for="exampleInputPassword1" class="form-label" style="font-size: 18px;">Password</label>
                 <input type="password"
                 class="form-control" 
                 id="exampleInputPassword1" 
                 minlength="8" 
                 required
                 name="password"
-                th:value="${custprofile.password}">
-                <div id="passwordHelp" class="form-text">At least 8 characters.</div>
+                th:value="${custprofile.password}" style="font-size: 18px;">
+                <div id="passwordHelp" class="form-text" style="font-size: 12px;">Must be at least 8 characters.</div>
               </div>
               <div class="text-center">
-              <button id="btncustsave"type="submit" class="btn btn-warning ">SAVE</button>
+              <button id="btncustsave"type="submit" class="btn btn-warning" style="font-size: 15px;">SAVE</button>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signoutcustModal">
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signoutcustModal" style="font-size: 15px;">
                 SIGN OUT
               </button>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletecustModal">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletecustModal" style="font-size: 15px;">
                 DELETE ACCOUNT
               </button>
 
@@ -111,15 +116,15 @@
               <div class="modal-dialog">
               <div class="modal-content">
               <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">SIGN OUT</h5>
+              <h5 class="modal-title" id="exampleModalLabel" style="font-size: 15px;">SIGN OUT</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" style="font-size: 15px;">
                   Are you sure want to sign out?
               </div>
               <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CANCEL</button>
-              <a th:href="@{/logout}"><button type="button" class="btn btn-danger">YES, I'M SURE</button></a>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="font-size: 15px;">CANCEL</button>
+              <a th:href="@{/logout}"><button type="button" class="btn btn-danger" style="font-size: 15px;">YES, I'M SURE</button></a>
               </div>
               </div>
               </div>
@@ -130,15 +135,15 @@
               <div class="modal-dialog">
               <div class="modal-content">
               <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">DELETE ACCOUNT</h5>
+              <h5 class="modal-title" id="exampleModalLabel" style="font-size: 15px;">DELETE ACCOUNT</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" style="font-size: 15px;">
                 Are you sure want to delete this account?
               </div>
               <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CANCEL</button>
-              <a th:href="@{/deletecust}"><button type="button" class="btn btn-danger">YES, I'M SURE</button></a>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="font-size: 15px;">CANCEL</button>
+              <a th:href="@{/deletecust}"><button type="button" class="btn btn-danger" style="font-size: 15px;">YES, I'M SURE</button></a>
               </div>
               </div>
               </div>
@@ -151,37 +156,4 @@
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     </body>
-    <!-- footer section start here  -->
-  <footer class="footer" id="contact">
-    <div class="box-container">
-        
-        <div class="box">
-            <h3>Opening Hours</h3>
-            <p>Weekdays: 10:00AM - 5:00PM <br> Weekends: 10:00AM - 6:00PM</p>
-        </div>
-
-        <div class="box">
-            <h3>Contact Us</h3>
-            <p>iRizq Kitchen Sabak Bernam (HQ)</p>
-            <p>No.12 Jalan Dewan, Pekan Sabak Bernam, <br> 45200 Sabak Bernam, Selangor</p>
-            <a href="tel:+60 1123 4567" target="_blank"> <i class="fas fa-phone"></i>+60 1123 4567</a>
-            <a href="mailto: irizqkitchen@gmail.com" target="_blank"> <i class="fas fa-envelope"></i>irizqkitchen@gmail.com</a>
-        </div>
-
-        <div class="box">
-            <h3>About Us</h3>
-            <a th:href="@{http://localhost:5000/about#:~:text=Location-,Vision,-Let%20us%20eat}"> <i class="fas fa-arrow-right"></i>Vision</a>
-            <a th:href="@{http://localhost:5000/about#:~:text=in%20Sabak%20Bernam-,Mission,-Handcrafted%20with%20love}"> <i class="fas fa-arrow-right"></i>Mission</a>
-            <a href="https://goo.gl/maps/Yeepko5QdJ3EMDox7" target="_blank"> <i class="fas fa-arrow-right"></i>Location</a>
-        </div>
-
-    </div>
-    <div class="share">
-        <a href="https://web.facebook.com/rizq.khazinuddin" class="fab fa-facebook-f" target="_blank"></a>
-        <a href="https://www.instagram.com/irizq_kitchen/" class="fab fa-instagram" target="_blank"></a>
-    </div>
-    <div class="credit">
-        irizqkitchen <span>&copy;</span> 2022
-    </div>
-  </footer>
   </html>

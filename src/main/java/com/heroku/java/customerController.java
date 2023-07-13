@@ -52,13 +52,13 @@ public class customerController {
       String email = cust.getEmail();
       String password = cust.getPassword();
       String custsaddress = cust.getCustaddress();
-      String custsphone = cust.getCustphone();
+      int custsphone = cust.getCustphone();
       
       statement1.setString(1, fullname);
       statement1.setString(2, email);
       statement1.setString(3, passwordEncoder.encode(password));
       statement1.setString(4, custsaddress);
-      statement1.setString(5, custsphone);
+      statement1.setInt(5, custsphone);
       statement1.executeUpdate();
 
       //debug
@@ -101,12 +101,12 @@ public class customerController {
                     String custemail = resultSet.getString("custemail");
                     String custpassword = resultSet.getString("custpassword");
                     String custaddress = resultSet.getString("custaddress");
-                    String custphone = resultSet.getString("custphone");
+                    int custphone = resultSet.getInt("custphone");
 
                     //debug
                     System.out.println("fullname from db = "+custname);
 
-                    customer custprofile = new customer( userid, custname, custemail, custpassword, custaddress, custphone) ;
+                    customer custprofile = new customer( userid, custname, custemail, custpassword, custaddress, custphone);
 
 
                     model.addAttribute("custprofile", custprofile);
@@ -138,7 +138,7 @@ public class customerController {
             String custemail = cust.getEmail();
             String custaddress = cust.getCustaddress();
             String custpassword = cust.getPassword();
-            String custphone = cust.getCustphone();
+            int custphone = cust.getCustphone();
         
             try { 
             Connection connection = dataSource.getConnection();
@@ -148,7 +148,7 @@ public class customerController {
             statement.setString(1, custname);
             statement.setString(2, custemail);
             statement.setString(3, custaddress);
-            statement.setString(4, custphone);
+            statement.setInt(4, custphone);
             statement.setInt(5, custid);
             statement.executeUpdate();
             System.out.println("debug= "+custname+" "+custemail+" "+custpassword+" "+custphone+" "+custid);
