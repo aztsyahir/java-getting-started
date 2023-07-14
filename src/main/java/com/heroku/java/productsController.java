@@ -201,4 +201,107 @@ public class productsController {
         return "admin/staffmenu";
       }
       
+      @GetMapping("/productdetail")
+      public String productdetail(HttpSession session, @RequestParam("proid") int proid, Model model) {
+        System.out.println("product id : " + proid);
+        try {
+          Connection connection = dataSource.getConnection();
+          String sql = "SELECT products.proid, products.proname, products.protype, products.proprice, products.proimg, cakes.cakesize, cupcakes.cuptoppings " +
+                      "FROM products " +
+                      "LEFT JOIN cakes ON products.proid = cakes.proid " +
+                      "LEFT JOIN cupcakes ON products.proid = cupcakes.proid " +
+                      "WHERE products.proid = ?";
+          final var statement = connection.prepareStatement(sql);
+          statement.setInt(1, proid);
+          final var resultSet = statement.executeQuery();
+      
+          if (resultSet.next()) {
+            String proname = resultSet.getString("proname");
+            String protype = resultSet.getString("protype");
+            int proprice = resultSet.getInt("proprice");
+      
+            Products product;
+            if (protype.equalsIgnoreCase("cake")) {
+              int cakesize = resultSet.getInt("cakesize");
+              product = new Cakes(proid, proname, protype, proprice, null, null, null, cakesize);
+            } else if (protype.equalsIgnoreCase("cupcake")) {
+              String cuptoppings = resultSet.getString("cuptoppings");
+              product = new Cupcakes(proid, proname, protype, proprice, null, null, null, cuptoppings);
+            } else {
+              // Handle the case when protype is neither "cake" nor "cupcake"
+              // For example, you can set product as a generic Product instance
+              product = new Products(proid, proname, protype, proprice, null, null, null);
+            }
+      
+            model.addAttribute("product", product);  // Use "product" as the model attribute name
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      
+        return "admin/productdetail";
+      }
+
+      @PostMapping("/updateproduct")
+        public String UpdateProduct(@ModelAttribute("product") Products product ){
+          System.out.println("pass here <<<<<<<");
+          try{
+            Connection connection = dataSource.getConnection();
+            String sql = "UPDATE products SET proprice =? WHERE proid=?";
+            final var statement = connection.prepareStatement(sql);
+            int proprice = product.getProprice();
+            int proid = product.getProid();
+
+            //debug
+            System.out.println("pro price update : "+proprice);
+            System.out.println("pro id update : "+proid);
+
+            statement.setInt(1, proprice);
+            statement.setInt(2, proid);
+
+            statement.executeUpdate();
+
+          }catch(Exception e){
+            e.printStackTrace();
+          }
+            return "redirect:/staffmenu";
+        }
+      
+          @GetMapping("/deletemenu")
+          public String deletemenu(HttpSession session,@RequestParam(name ="proid")int proid,Model model){
+            System.out.println("product id : "+proid);
+              try {
+                Connection connection = dataSource.getConnection();
+                String sql = "SELECT protype FROM products WHERE proid = ?";
+                final var statement = connection.prepareStatement(sql);
+                statement.setInt(1, proid);
+                final var resultSet = statement.executeQuery();
+
+                if(resultSet.next()){
+                  String protype = resultSet.getString("protype");
+
+                  if(protype.equals("cake")){
+                    String sql1= "DELETE FROM cakes WHERE proid =?";
+                    final var deletestatement = connection.prepareStatement(sql1);
+                    deletestatement.setInt(1, proid);
+                    deletestatement.executeUpdate();
+                  }
+                  if(protype.equals("cupcake")){
+                    String sql2= "DELETE FROM cupcakes WHERE proid =?";
+                  final var deletestatement = connection.prepareStatement(sql2);
+                    deletestatement.setInt(1, proid);
+                    deletestatement.executeUpdate();
+                  }
+                  String sql3 ="DELETE FROM products WHERE proid =?";
+                  final var deletestatement = connection.prepareStatement(sql3);
+                    deletestatement.setInt(1, proid);
+                    deletestatement.executeUpdate();
+                }
+                connection.close();
+              } catch (Exception e) {
+                // TODO: handle exception
+              }
+              return "redirect:/staffmenu";
+          }
+
 }

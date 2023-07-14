@@ -171,16 +171,16 @@ public class customerController {
 
             String returnPage = "custprofile"; 
             return returnPage; 
- 
-        } catch (Throwable t) { 
-            System.out.println("message : " + t.getMessage()); 
-            System.out.println("error");
-            return "redirect:/custprofile"; 
-        } }
+    
+            } catch (Throwable t) { 
+                System.out.println("message : " + t.getMessage()); 
+                System.out.println("error");
+                return "redirect:/custprofile"; 
+            } }
 
-        //delete controller
-        @GetMapping("/deletecust")
-        public String deleteProfileCust(HttpSession session, customer customer,Model model) {
+            //delete controller
+            @GetMapping("/deletecust")
+            public String deleteProfileCust(HttpSession session, customer customer,Model model) {
             String fullname = (String) session.getAttribute("custname");
             int userid = (int) session.getAttribute("custid");
 
