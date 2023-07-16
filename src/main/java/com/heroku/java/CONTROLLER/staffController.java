@@ -141,7 +141,7 @@ public class staffController {
             statement1.setString(1, fullname);
             statement1.setString(2, email);
             statement1.setString(3, passwordEncoder.encode(password));
-            statement1.setString(4, "baker");
+            statement1.setString(4, "admin");
           //  statement1.setInt(5, (int) session.getAttribute("staffsid"));
 
             statement1.executeUpdate();
