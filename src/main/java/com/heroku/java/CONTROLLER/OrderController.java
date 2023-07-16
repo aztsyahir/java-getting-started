@@ -199,6 +199,7 @@ public class OrderController {
 
                   if(orderRowsAffected > 0){
                     //deletion from bridge and main table success
+                    connection.close();
                     return "redirect:/catalogue";
                   }
                  }
@@ -248,7 +249,7 @@ public class OrderController {
       
       @GetMapping("/stafforder")
       public String stafforder(HttpSession session,Model model,orderstaff orderstaff) {
-          // if (session.getAttribute("staffsid") != null) {
+          if (session.getAttribute("staffsid") != null) {
             List<orderstaff> orderstaffss = new ArrayList<>();
             try{
               Connection connection = dataSource.getConnection();
@@ -291,10 +292,10 @@ public class OrderController {
               }
 
               return "admin/stafforder";
-          // } else {
-          //     System.out.println("Session expired or invalid");
-          //     return "login";
-          // }
+          } else {
+              System.out.println("Session expired or invalid");
+              return "login";
+          }
   
       }
 

@@ -118,7 +118,7 @@ public class productsController {
       connection.close();
         
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
             return "redirect:/cakeregister";
         }
          return "redirect:/staffmenu";
@@ -198,7 +198,7 @@ public class productsController {
           connection.close();
         
         } catch (Exception e) {
-          // TODO: handle exception
+          e.printStackTrace();
         }
         return "admin/staffmenu";
       }
@@ -231,7 +231,6 @@ public class productsController {
               product = new Cupcakes(proid, proname, protype, proprice, null, null, null, cuptoppings);
             } else {
               // Handle the case when protype is neither "cake" nor "cupcake"
-              // For example, you can set product as a generic Product instance
               product = new Products(proid, proname, protype, proprice, null, null, null);
             }
       
@@ -305,7 +304,7 @@ public class productsController {
                 }
                 connection.close();
               } catch (Exception e) {
-                // TODO: handle exception
+                e.printStackTrace();
               }
               return "redirect:/staffmenu";
           } 

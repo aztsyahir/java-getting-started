@@ -18,15 +18,10 @@ import jakarta.servlet.http.HttpSession;
 
 import java.sql.*;
 import javax.sql.DataSource;
-// import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
-//import java.sql.SQLException;
-import java.util.List;
 
-// import org.jscience.physics.amount.Amount;
-// import org.jscience.physics.model.RelativisticModel;
-// import javax.measure.unit.SI;
+import java.util.List;
 
 @Controller
 public class staffController {
@@ -124,25 +119,29 @@ public class staffController {
 
     @PostMapping("/staffregister")
     public String addAccountStaff(HttpSession session, @ModelAttribute("staffregister") staff staff) {
-        // String fullname = (String) session.getAttribute("staffsname");
-        // int userid = (int) session.getAttribute("staffsid");
+        String fullname = (String) session.getAttribute("staffsname");
+        int userid = (int) session.getAttribute("staffsid");
+
+        //debug
+        System.out.println("fullname : "+fullname);
+        System.out.println("userid : "+ userid);
         try {
             Connection connection = dataSource.getConnection();
-            String sql1 = "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole) VALUES (?,?,?,?)";
+            String sql1 = "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole) VALUES (?,?,?,?,?)";
             final var statement1 = connection.prepareStatement(sql1);
 
-            String fullname = staff.getFullname();
+            String fname = staff.getFullname();
             String email = staff.getEmail();
             String password = staff.getPassword();
             System.out.println("password : " + password);
-            System.out.println("fullname : " + fullname);
+            System.out.println("fullname : " + fname);
             System.out.println("email : " + email);
 
-            statement1.setString(1, fullname);
+            statement1.setString(1, fname);
             statement1.setString(2, email);
             statement1.setString(3, passwordEncoder.encode(password));
-            statement1.setString(4, "admin");
-          //  statement1.setInt(5, (int) session.getAttribute("staffsid"));
+            statement1.setString(4, "baker");
+            statement1.setInt(5, (int) session.getAttribute("staffsid"));
 
             statement1.executeUpdate();
 
@@ -200,11 +199,12 @@ public class staffController {
                 return "staffprofile";
             } catch (SQLException e) {
                 e.printStackTrace();
+                return "login";
             }
         } else {
-            return "/login";
+            return "login";
         }
-        return "/login";
+        
 
     }
 
@@ -285,8 +285,9 @@ public class staffController {
                 } else {
                     // Deletion failed
                     connection.close();
-
-                    System.out.println("Delete Failed");
+                     System.out.println("Delete Failed");
+                    return "admin/deletestaff";
+                   
                 }
             } catch (SQLException e) {
                 // Handle any potential exceptions (e.g., log the error, display an error page)
@@ -299,7 +300,7 @@ public class staffController {
         }
         // Username is null or deletion failed, handle accordingly (e.g., redirect to an
         // error page)
-        return "/staff/stafforder";
+        return "staff/stafforder";
     }
 
    

@@ -26,13 +26,14 @@
     <!-- header section start here  -->
     <header class="header">
         <div class="logoContent">
-            <a th:href="@{/home}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
+            <a th:href="@{/catalogue}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
             <h1 class="logoName">iRizq Kitchen</h1>
         </div>
   
         <nav class="navbar">
           <a th:href="@{/orderHistory}">Order History</a>
-            <a th:href="@{/custprofile}">Profile</a>
+          <a th:href="@{/catalogue}">Catalogue</a>
+          <a th:href="@{/custprofile}">Profile</a>
         </nav>
     </header>
     <!-- header section end here  -->
@@ -153,7 +154,7 @@
                               <label for="cakesize">Topping: </label>
                               <input class="form-control-plaintext" type="text" th:value="${cupcake.cuptoppings}"  readonly style="text-align: center;">
                               <label for="cakeqty">Quantity: </label>
-                              <input type="number" name="quantity" id="cakeqty1" placeholder="eg. 1" min="1" style="background-color: #fff3d7;" ><br>
+                              <input type="number" name="quantity" id="cupcakeqty1" placeholder="eg. 1" min="1" style="background-color: #fff3d7;" ><br>
                               <input type="hidden" name="proprice" th:value="${cupcake.proprice}" />
                               <input type="hidden" name="proid" th:value="${cupcake.proid}" />
                               <div class="submitOrder1" id="submitOrder1">

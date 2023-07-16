@@ -90,7 +90,7 @@ public class loginController {
                         System.out.println("admin name : " + fullname);
                         System.out.println("admin id: " + userid);
                         System.out.println("admin role: " + staffsrole);
-                         return "redirect:/staffprofile";
+                         return "redirect:/stafforder";
 
                     } else if(staffsrole.equals("baker")){
                         
@@ -101,7 +101,7 @@ public class loginController {
                         System.out.println("staff name : " + fullname);
                         System.out.println("staff id: " + userid);
                         System.out.println("staff role: " + staffsrole);
-                         return "redirect:/staffprofile";
+                         return "redirect:/stafforder";
                     }
                 }
             }
@@ -144,7 +144,7 @@ public class loginController {
             return "redirect:/login?error";
           } catch (Exception e) {
             System.out.println("E message : " + e.getMessage());
-            return "redirect:login?error";
+            return "redirect:/login?error";
           }
 
     }

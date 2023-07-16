@@ -126,7 +126,7 @@ public class customerController {
             }else{
                 return "/login";
             }
-            return "/login";
+            return "catalogue";
  
 }
 
@@ -182,7 +182,7 @@ public class customerController {
                 return "redirect:/custprofile"; 
             } }
 
-            //delete controller
+            //delete cust controller
             @GetMapping("/deletecust")
             public String deleteProfileCust(HttpSession session, customer customer,Model model) {
             String fullname = (String) session.getAttribute("custname");
@@ -215,10 +215,10 @@ public class customerController {
                 } catch (SQLException e) {
                     // Handle any potential exceptions (e.g., log the error, display an error page)
                     e.printStackTrace();
-
+                    
                     // Deletion failed
-                    // You can redirect to an error page or perform any other desired actions
                     System.out.println("Error");
+                    return "admin/stafforder";
                 }
             }
             // fullname is null or deletion failed, handle accordingly (e.g., redirect to an error page)
