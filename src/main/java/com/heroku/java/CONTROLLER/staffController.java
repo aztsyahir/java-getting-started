@@ -1,4 +1,4 @@
-package com.heroku.java;
+package com.heroku.java.CONTROLLER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.heroku.java.MODEL.staff;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -43,17 +45,6 @@ public class staffController {
         // int staffsid = (int) session.getAttribute("staffsid");
         // System.out.println("staff id :" + staffsid);
         return "admin/staffregister";
-    }
-
-    @GetMapping("/stafforder")
-    public String stafforder(HttpSession session) {
-        if (session.getAttribute("fullname") != null) {
-            return "admin/stafforder";
-        } else {
-            System.out.println("Session expired or invalid");
-            return "login";
-        }
-
     }
 
     @GetMapping("/stafflist")
@@ -142,7 +133,7 @@ public class staffController {
             statement1.setString(1, fullname);
             statement1.setString(2, email);
             statement1.setString(3, passwordEncoder.encode(password));
-            statement1.setString(4, "admin");
+            statement1.setString(4, "baker");
           //  statement1.setInt(5, (int) session.getAttribute("staffsid"));
 
             statement1.executeUpdate();
@@ -295,39 +286,6 @@ public class staffController {
         // error page)
         return "/staff/stafforder";
     }
-
-    // @GetMapping("/staffmenu")
-    // // public String staffmenu(HttpSession session,cake cake,Model model){
-    // public String staffmenu() {
-
-    //     // try(Connection connection = dataSource.getConnection()) {
-
-    //     // final var statement = connection.createStatement();
-    //     // final var resultSet = statement.executeQuery("SELECT caketype, cakeprice,
-    //     // cakesize , cakeimg FROM cake ORDER BY cakeid;");
-
-    //     // // int row = 0;
-    //     // ArrayList<cake> cakes = new ArrayList<>();
-    //     // while (resultSet.next()) {
-    //     // String caketype = resultSet.getString("caketype");
-    //     // String cakeprice = resultSet.getString("cakeprice");
-    //     // Integer cakesize = resultSet.getInt("cakesize");
-    //     // byte[] cakeimg = resultSet.getBytes("cakeimg");
-    //     // cake Cake = new cake(caketype,cakeprice,cakesize,cakeimg);
-    //     // cakes.add(Cake);
-    //     // }
-    //     // model.addAttribute("staffmenu", cake);
-    //     // connection.close();
-    //     return "admin/staffmenu";
-              
-    //         // } catch (Exception e) {
-    //         //   TODO: handle exception
-    //         //   return "redirect/login";
-    //         // }
-
-      
-
-    // }
 
    
 

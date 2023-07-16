@@ -1,4 +1,4 @@
-package com.heroku.java;
+package com.heroku.java.CONTROLLER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
+import com.heroku.java.MODEL.User;
+import com.heroku.java.MODEL.customer;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -219,20 +221,6 @@ public class customerController {
             return "redirect:/custprofile";
         }
 
-        @GetMapping("/cart")
-         public String cart(){
-        return "user/cart";
-    }
-
-    @GetMapping("/paymentFileUpload")
-        public String paymentFileUpload(){
-        return "user/paymentFileUpload";
-    }
-
-    @GetMapping("/orderHistory")
-        public String orderHistory(){
-        return "user/orderHistory   ";
-    }
 
     }
  

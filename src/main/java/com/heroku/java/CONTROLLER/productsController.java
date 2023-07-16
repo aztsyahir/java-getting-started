@@ -1,4 +1,4 @@
-package com.heroku.java;
+package com.heroku.java.CONTROLLER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.heroku.java.MODEL.Cakes;
+import com.heroku.java.MODEL.Cupcakes;
+import com.heroku.java.MODEL.Products;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -42,7 +45,6 @@ public class productsController {
     }
 
     @GetMapping("/cakeregister")
-
     public String cakeregister() {
         return "admin/cakeregister";
     }
@@ -302,6 +304,6 @@ public class productsController {
                 // TODO: handle exception
               }
               return "redirect:/staffmenu";
-          }
+          } 
 
 }

@@ -1,4 +1,4 @@
-package com.heroku.java;
+package com.heroku.java.CONTROLLER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.heroku.java.MODEL.User;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -125,7 +126,7 @@ public class loginController {
                             session.setAttribute("custname",fullname);
                           
                             connection.close();
-                              return "redirect:/custprofile";
+                              return "redirect:/catalogue";
                     }
                 }
                 

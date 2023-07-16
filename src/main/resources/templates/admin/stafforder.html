@@ -10,7 +10,7 @@
      <!-- cdn icon link  -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
      <!-- custom css file  -->
-     <link rel="stylesheet" th:href="@{stylesheets/bakerorder.css}"> 
+     <link rel="stylesheet" th:href="@{stylesheets/stafforder.css}"> 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
@@ -32,33 +32,48 @@
   </header>
   <!-- header section end here  -->  
   
-  <body>
+  <body class="py-5">
+    <h1 class="text-center" style="font-size: 30px; font-weight: bold; margin-top: 50px;">Customer Orders</h1>
+    <div class="container py-5">
+      <div class="">
+        <div style="text-align: center; font-size: large;">
     <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-            <tr>
-              <th scope="col">orderID</th>
-              <th scope="col">Order Date</th>
-              <th scope="col">Customer Name</th>
-              <th scope="col">Address</th>
-              <th scope="col">Order</th>
-              <th scope="col">Validate</th>
+        <thead class="table">
+            <tr style="background-color: #efdbaa;">
+              <th >Order ID</th>
+              <th >Customer Name</th>
+              <th >Customer address</th>
+              <th >Products name</th>
+              <th >Quantity</th>
+              <th >Payment</th>
+              <th >Payment Date</th>
+              <th>Payment Proof</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead> 
-          <tbody>
+          <tbody style="background-color: #FAF0D7;">
             <!-- Use Thymeleaf loop to iterate over the employees -->
-            <tr th:each="customer: ${customer}">
-              <td th:text="${customer.orderid}"></td> 
-              <td th:text="${customer.orderdate}"></td> 
-              <td th:text="${customer.custname}"></td>
-              <td th:text="${customer.custaddress}"></td>
-              <td th:text="${customer.custorder}"></td>
+            <tr th:each="orderstaff: ${orderstaffs}">
+              <td th:text="${orderstaff.orderid}"></td> 
+              <td th:text="${orderstaff.fullname}"></td> 
+              <td th:text="${orderstaff.custaddress}"></td>
+              <td th:text="${orderstaff.proname}"></td>
+              <td th:text="${orderstaff.orderdetailsqty}"></td>
+              <td th:text="${orderstaff.paymentamt}"></td>
+              <td th:text="${orderstaff.paymentdate}"></td>
+              <td><img th:src="${orderstaff.paymentprf}" alt="proof image" style="width: 200px; height: 200px;"></td>
+              <td th:text="${orderstaff.orderstatus}"></td>
               <td>
-                <a class="btn btn-danger" th:href="@{/delete/{customerId}(customerId=${customer.orderid})}" onclick="return confirm('Are you sure you want to delete this order?')">Delete</a>
-                <a class="btn btn-success" th:href="@{/complete/{customerId}(customerId=${customer.orderid})}">Complete</a>
+                <span><a th:href="'/rejectorder?orderid=' + ${orderstaff.orderid}"th:value="${orderstaff.orderid}" onclick="return confirm('Are you sure you want to reject this order?')"><button type="button" class="btn btn-danger">Reject</button></a></span>
+                <span><a th:href="'/acceptorder?orderid=' + ${orderstaff.orderid}"th:value="${orderstaff.orderid}"><button type="button" class="btn btn-success">Accept</button></a></span>
             </td>
           </tr>
           </tbody>   
     </table>
+    </div>
+    </div>
+    </div>
 
     <!--Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

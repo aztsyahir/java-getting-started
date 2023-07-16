@@ -11,73 +11,75 @@
      <!-- cdn icon link  -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
      <!-- custom css file  -->
-     <!-- <link rel="stylesheet" th:href="@{stylesheets/}">  -->
+     <link rel="stylesheet" th:href="@{stylesheets/stafforderhistory.css}"> 
   </head>
 
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+<!-- header section start here  -->
+<header class="header">
+  <div class="logoContent">
+      <a th:href="@{/stafforder}" class="logo"><img th:src="@{image/cake.png}" alt="cake icon"></a>
+      <h1 class="logoName">iRizq Kitchen Staff</h1>
+  </div>
 
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .success {
-      background-color: #ccffcc;
-    }
-
-    .rejected {
-      background-color: #ffcccc;
-    }
-  </style>
-</head>
+  <nav class="navbar">
+      <a th:href="@{/stafforder}">Order List</a>
+      <a th:href="@{/staffmenu}">Menu</a>
+      <a th:href="@{/staffregister}">Register new baker</a>
+      <a th:href="@{/staffprofile}">Profile</a>
+  </nav>
+</header>
+<!-- header section end here   -->
 <body>
-  <h1>Order History</h1>
+  <section class="col-6" style="padding-top: 100px; ;"></section>
+  <h1 class="text-center" style="font-weight: bold;">ORDER HISTORY</h1>
 
-  <h2>Successful Orders</h2>
-  <table>
+  <h2 class="d-flex justify-content-center" style="margin-top: 40px; font-weight: bold;">Successful Orders</h2>
+  <div style="display: flex; justify-content: center; ">
+  <div style="text-align: center;">
+  <table class="table table-bordered border-dark">
     <thead>
       <tr>
         <th>Order ID</th>
-        <th>Date</th>
-        <th>Customer Name</th>
-        <th>Total</th>
+        <th>Product Name</th>
+        <th>Product Quantity</th>
+        <th>Total Price</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       <!-- Display successful orders -->
-      <tr th:each="order : ${orders}" th:if="${order.orderStatus == 'success'}">
-        <td th:text="${order.orderId}"></td>
-        <td th:text="${order.date}"></td>
-        <td th:text="${order.customerName}"></td>
-        <td th:text="${order.total}"></td>
+      <tr th:each="orderstaff : ${orderstaffs}" th:if="${orderstaff.orderstatus == 'accepted'}" >
+        <td th:text="${orderstaff.orderid}"></td>
+        <td th:text="${orderstaff.proname}"></td>
+        <td th:text="${orderstaff.orderdetailsqty}"></td>
+        <td th:text="${orderstaff.orderprice}"></td>
+        <td th:text="${orderstaff.orderstatus}"></td>
       </tr>
     </tbody>
   </table>
 
-  <h2>Rejected Orders</h2>
-  <table>
+  <h2 class="d-flex justify-content-center" style="margin-top: 40px; font-weight: bold;">Rejected Orders</h2>
+  <table class="table table-bordered border-dark">
     <thead>
-      <tr>
+      <tr >
         <th>Order ID</th>
-        <th>Date</th>
-        <th>Customer Name</th>
-        <th>Total</th>
+        <th>Product Name</th>
+        <th>Product Quantity</th>
+        <th>Total Price</th>
+        <th>Status</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
       <!-- Display rejected orders -->
-      <tr th:each="order : ${orders}" th:if="${order.orderStatus == 'rejected'}">
-        <td th:text="${order.orderId}"></td>
-        <td th:text="${order.date}"></td>
-        <td th:text="${order.customerName}"></td>
-        <td th:text="${order.total}"></td>
+      <tr th:each="orderstaff : ${orderstaffs}" th:if="${orderstaff.orderstatus == 'rejected'}" >
+        <td th:text="${orderstaff.orderid}"></td>
+        <td th:text="${orderstaff.proname}"></td>
+        <td th:text="${orderstaff.orderdetailsqty}"></td>
+        <td th:text="${orderstaff.orderprice}"></td>
+        <td th:text="${orderstaff.orderstatus}"></td>
       </tr>
     </tbody>
   </table>
+</section>
 </body>
 </html>
