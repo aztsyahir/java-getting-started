@@ -76,6 +76,8 @@ public class staffController {
 
             }
 
+            connection.close();
+
          return "admin/stafflist";
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,11 +102,15 @@ public class staffController {
 
                 if (rowsAffected > 0) {
                     // Deletion successful
+                    connection.close();
                     return "redirect:/stafflist"; // Redirect back to the staff list
                 } else {
                     // Deletion failed
+                    connection.close();
                     return "redirect:/stafflist"; // Redirect to an error page or show an error message
                 }
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Handle the exception as desired (e.g., show an error message)
@@ -118,6 +124,8 @@ public class staffController {
 
     @PostMapping("/staffregister")
     public String addAccountStaff(HttpSession session, @ModelAttribute("staffregister") staff staff) {
+        // String fullname = (String) session.getAttribute("staffsname");
+        // int userid = (int) session.getAttribute("staffsid");
         try {
             Connection connection = dataSource.getConnection();
             String sql1 = "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole) VALUES (?,?,?,?)";
@@ -188,6 +196,7 @@ public class staffController {
                     System.out.println("Session staffprofile : " + model.getAttribute("staffprofile"));
 
                 }
+                connection.close();
                 return "staffprofile";
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -212,7 +221,7 @@ public class staffController {
         // debug
         System.out.println("id update = " + staffsid);
         System.out.println("role update = " + staffsrole);
-
+        
         try {
             Connection connection = dataSource.getConnection();
             String sql1 = "UPDATE staffs SET staffsname=? ,staffsemail=?, staffsrole=? WHERE staffsid=?";
@@ -238,6 +247,9 @@ public class staffController {
                 passwordStatement.executeUpdate();
 
             }
+
+
+            connection.close();
 
             String returnPage = "staffprofile";
             return returnPage;
@@ -266,11 +278,14 @@ public class staffController {
                 if (userRowsAffected > 0) {
                     // Deletion successful
                     // You can redirect to a success page or perform any other desired actions
+                    
                     session.invalidate();
+                    connection.close();
                     return "redirect:/";
                 } else {
                     // Deletion failed
-                    // You can redirect to an error page or perform any other desired actions
+                    connection.close();
+
                     System.out.println("Delete Failed");
                 }
             } catch (SQLException e) {

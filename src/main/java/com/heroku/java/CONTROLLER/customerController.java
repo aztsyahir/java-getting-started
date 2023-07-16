@@ -117,6 +117,7 @@ public class customerController {
                     System.out.println("Session custprofile : " + model.getAttribute("custprofile"));
 
                 }
+                connection.close();
                return "custprofile";
             }
         catch (SQLException e) {
@@ -170,6 +171,7 @@ public class customerController {
 
             }
             
+            connection.close();
 
             String returnPage = "custprofile"; 
             return returnPage; 
@@ -200,13 +202,16 @@ public class customerController {
                         // Deletion successful
                         // You can redirect to a success page or perform any other desired actions
                         session.invalidate();
+                        connection.close();
                         return "redirect:/";
                     } else {
                         // Deletion failed
                         // You can redirect to an error page or perform any other desired actions
                         System.out.println("Delete Failed");
+                        connection.close();
                         return "redirect:/custprofile";
                     }
+                    
                 } catch (SQLException e) {
                     // Handle any potential exceptions (e.g., log the error, display an error page)
                     e.printStackTrace();

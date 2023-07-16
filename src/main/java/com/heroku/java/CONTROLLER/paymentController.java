@@ -105,6 +105,8 @@ public class paymentController {
       model.addAttribute("orders", orders);
       model.addAttribute("orderdetails", orderdetails);
       model.addAttribute("products", products);
+
+      connection.close();
       
     } catch (Exception e) {
       e.printStackTrace();
@@ -147,6 +149,7 @@ public class paymentController {
              statement2.executeUpdate();
 
              System.out.println("order id update :"+ orderid);
+             connection.close();
             
         } catch (Exception e) {
             e.printStackTrace();

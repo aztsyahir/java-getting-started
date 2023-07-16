@@ -236,6 +236,8 @@ public class productsController {
             }
       
             model.addAttribute("product", product);  // Use "product" as the model attribute name
+
+            connection.close();
           }
         } catch (Exception e) {
           e.printStackTrace();
@@ -262,6 +264,8 @@ public class productsController {
             statement.setInt(2, proid);
 
             statement.executeUpdate();
+            
+            connection.close();
 
           }catch(Exception e){
             e.printStackTrace();
