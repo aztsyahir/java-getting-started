@@ -127,7 +127,7 @@ public class staffController {
         System.out.println("userid : "+ userid);
         try {
             Connection connection = dataSource.getConnection();
-            String sql1 = "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole) VALUES (?,?,?,?,?)";
+            String sql1 = "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole, managersid) VALUES (?,?,?,?,?)";
             final var statement1 = connection.prepareStatement(sql1);
 
             String fname = staff.getFullname();
