@@ -218,7 +218,7 @@ public class customerController {
                     
                     // Deletion failed
                     System.out.println("Error");
-                    return "admin/stafforder";
+                    return "user/custprofile";
                 }
             }
             // fullname is null or deletion failed, handle accordingly (e.g., redirect to an error page)
