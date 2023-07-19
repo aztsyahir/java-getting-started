@@ -45,29 +45,6 @@ public class MainController {
     public String about() {
         return "user/about";
     }
-<<<<<<< HEAD
-
-    @GetMapping("/catalogue")
-    public String catalogue() {
-        // if (session.getAttribute("fullname") != null) {
-            return "user/catalogue";
-        // } else {
-        //     System.out.println("Session expired or invalid");
-        //     return "login";
-        // }
-    }
-
-    @GetMapping("/faqs")
-    public String faqs() {
-        return "user/faqs";
-    }
-
-    @GetMapping("/payment")
-    public String payment() {
-        return "user/payment";
-    }
-=======
->>>>>>> 32d661f1f917dbb3b31839d96d424984d36c3c63
     
     @GetMapping("/customerregister")
     public String custregister() {

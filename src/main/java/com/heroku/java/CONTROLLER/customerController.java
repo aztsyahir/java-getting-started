@@ -117,18 +117,11 @@ public class customerController {
                     System.out.println("Session custprofile : " + model.getAttribute("custprofile"));
 
                 }
-<<<<<<< HEAD:src/main/java/com/heroku/java/customerController.java
-                    return "custprofile";
-                }
-            catch (SQLException e) {
-                e.printStackTrace();
-=======
                 connection.close();
                return "custprofile";
             }
         catch (SQLException e) {
             e.printStackTrace();
->>>>>>> 32d661f1f917dbb3b31839d96d424984d36c3c63:src/main/java/com/heroku/java/CONTROLLER/customerController.java
             }
             }else{
                 return "/login";
@@ -233,23 +226,6 @@ public class customerController {
             return "redirect:/custprofile";
         }
 
-<<<<<<< HEAD:src/main/java/com/heroku/java/customerController.java
-    @GetMapping("/cart")
-        public String cart(){
-            return "user/cart";
-    }
-
-    @GetMapping("/paymentFileUpload")
-        public String paymentFileUpload(){
-        return "user/paymentFileUpload";
-    }
-
-    @GetMapping("/orderHistory")
-        public String orderHistory(){
-        return "user/orderHistory   ";
-    }
-=======
->>>>>>> 32d661f1f917dbb3b31839d96d424984d36c3c63:src/main/java/com/heroku/java/CONTROLLER/customerController.java
 
     }
  
