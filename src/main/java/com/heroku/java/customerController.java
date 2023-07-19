@@ -115,17 +115,17 @@ public class customerController {
                     System.out.println("Session custprofile : " + model.getAttribute("custprofile"));
 
                 }
-               return "custprofile";
-            }
-        catch (SQLException e) {
-            e.printStackTrace();
+                    return "custprofile";
+                }
+            catch (SQLException e) {
+                e.printStackTrace();
             }
             }else{
                 return "/login";
             }
             return "/login";
  
-}
+    }
 
 
  //Update Profile Customer
@@ -219,9 +219,9 @@ public class customerController {
             return "redirect:/custprofile";
         }
 
-        @GetMapping("/cart")
-         public String cart(){
-        return "user/cart";
+    @GetMapping("/cart")
+        public String cart(){
+            return "user/cart";
     }
 
     @GetMapping("/paymentFileUpload")

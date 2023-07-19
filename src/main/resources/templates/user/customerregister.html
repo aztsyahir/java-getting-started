@@ -17,38 +17,38 @@
   </head>
  
   <body>
-    <h1 class="registerform d-flex justify-content-center" style="font-weight: 800; font-size: 50px; margin-bottom: 5%;">Create your account</h1>
-    <main class="formcontainer">
-      <form 
-        class="d-flex justify-content-center"
-        method="post"
-        th:action="@{/customerregister}"
-        modelAttribute="customerregister"
-        th:object="(${customerregister})">
+    <h1 class="registerform d-flex justify-content-center" style="font-weight: 800; font-size: 50px; margin-top: 4%;">Create your account</h1>
+    <form 
+      class="d-flex justify-content-center"
+      method="post"
+      th:action="@{/customerregister}"
+      modelAttribute="customerregister"
+      th:object="(${customerregister})"
+      style="margin-top: 4%;">
         
-        <div class="card col-6" style="margin-bottom: 5%;">
-         <div class="card-body">
-            <div class="mb-3">
-                <label for="exampleInputName" class="form-label" style="font-size: 18px;">Full Name</label>
-                <input type="fullname"
+      <div class="card col-6" style="margin-bottom: 4%;">
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="exampleInputName" class="form-label" style="font-size: 18px;">Full Name</label>
+              <input type="fullname"
                 class="form-control text-uppercase"
-                 id="exampleInputName" 
-                 placeholder="e.g. Ali Bin Abu" 
-                 required aria-describedby="nameHelp"
-                 name="fullname" style="font-size: 18px;">
-              </div>
-            <div class="mb-3">
-              <label for="exampleInputEmail" class="form-label" style="font-size: 18px;">Email address</label>
-              <input type="email"
-               class="form-control" 
-               id="exampleInputEmail"
-                placeholder="e.g. ali@gmail.com" 
-                required aria-describedby="emailHelp"
-                name="email" style="font-size: 18px;">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPhone" class="form-label" style="font-size: 18px;">Phone Number</label>
-                <input type="tel"
+                id="exampleInputName" 
+                placeholder="e.g. Ali Bin Abu" 
+                required aria-describedby="nameHelp"
+                name="fullname" style="font-size: 18px;">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label" style="font-size: 18px;">Email Address</label>
+            <input type="email"
+              class="form-control" 
+              id="exampleInputEmail"
+              placeholder="e.g. ali@gmail.com" 
+              required aria-describedby="emailHelp"
+              name="email" style="font-size: 18px;">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPhone" class="form-label" style="font-size: 18px;">Phone Number</label>
+              <input type="tel"
                 class="form-control"
                 pattern="[0-9]{10,11}" 
                 id="exampleInputNumber"
@@ -56,38 +56,38 @@
                 maxlength = "12" 
                 required aria-describedby="phonenumHelp"
                 name="custphone" style="font-size: 18px;">
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputAddress" class="form-label" style="font-size: 18px;">Address</label>
-                <input type="address"
-                 class="form-control"
-                  id="exampleInputAddress" 
-                  placeholder="Street address" 
-                  required
-                  name="custaddress" style="font-size: 18px;">
-                  <div id="addressHelp" class="form-text" style="font-size: 12px;">We'll never share your address with anyone else.</div>
-              </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label" style="font-size: 18px;">Password</label>
-              <input type="password"
-               class="form-control" 
-               id="exampleInputPassword1" 
-               minlength="8" 
-               placeholder="e.g. password"
-               required
-               name="password" style="font-size: 18px;">
-              <div id="passwordHelp" class="form-text" style="font-size: 12px;">Must be at least 8 characters.</div>
-            </div>
-            <div class="text-center">
-                <p style="font-size: 15px;">
-                  Have an account already?  
-                  <span><a th:href="@{/login}">Log In</a></span>
-                </p>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputAddress" class="form-label" style="font-size: 18px;">Address</label>
+              <input type="address"
+                class="form-control"
+                id="exampleInputAddress" 
+                placeholder="Street address" 
+                required
+                name="custaddress" style="font-size: 18px;">
+              <div id="addressHelp" class="form-text" style="font-size: 12px;">We'll never share your address with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label" style="font-size: 18px;">Password</label>
+            <input type="password"
+              class="form-control" 
+              id="exampleInputPassword1" 
+              minlength="8" 
+              placeholder="e.g. password"
+              required
+              name="password" style="font-size: 18px;">
+            <div id="passwordHelp" class="form-text" style="font-size: 12px;">Must be at least 8 characters.</div>
+          </div>
+          <div class="text-center">
+            <p style="font-size: 15px;">
+              Have an account already?  
+              <span><a th:href="@{/login}">Log In</a></span>
+            </p>
             <button id="btncustregister"type="submit" class="btn btn-warning" style="font-size: 18px;"><strong>Sign Up</strong></button>
-            </div></div>
-            </div>
-        </form>
-    </main>
+          </div>
+        </div>
+      </div>
+    </form>
     <!-- <div class="formcontainer">
         <form 
         class="d-flex justify-content-center"

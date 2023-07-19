@@ -38,10 +38,10 @@ public class loginController {
         this.dataSource = dataSource;
     }
 
-      @Autowired
-  private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-  @GetMapping("/login")
+    @GetMapping("/login")
     public String login() {
         return "login";
     }

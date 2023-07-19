@@ -61,9 +61,6 @@ public class MainController {
         return "user/faqs";
     }
 
-    
-
-
     @GetMapping("/payment")
     public String payment() {
         return "user/payment";
