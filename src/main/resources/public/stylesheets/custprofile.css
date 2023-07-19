@@ -15,28 +15,29 @@
     border: none;
     text-decoration: none;
     transition: .2s linear;
+    
+    
 }
 
 html{
-font-size: 62.5%;   
-overflow-x: hidden;
-scroll-padding-top: 7rem;
-scroll-behavior: smooth;
+    font-size: 62.5%;   
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
 }
 
 html::-webkit-scrollbar{
-width: .8rem;
+    width: .8rem;
 }
 
 html::-webkit-scrollbar-track{
-background: transparent;
+    background: transparent;
 }
 
 html::-webkit-scrollbar-thumb{
-background-color: var(--white);
-border-radius: 5rem;
+    background-color: var(--white);
+    border-radius: 5rem;
 }
-
 /*header starts here*/
 .header{
     top: 0;right: 0;left: 0;
@@ -86,4 +87,37 @@ border-radius: 5rem;
     margin-right: 2rem;
     color: var(--black);
     cursor: pointer;
+}
+
+/*header ends here*/
+body{
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+}
+.formcontainer{
+    padding-top: 8%;
+}
+
+.btn{
+    font-weight: bold;
+}
+
+fieldset{
+    font-weight: bold;
+}
+
+.card{
+    border-radius: 10px;
+    background: #efe5c0;
+    box-shadow:  20px 20px 60px #95938c;
+             
+}
+
+.form-label{
+    font-weight: bold;
+}
+.card-body{
+    border-radius: 10px;
+    background: #efe5c0;
+    box-shadow:  20px 20px 60px #95938c;
+             
 }

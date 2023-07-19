@@ -45,6 +45,7 @@ public class MainController {
     public String about() {
         return "user/about";
     }
+<<<<<<< HEAD
 
     @GetMapping("/catalogue")
     public String catalogue() {
@@ -65,52 +66,14 @@ public class MainController {
     public String payment() {
         return "user/payment";
     }
+=======
+>>>>>>> 32d661f1f917dbb3b31839d96d424984d36c3c63
     
     @GetMapping("/customerregister")
     public String custregister() {
         return "user/customerregister";
     }
 
-    @GetMapping("/stafforderhistory")
-    public String stafforderhistory(){
-        return "admin/stafforderhistory";
-    }
-
-    @GetMapping("/convert")
-    String convert(Map<String, Object> model) {
-        RelativisticModel.select();
-
-        final var result = java.util.Optional
-                .ofNullable(System.getenv().get("ENERGY"))
-                .map(Amount::valueOf)
-                .map(energy -> "E=mc^2: " + energy + " = " + energy.to(SI.KILOGRAM))
-                .orElse("ENERGY environment variable is not set!");
-
-        model.put("result", result);
-        return "convert";
-    }
-
-    @GetMapping("/database")
-    String database(Map<String, Object> model) {
-        try (Connection connection = dataSource.getConnection()) {
-            final var statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-            statement.executeUpdate("INSERT INTO ticks VALUES (now())");
-
-            final var resultSet = statement.executeQuery("SELECT tick FROM ticks");
-            final var output = new ArrayList<>();
-            while (resultSet.next()) {
-                output.add("Read from DB: " + resultSet.getTimestamp("tick"));
-            }
-
-            model.put("records", output);
-            return "database";
-
-        } catch (Throwable t) {
-            model.put("message", t.getMessage());
-            return "error";
-        }
-    }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

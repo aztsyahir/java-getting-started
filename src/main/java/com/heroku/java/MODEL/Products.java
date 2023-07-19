@@ -1,4 +1,4 @@
-    package com.heroku.java;
+    package com.heroku.java.MODEL;
 
 import org.springframework.web.multipart.MultipartFile;
 

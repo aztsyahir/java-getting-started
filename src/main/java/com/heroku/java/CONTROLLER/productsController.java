@@ -1,4 +1,4 @@
-package com.heroku.java;
+package com.heroku.java.CONTROLLER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.heroku.java.MODEL.Cakes;
+import com.heroku.java.MODEL.Cupcakes;
+import com.heroku.java.MODEL.Products;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -42,7 +45,6 @@ public class productsController {
     }
 
     @GetMapping("/cakeregister")
-
     public String cakeregister() {
         return "admin/cakeregister";
     }
@@ -116,7 +118,7 @@ public class productsController {
       connection.close();
         
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
             return "redirect:/cakeregister";
         }
          return "redirect:/staffmenu";
@@ -196,7 +198,7 @@ public class productsController {
           connection.close();
         
         } catch (Exception e) {
-          // TODO: handle exception
+          e.printStackTrace();
         }
         return "admin/staffmenu";
       }
@@ -229,11 +231,12 @@ public class productsController {
               product = new Cupcakes(proid, proname, protype, proprice, null, null, null, cuptoppings);
             } else {
               // Handle the case when protype is neither "cake" nor "cupcake"
-              // For example, you can set product as a generic Product instance
               product = new Products(proid, proname, protype, proprice, null, null, null);
             }
       
             model.addAttribute("product", product);  // Use "product" as the model attribute name
+
+            connection.close();
           }
         } catch (Exception e) {
           e.printStackTrace();
@@ -260,6 +263,8 @@ public class productsController {
             statement.setInt(2, proid);
 
             statement.executeUpdate();
+            
+            connection.close();
 
           }catch(Exception e){
             e.printStackTrace();
@@ -299,9 +304,9 @@ public class productsController {
                 }
                 connection.close();
               } catch (Exception e) {
-                // TODO: handle exception
+                e.printStackTrace();
               }
               return "redirect:/staffmenu";
-          }
+          } 
 
 }

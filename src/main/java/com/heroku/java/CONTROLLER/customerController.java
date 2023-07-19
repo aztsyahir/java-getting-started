@@ -1,4 +1,4 @@
-package com.heroku.java;
+package com.heroku.java.CONTROLLER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
+import com.heroku.java.MODEL.User;
+import com.heroku.java.MODEL.customer;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -115,15 +117,23 @@ public class customerController {
                     System.out.println("Session custprofile : " + model.getAttribute("custprofile"));
 
                 }
+<<<<<<< HEAD:src/main/java/com/heroku/java/customerController.java
                     return "custprofile";
                 }
             catch (SQLException e) {
                 e.printStackTrace();
+=======
+                connection.close();
+               return "custprofile";
+            }
+        catch (SQLException e) {
+            e.printStackTrace();
+>>>>>>> 32d661f1f917dbb3b31839d96d424984d36c3c63:src/main/java/com/heroku/java/CONTROLLER/customerController.java
             }
             }else{
                 return "/login";
             }
-            return "/login";
+            return "catalogue";
  
     }
 
@@ -168,6 +178,7 @@ public class customerController {
 
             }
             
+            connection.close();
 
             String returnPage = "custprofile"; 
             return returnPage; 
@@ -178,7 +189,7 @@ public class customerController {
                 return "redirect:/custprofile"; 
             } }
 
-            //delete controller
+            //delete cust controller
             @GetMapping("/deletecust")
             public String deleteProfileCust(HttpSession session, customer customer,Model model) {
             String fullname = (String) session.getAttribute("custname");
@@ -198,20 +209,23 @@ public class customerController {
                         // Deletion successful
                         // You can redirect to a success page or perform any other desired actions
                         session.invalidate();
+                        connection.close();
                         return "redirect:/";
                     } else {
                         // Deletion failed
                         // You can redirect to an error page or perform any other desired actions
                         System.out.println("Delete Failed");
+                        connection.close();
                         return "redirect:/custprofile";
                     }
+                    
                 } catch (SQLException e) {
                     // Handle any potential exceptions (e.g., log the error, display an error page)
                     e.printStackTrace();
-
+                    
                     // Deletion failed
-                    // You can redirect to an error page or perform any other desired actions
                     System.out.println("Error");
+                    return "user/custprofile";
                 }
             }
             // fullname is null or deletion failed, handle accordingly (e.g., redirect to an error page)
@@ -219,6 +233,7 @@ public class customerController {
             return "redirect:/custprofile";
         }
 
+<<<<<<< HEAD:src/main/java/com/heroku/java/customerController.java
     @GetMapping("/cart")
         public String cart(){
             return "user/cart";
@@ -233,6 +248,8 @@ public class customerController {
         public String orderHistory(){
         return "user/orderHistory   ";
     }
+=======
+>>>>>>> 32d661f1f917dbb3b31839d96d424984d36c3c63:src/main/java/com/heroku/java/CONTROLLER/customerController.java
 
     }
  

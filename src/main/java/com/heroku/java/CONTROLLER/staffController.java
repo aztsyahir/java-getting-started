@@ -1,4 +1,4 @@
-package com.heroku.java;
+package com.heroku.java.CONTROLLER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -12,19 +12,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.heroku.java.MODEL.staff;
+
 import jakarta.servlet.http.HttpSession;
 
 import java.sql.*;
 import javax.sql.DataSource;
-// import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
-//import java.sql.SQLException;
-import java.util.List;
 
-// import org.jscience.physics.amount.Amount;
-// import org.jscience.physics.model.RelativisticModel;
-// import javax.measure.unit.SI;
+import java.util.List;
 
 @Controller
 public class staffController {
@@ -43,17 +40,6 @@ public class staffController {
         // int staffsid = (int) session.getAttribute("staffsid");
         // System.out.println("staff id :" + staffsid);
         return "admin/staffregister";
-    }
-
-    @GetMapping("/stafforder")
-    public String stafforder(HttpSession session) {
-        if (session.getAttribute("fullname") != null) {
-            return "admin/stafforder";
-        } else {
-            System.out.println("Session expired or invalid");
-            return "login";
-        }
-
     }
 
     @GetMapping("/stafflist")
@@ -85,6 +71,8 @@ public class staffController {
 
             }
 
+            connection.close();
+
          return "admin/stafflist";
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,11 +97,15 @@ public class staffController {
 
                 if (rowsAffected > 0) {
                     // Deletion successful
+                    connection.close();
                     return "redirect:/stafflist"; // Redirect back to the staff list
                 } else {
                     // Deletion failed
+                    connection.close();
                     return "redirect:/stafflist"; // Redirect to an error page or show an error message
                 }
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Handle the exception as desired (e.g., show an error message)
@@ -127,23 +119,29 @@ public class staffController {
 
     @PostMapping("/staffregister")
     public String addAccountStaff(HttpSession session, @ModelAttribute("staffregister") staff staff) {
+        String fullname = (String) session.getAttribute("staffsname");
+        int userid = (int) session.getAttribute("staffsid");
+
+        //debug
+        System.out.println("fullname : "+fullname);
+        System.out.println("userid : "+ userid);
         try {
             Connection connection = dataSource.getConnection();
-            String sql1 = "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole) VALUES (?,?,?,?)";
+            String sql1 = "INSERT INTO staffs (staffsname, staffsemail, staffspassword, staffsrole, managersid) VALUES (?,?,?,?,?)";
             final var statement1 = connection.prepareStatement(sql1);
 
-            String fullname = staff.getFullname();
+            String fname = staff.getFullname();
             String email = staff.getEmail();
             String password = staff.getPassword();
             System.out.println("password : " + password);
-            System.out.println("fullname : " + fullname);
+            System.out.println("fullname : " + fname);
             System.out.println("email : " + email);
 
-            statement1.setString(1, fullname);
+            statement1.setString(1, fname);
             statement1.setString(2, email);
             statement1.setString(3, passwordEncoder.encode(password));
-            statement1.setString(4, "admin");
-          //  statement1.setInt(5, (int) session.getAttribute("staffsid"));
+            statement1.setString(4, "baker");
+            statement1.setInt(5, (int) session.getAttribute("staffsid"));
 
             statement1.executeUpdate();
 
@@ -197,14 +195,16 @@ public class staffController {
                     System.out.println("Session staffprofile : " + model.getAttribute("staffprofile"));
 
                 }
+                connection.close();
                 return "staffprofile";
             } catch (SQLException e) {
                 e.printStackTrace();
+                return "login";
             }
         } else {
-            return "/login";
+            return "login";
         }
-        return "/login";
+        
 
     }
 
@@ -221,7 +221,7 @@ public class staffController {
         // debug
         System.out.println("id update = " + staffsid);
         System.out.println("role update = " + staffsrole);
-
+        
         try {
             Connection connection = dataSource.getConnection();
             String sql1 = "UPDATE staffs SET staffsname=? ,staffsemail=?, staffsrole=? WHERE staffsid=?";
@@ -247,6 +247,9 @@ public class staffController {
                 passwordStatement.executeUpdate();
 
             }
+
+
+            connection.close();
 
             String returnPage = "staffprofile";
             return returnPage;
@@ -275,12 +278,16 @@ public class staffController {
                 if (userRowsAffected > 0) {
                     // Deletion successful
                     // You can redirect to a success page or perform any other desired actions
+                    
                     session.invalidate();
+                    connection.close();
                     return "redirect:/";
                 } else {
                     // Deletion failed
-                    // You can redirect to an error page or perform any other desired actions
-                    System.out.println("Delete Failed");
+                    connection.close();
+                     System.out.println("Delete Failed");
+                    return "admin/deletestaff";
+                   
                 }
             } catch (SQLException e) {
                 // Handle any potential exceptions (e.g., log the error, display an error page)
@@ -293,41 +300,8 @@ public class staffController {
         }
         // Username is null or deletion failed, handle accordingly (e.g., redirect to an
         // error page)
-        return "/staff/stafforder";
+        return "staff/stafforder";
     }
-
-    // @GetMapping("/staffmenu")
-    // // public String staffmenu(HttpSession session,cake cake,Model model){
-    // public String staffmenu() {
-
-    //     // try(Connection connection = dataSource.getConnection()) {
-
-    //     // final var statement = connection.createStatement();
-    //     // final var resultSet = statement.executeQuery("SELECT caketype, cakeprice,
-    //     // cakesize , cakeimg FROM cake ORDER BY cakeid;");
-
-    //     // // int row = 0;
-    //     // ArrayList<cake> cakes = new ArrayList<>();
-    //     // while (resultSet.next()) {
-    //     // String caketype = resultSet.getString("caketype");
-    //     // String cakeprice = resultSet.getString("cakeprice");
-    //     // Integer cakesize = resultSet.getInt("cakesize");
-    //     // byte[] cakeimg = resultSet.getBytes("cakeimg");
-    //     // cake Cake = new cake(caketype,cakeprice,cakesize,cakeimg);
-    //     // cakes.add(Cake);
-    //     // }
-    //     // model.addAttribute("staffmenu", cake);
-    //     // connection.close();
-    //     return "admin/staffmenu";
-              
-    //         // } catch (Exception e) {
-    //         //   TODO: handle exception
-    //         //   return "redirect/login";
-    //         // }
-
-      
-
-    // }
 
    
 
